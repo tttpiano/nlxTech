@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('main-container')
 
-    <div class="container text-center" style="color: black; font-size: 50px;">Tin Tức</div>
+    <div class="container text-center" style="color: black; margin-top: 70px; font-size: 50px; font-weight: 600;">Tin Tức</div>
     <!-- Blog Section Begin -->
     <section class="blog spad">
         <div class="container">
