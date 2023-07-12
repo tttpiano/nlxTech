@@ -5,23 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <ul class="category">
-                            <li style="border: none;"><a href="#">Máy Lạnh Công Nghiệp</a></li>
-                            <li><a href="#">Kho Lạnh</a></li>
-                            <li><a href="#">Điện Công Nghiệp</a></li>
-                            <li><a href="#">Quạt Nhà Xưởng</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">Sản Phẩm Khác</a>
-                                <ul class="dropdown-menu" style="transform: translate(68px, -49px) !important;">
-                                    <li><a href="#">Tủ Lạnh</a></li>
-                                    <li><a href="#">Tivi</a></li>
-                                    <li><a href="#">Loaa</a></li>
-                                </ul>
-                            </li>
 
-                        </ul>
-                    </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="slider1">

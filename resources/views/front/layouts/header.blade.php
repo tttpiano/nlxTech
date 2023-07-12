@@ -246,3 +246,32 @@
         </div>
     </div>
 </div>
+
+<section class="hero" style="position: absolute; left: 15px; z-index: 99;height: 500px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <ul class="category" style="background: #fff;transform: translateY(-128px)">
+                        <li style="border: none;"><a href="#">Máy Lạnh Công Nghiệp</a></li>
+                        <li><a href="#">Kho Lạnh</a></li>
+                        <li><a href="#">Điện Công Nghiệp</a></li>
+                        <li><a href="#">Quạt Nhà Xưởng</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Sản Phẩm Khác</a>
+                            <ul class="dropdown-menu spk" style="transform: translate(68px, -49px) !important;">
+                                <li><a href="#">Tủ Lạnh</a></li>
+                                <li><a href="#">Tivi</a></li>
+                                <li><a href="#">Loaa</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+
+            </div>
+        </div>
+    </div>
+</section>
