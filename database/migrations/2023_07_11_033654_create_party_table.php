@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('party', function (Blueprint $table) {
             $table->id();
-            $table->string("description");
+            $table->text("description");
             $table->unsignedBigInteger("party_id");
-            $table->string("type");
+            $table->text("type");
             $table->timestamps();
         });
     }

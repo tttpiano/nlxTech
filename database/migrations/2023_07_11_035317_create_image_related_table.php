@@ -12,10 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('image_related', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('img_id');
             $table->unsignedBigInteger("related_id");
-            $table->string("entity");
+            $table->text("entity");
             $table->timestamps();
+
+
+            $table->foreign('img_id')
+                ->references('id')
+                ->on('image')
+                ->onDelete('restrict');
+
+            $table->foreign('related_id')
+                ->references('id')
+                ->on('product')
+                ->onDelete('restrict');
+
+            $table->foreign('related_id')
+                ->references('id')
+                ->on('post')
+                ->onDelete('restrict');
         });
     }
 

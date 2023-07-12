@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('post', function (Blueprint $table) {
             $table->id();
-            $table->string("author");
-            $table->string("title");
-            $table->string("description");
-            $table->string("content");
-            $table->string("meta_desc");
-            $table->string("meta_keyword");
-            $table->string("status");
-            $table->string("url_seo");
+            $table->text("author");
+            $table->text("title");
+            $table->text("description");
+            $table->text("content");
+            $table->text("meta_desc");
+            $table->text("meta_keyword");
+            $table->text("status");
+            $table->text("url_seo");
             $table->timestamps();
         });
     }
