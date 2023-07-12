@@ -21,4 +21,12 @@ Route::get('/blog', function () {
     $pageTitle = "Tin Tức";
     return view('front.blog', ['pageTitle' => $pageTitle]);
 });
+Route::get('/blog/1', function () {
+    $pageTitle = "Bài Viết";
+    return view('front.blog_detail', ['pageTitle' => $pageTitle]);
+});
+Route::get('/contact', function () {
+    $pageTitle = "Liên Hệ";
+    return view('front.contact', ['pageTitle' => $pageTitle]);
+});
 //Route::get('', [ProductController::class, 'showProduct'])->name('home');
