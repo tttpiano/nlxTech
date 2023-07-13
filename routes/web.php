@@ -20,7 +20,7 @@ Route::get('/blog', function () {
     $pageTitle = "Tin Tức";
     return view('front.blog', ['pageTitle' => $pageTitle]);
 });
-Route::get('/blog/1', function () {
+Route::get('/blog/2', function () {
     $pageTitle = "Bài Viết";
     return view('front.blog_detail', ['pageTitle' => $pageTitle]);
 });
