@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('main-container')
     <!-- master -->
-    <section class="hero">
+    <section class="hero1" style="margin-bottom: 50px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">

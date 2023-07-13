@@ -247,7 +247,7 @@
     </div>
 </div>
 
-<section class="hero" style="position: absolute; left: 15px; z-index: 99;height: 500px;">
+<section class="hero" style="position: absolute; left: 15px; z-index: 99">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
