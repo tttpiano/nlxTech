@@ -23,8 +23,6 @@ Route::get('/contact', function () {
 //Blog
 Route::get('/blog', [PostController::class, 'getAllBlogs'])->name('blog');
 Route::get('/blog/{url_seo}', [PostController::class, 'show'])->name('posts.show');
-
-
 //admin
 Route::get('/admin', function () {
     $pageTitle = "admin";

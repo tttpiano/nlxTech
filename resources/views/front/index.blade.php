@@ -45,7 +45,9 @@
     <section>
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide--one">
+                <div class="swiper-slide swiper-slide--one" style="background: linear-gradient(to top, #255063, #203a4300, #2c536400),
+    url(https://maylanhgiadaily.b-cdn.net/picture1.jpg)
+      no-repeat 50% 50% / cover;">
                     <span>domestic</span>
                     <div>
                         <a href="#">Enjoy the exotic of sunny Hawaii</a>
@@ -61,74 +63,74 @@
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide--two">
-                    <span>subtropical</span>
-                    <div>
-                        <a href="#">The Island of Eternal Spring</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                            </svg>
-                            Lanzarote, Spanien
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--two">--}}
+{{--                    <span>subtropical</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">The Island of Eternal Spring</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Lanzarote, Spanien--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--three">
-                    <span>history</span>
-                    <div>
-                        <a href="#">Awesome Eiffel Tower</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                            </svg>
-                            Paris, France
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--three">--}}
+{{--                    <span>history</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">Awesome Eiffel Tower</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Paris, France--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--four">
-                    <span>Mayans</span>
-                    <div>
-                        <a href="#">Awesome Eiffel Tower</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                            </svg>
-                            The Yucatan, Mexico
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--four">--}}
+{{--                    <span>Mayans</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">Awesome Eiffel Tower</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            The Yucatan, Mexico--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--five">
-                    <span>native</span>
-                    <div>
-                        <a href="#">The most popular yachting destination</a>
-                        <p>
+{{--                <div class="swiper-slide swiper-slide--five">--}}
+{{--                    <span>native</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">The most popular yachting destination</a>--}}
+{{--                        <p>--}}
 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                            </svg>
-                            Whitsunday Islands, Australia
-                        </p>
-                    </div>
-                </div>
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Whitsunday Islands, Australia--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
