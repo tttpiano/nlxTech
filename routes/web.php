@@ -21,6 +21,7 @@ Route::get('', [ProductController::class, 'getProductsWithImages'])->name('home'
 Route::get('/contact', function () {
     $pageTitle = "Liên Hệ";
     return view('front.contact', ['pageTitle' => $pageTitle]);
+
 })->name('contact');
 //Blog
 Route::get('/blog', [PostController::class, 'getAllBlogs'])->name('blog');
@@ -96,9 +97,11 @@ Route::get('/admin/wattage_edit', [PartyController::class, 'editWattage'])->name
 /// //// -------------------------------------- PARTY -> Category  -----------------------------------------
 Route::get('/admin/category', [PartyController::class, 'indexCategory'])->name('category');
 Route::get('/admin/category_add',[PartyController::class, 'addCategory'])->name('category_add');
-Route::get('/admin/category_edit', [PartyController::class, 'editCategory'])->name('category_edit');
-
-
+Route::get('/admin/category_edit/{id}', [PartyController::class, 'editCategory'])->name('category_edit');
+Route::post('/admin/category/add', [PartyController::class, 'insertCategory'] )->name('category.add');
+Route::put('/admin/category_edit/edit', [PartyController::class, 'updatetCategory'])->name('category_update');
+Route::delete('/categorys/{id}', [PartyController::class, 'destroy_category'])->name('category.destroy');
+Route::get('/admin/category/search', [PartyController::class, 'search_category'])->name('search.category');
 /// ----------------------------------- UPLOAD_IMG -----------------------------------------------
 ///
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');

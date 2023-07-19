@@ -79,10 +79,10 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#delete">Xoá
+                                                data-bs-target="#delete{{$post->id}}">Xoá
                                         </button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="delete" tabindex="-1"
+                                        <div class="modal fade" id="delete{{$post->id}}" tabindex="-1"
                                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
