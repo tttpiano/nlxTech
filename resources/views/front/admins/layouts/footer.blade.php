@@ -1,180 +1,42 @@
 <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                </div>
-                <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
-                </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
+    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+        <div class="mb-2 mb-md-0">
+            ©
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            , made with ❤️ by
+            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
         </div>
-        <!-- / Layout page -->
-      </div>
+        <div>
+            <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
+            <a
+                href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                target="_blank"
+                class="footer-link me-4"
+            >Documentation</a
+            >
+
+            <a
+                href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                target="_blank"
+                class="footer-link me-4"
+            >Support</a
+            >
+        </div>
     </div>
+</footer>
+<!-- / Footer -->
 
+<div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-xl  modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header pt-10 pl-10 pb-6" style="background-color: #696cff;
-                    border-color: #696cff;">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">ADD PRODUCT</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body p-0">
-                      <div class="content-wrapper">
-                            <!-- Content -->
-
-                            <div class="container-xxl flex-grow-1 container-p-y">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  
-                                  <div class="card mb-4">
-                                    <!-- Account -->
-                                    <div class="card-body">
-                                      <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                        <img
-                                          src="{{asset('storage/img/product_image.jpg')}}"
-                                          alt="user-avatar"
-                                          class="d-block rounded"
-                                          height="100"
-                                          width="100"
-                                          id="uploadedAvatar"
-                                        />
-                                        <div class="button-wrapper">
-                                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                            <span class="d-none d-sm-block">Upload new photo</span>
-                                            <i class="bx bx-upload d-block d-sm-none"></i>
-                                            <input
-                                              type="file"
-                                              id="upload"
-                                              class="account-file-input"
-                                              hidden
-                                              accept="image/png, image/jpeg"
-                                            />
-                                          </label>
-                                          <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                            <i class="bx bx-reset d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Reset</span>
-                                          </button>
-
-                                        
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <hr class="my-0" />
-                                    <div class="card-body">
-                                      <form id="formAccountSettings" method="POST" onsubmit="return false">
-                                        <div class="row">
-                                          <div class="mb-3 col-md-12">
-                                            <label class="form-label">Name</label>
-                                            <input
-                                              class="form-control"
-                                              type="text"
-                                              id="Name"
-                                              name="Name"
-                                              placeholder="Name"
-                                              autofocus
-                                            />
-                                          </div>
-                                          <div class="mb-3 col-md-12">
-                                            <label class="form-label">Description</label>
-                                            <input class="form-control" type="text" name="Description" id="Description" placeholder="Description" />
-                                          </div>
-                                          <div class="mb-3 col-md-12">
-                                            <label class="form-label">Price</label>
-                                            <input
-                                              class="form-control"
-                                              type="text"
-                                              id="Price"
-                                              name="Price"
-                                              placeholder="Price"
-                                            />
-                                          </div>
-                                          <div class="mb-3 col-md-12">
-                                            <label class="form-label">Price status</label>
-                                            <select id="Price status" class="select2 form-select">
-                                              <option value="" selected>Show</option>
-                                              <option value="Australia">Hidden</option>
-                                            </select>
-                                          </div>
-                                          <div class="mb-3 col-md-12">
-                                                  <label class="form-label">Category</label>
-                                                  <select id="Price status" class="select2 form-select">
-                                                    <option value="" selected>Show</option>
-                                                    <option value="Australia">Hidden</option>
-                                                  </select>
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                  <label class="form-label">CategoryChild</label>
-                                                  <select id="Price status" class="select2 form-select">
-                                                    <option value="" selected>Show</option>
-                                                    <option value="Australia">Hidden</option>
-                                                  </select>
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                  <label class="form-label">Brand</label>
-                                                  <select id="Price status" class="select2 form-select">
-                                                    <option value="" selected>Show</option>
-                                                    <option value="Australia">Hidden</option>
-                                                  </select>
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                  <label class="form-label">Wattage</label>
-                                                  <select id="Price status" class="select2 form-select">
-                                                    <option value="" selected>Show</option>
-                                                    <option value="Australia">Hidden</option>
-                                                  </select>
-                                                </div>
-                                        </div>
-                                        <div class="mt-2" style="text-align: right">
-                                          <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                                          <button type="submit" class="btn btn-outline-success me-2">Save </button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                    <!-- /Account -->
-                                  </div>
-                                  
-                                </div>
-                              </div>
-                            </div>
-                            <!-- / Content -->
-                      </div>
-                      <!-- <div class="modal-footer">
-                      
-                        <button type="button" class="btn btn-primary">ADD</button>
-                      </div> -->
-                    </div>
-                  </div>
-                </div>
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>

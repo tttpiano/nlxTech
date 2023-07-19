@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 
-
 class PostController extends Controller
 {
     public function getAllBlogs()
@@ -51,10 +50,9 @@ class PostController extends Controller
 
     public function show($url_seo)
     {
-        $pageTitle = $url_seo;
-
         // Truy vấn bài viết dựa trên url_seo
         $post = Post::where('url_seo', Str::slug($url_seo))->firstOrFail();
+        $pageTitle = $post->title;
         $post->formattedCreatedAt = Carbon::parse($post->created_at)->format('d/m/Y');
         // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
         // Truy vấn tin liên quan
@@ -105,7 +103,6 @@ class PostController extends Controller
     public function postAdd()
     {
         $pageTitle = "Tin Tức";
-
         // Kiểm tra và xử lý trạng thái bài viết
         return view('front.admins.post_add', compact('pageTitle'));
     }
@@ -117,8 +114,8 @@ class PostController extends Controller
             'level' => 1,
         ]);
 
-        if ($img !== null){
-            $post =   Post::create([
+        if ($img !== null) {
+            $post = Post::create([
                 'author' => $request->author,
                 'title' => $request->title,
                 'description' => $request->description,
@@ -134,8 +131,7 @@ class PostController extends Controller
                 'entity' => "post",
             ]);
             return response()->json(['success' => true]);
-        }
-        else{
+        } else {
             return response()->json(['success' => false]);
         }
 
@@ -222,4 +218,57 @@ class PostController extends Controller
                 ->with('images', $fileName);
         }
     }
+
+    public function search(Request $request)
+    {
+        $count = 1;
+        $output = '';
+        $post = Post::where('title', 'Like', '%' . $request->search . '%')
+            ->orWhere('meta_keyword', 'Like', '%' . $request->search . '%')->get();
+        foreach ($post as $p) {
+            $output .= '<tr>
+            <td>'.$count.'</td>
+            <td>'.$p->author.'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->title, 10).'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->description, 10).'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->content ,10).'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->meta_desc, 10).'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->meta_keyword, 10).'</td>
+            <td>'.\Illuminate\Support\Str::limit($p->url_seo,10).'</td>
+            <td>'.$p->status.'</td>
+            <td>
+                <a href="'.route('post_edit', $p->id).'" class="btn btn-outline-info"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                <br><br>
+                <form id="delete-form" action="'.route('posts.destroy', $p->id).'" method="POST" style="display: inline-block;">
+                    '.csrf_field().'
+                    '.method_field('DELETE').'
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete'.$p->id.'">Xoá</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete'.$p->id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xoá Bài Viết</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xoá bài viết này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-danger">Xoá</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>';
+            $count++;
+        }
+        return response($output);
+    }
+
+
+
 }

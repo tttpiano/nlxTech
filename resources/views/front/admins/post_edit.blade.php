@@ -93,15 +93,14 @@
                             </div>
                             <div class="mt-2"
                                  style="text-align: right">
-                                <button type="reset"
-                                        class="btn btn-outline-secondary">
-                                    Reset
-                                </button>
+
+                                <a href="{{route('admin_post')}}">
                                 <button type="button"
                                         class="btn btn-outline-danger"
-                                        data-bs-dismiss="modal">
+                                       >
                                     Close
                                 </button>
+                                </a>
                                 <button type="submit"
                                         class="btn btn-outline-success me-2 edit_post">
                                     Save

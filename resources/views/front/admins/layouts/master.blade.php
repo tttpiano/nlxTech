@@ -32,7 +32,7 @@
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="{{asset('storage/css/multi-select-tag.css')}}">
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('storage/assets/vendor/fonts/boxicons.css')}}"/>
 
@@ -73,9 +73,10 @@
 
 <!-- footer -->
 @include('front/admins/layouts/footer')
-
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+<script src="{{asset('storage/js/multi-select-tag.js')}}"></script>
+<script>
+    new MultiSelectTag('brand1')  // id
+</script>
 <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{asset('storage/assets/vendor/libs/popper/popper.js')}}"></script>
 <script src="{{asset('storage/assets/vendor/js/bootstrap.js')}}"></script>
@@ -97,6 +98,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+
 
 <script>
 
@@ -176,7 +181,7 @@
             console.log(author + title + description + content + meta_desc + meta_keyword + url_Seo);
             $.ajax({
                 type: 'POST',
-                url: '{{ route('cart.add') }}',
+                url: '{{ route('post.add') }}',
                 data: {
                     _token: '{{ csrf_token() }}',
                     author: author,
@@ -205,6 +210,30 @@
         });
     });
 
+    $('#search_post').on('keyup',function () {
+        $value = $(this).val();
+        if($value) {
+            $('.alldata').hide();
+            $('.searchdata').show();
+        }
+        else {
+            $('.alldata').show();
+            $('.searchdata').hide();
+        }
+        $.ajax(
+            {
+                type:'get',
+                url:'{{route("search.post")}}',
+                data:{
+                    'search':$value
+                },
+                success:function (data){
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+            }
+        )
+    });
 
 
 

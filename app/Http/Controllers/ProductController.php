@@ -45,7 +45,20 @@ class ProductController extends Controller
             // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
         return view('front.index', ['products' => $products, 'pageTitle' => $pageTitle,'posts' => $posts]);
     }
+    public function productAdd()
+    {
+        $pageTitle = "Add Product";
 
+        // Kiểm tra và xử lý trạng thái bài viết
+        return view('front.admins.product_add', compact('pageTitle'));
+    }
+    public function productEdit()
+    {
+        $pageTitle = "Edit Product";
+
+        // Kiểm tra và xử lý trạng thái bài viết
+        return view('front.admins.product_edit', compact('pageTitle'));
+    }
 
 
 

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     const deactivateAcc = document.querySelector('#formAccountDeactivation');
 
     // Update/reset user image of account page
-    let accountUserImage = document.getElementById('uploadedAvatar');
+    let accountUserImage = document.getElementById('fileUpload');
     const fileInput = document.querySelector('.account-file-input'),
       resetFileInput = document.querySelector('.account-image-reset');
 
