@@ -7,7 +7,8 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-md-12">
-
+            <h5 class="card-header" style="background-color: #696cff;
+    border-color: #696cff; color:#fff">Edit-Category</h5>
                 <div class="card mb-4">
                     <!-- Account -->
                     <hr class="my-0"/>

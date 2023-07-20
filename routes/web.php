@@ -77,16 +77,22 @@ Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'i
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------
 Route::get('/admin/category_child', [PartyController::class, 'indexCategory_child'])->name('category_child');
 Route::get('/admin/category_child_add', [PartyController::class, 'addCategory_child'])->name('category_child_add');
-Route::get('/admin/category_child_edit',[PartyController::class, 'editCategory_child'])->name('category_child_edit');
-
+Route::get('/admin/category_child_edit/{id}',[PartyController::class, 'editCategory_child'])->name('category_child_edit');
+Route::post('/admin/category_child/add', [PartyController::class, 'insertCategory_child'] )->name('category_child.add');
+Route::put('/admin/category_child_edit/edit', [PartyController::class, 'updatetCategory_child'])->name('category_child_update');
+Route::delete('/categorys_child/{id}', [PartyController::class, 'destroy_category_child'])->name('category_child.destroy');
+Route::get('/admin/category_child/search', [PartyController::class, 'search_category_child'])->name('search.category_child');
 
 
 /// //// -------------------------------------- PARTY -> Brand  -----------------------------------------
 
 Route::get('/admin/brand',[PartyController::class, 'indexBrand'])->name('brand');
 Route::get('/admin/brand_add',[PartyController::class, 'addBrand'])->name('brand_add');
-Route::get('/admin/brand_edit',[PartyController::class, 'editBrand'])->name('brand_edit');
-
+Route::get('/admin/brand_edit/{id}',[PartyController::class, 'editBrand'])->name('brand_edit');
+Route::post('/admin/brand/add', [PartyController::class, 'insertBrand'] )->name('brand.add');
+Route::put('/admin/brand_edit/edit', [PartyController::class, 'updatetBrand'])->name('brand_update');
+Route::delete('/brands/{id}', [PartyController::class, 'destroy_brand'])->name('brand.destroy');
+Route::get('/admin/brand/search', [PartyController::class, 'search_brand'])->name('search.brand');
 
 /// //// -------------------------------------- PARTY -> Wattage  -----------------------------------------
 
