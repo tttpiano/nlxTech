@@ -98,7 +98,11 @@ Route::get('/admin/brand/search', [PartyController::class, 'search_brand'])->nam
 
 Route::get('/admin/wattage', [PartyController::class, 'indexWattage'])->name('wattage');
 Route::get('/admin/wattage_add',[PartyController::class, 'addWattage'])->name('wattage_add');
-Route::get('/admin/wattage_edit', [PartyController::class, 'editWattage'])->name('wattage_edit');
+Route::get('/admin/wattage_edit/{id}', [PartyController::class, 'editWattage'])->name('wattage_edit');
+Route::post('/admin/wattage/add', [PartyController::class, 'insertWattage'] )->name('wattage.add');
+Route::put('/admin/wattage_edit/edit', [PartyController::class, 'updatetWattage'])->name('wattage_update');
+Route::delete('/wattage/{id}', [PartyController::class, 'destroy_wattage'])->name('wattage.destroy');
+Route::get('/admin/wattage/search', [PartyController::class, 'search_wattage'])->name('search.wattage');
 
 /// //// -------------------------------------- PARTY -> Category  -----------------------------------------
 Route::get('/admin/category', [PartyController::class, 'indexCategory'])->name('category');
