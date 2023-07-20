@@ -17,33 +17,17 @@
                         <div class="blog__sidebar__item">
                             <h4>Tin moi</h4>
                             <div class="blog__sidebar__recent">
+                                @foreach($latestPost as $l)
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
+                                        <img src="{{ asset('images/' . $l->image->file_name) }}" style="width: 70px;height: 70px;object-fit: cover" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
+                                        <h6>{{$l -> title}}</h6>
+                                        <span>{{$l -> formattedCreatedAt}}</span>
                                     </div>
                                 </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
+                                @endforeach
                             </div>
                         </div>
 
@@ -51,115 +35,31 @@
                 </div>
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
+                        @foreach($posts as $post)
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
+                                @if ($post->image)
                                 <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
+                                    <img src="{{ asset('images/' . $post->image->file_name) }}" alt="">
                                 </div>
+                                @else
+                                    <div class="blog__item__pic">
+                                        <img src="{{ asset('storage/img/error.jpg')}}" alt="">
+                                    </div>
+                                @endif
                                 <div class="blog__item__text">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                        <li><i class="fa fa-calendar-o"></i>{{$post->formattedCreatedAt}}</li>
                                     </ul>
-                                    <h5><a href="#">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="blog-details.html" class="blog__btn">READ MORE <span
+                                    <h5><a href="{{route('posts.show', $post->url_seo)}}">
+                                            {{$post->title}} </a></h5>
+                                    <p>{{$post->description}}</p>
+                                    <a href="{{route('posts.show', $post->url_seo)}}" class="blog__btn">READ MORE <span
                                             class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    </ul>
-                                    <h5><a href="blog-details.html">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    </ul>
-                                    <h5><a href="#">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    </ul>
-                                    <h5><a href="#">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    </ul>
-                                    <h5><a href="#">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="https://maylanhgiadaily.b-cdn.net/picture1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                    </ul>
-                                    <h5><a href="#">
-                                            Điều hòa 2 chiều Daikin Inverter FTHF - Mát lạnh mùa hè, ấm áp mùa đông –
-                                            MÁY LẠNH TREO TƯỜNG DAIKIN</a></h5>
-                                    <p>Điều hòa 2 chiều Daikin Inverter FTHF công suất 2HP – 2.5HP – 3HP sẽ là lựa chọn
-                                        cho các gia đình ở khu vực có thời tiết...</p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">
                                 <a href="#">1</a>

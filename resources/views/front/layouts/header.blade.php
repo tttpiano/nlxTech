@@ -31,7 +31,7 @@
             <div class="col-lg-9">
                 <nav class="header__menu" style="background: #38A7FF;">
                     <ul>
-                        <li class="active"><a href="./index.html">Trang Chủ</a></li>
+                        <li class="active"><a href="{{ url('') }}">Trang Chủ</a></li>
                         <li><a href="">Giới Thiệu</a></li>
                         <li><a href="#">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="header__menu__dropdown">
@@ -50,8 +50,8 @@
 
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Tin Tức</a></li>
-                        <li><a href="./contact.html">Liên Hệ</a></li>
+                        <li><a href="{{ route('blog')}}">Tin Tức</a></li>
+                        <li><a href="{{ route('contact')}}">Liên Hệ</a></li>
 
                     </ul>
                 </nav>
@@ -66,10 +66,10 @@
                 <div class="humberger__menu__overlay"></div>
                 <div class="humberger__menu__wrapper">
                     <div class="humberger__menu__logo">
-                        <a href="#"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
+                        <a href="{{ url('') }}"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
                     </div>
                     <div id="mobile-menu-wrap"></div>
-
+logo
                 </div>
                 <div class="humberger__open" style="color: #249bc8 !important; top: 17px !important;">
                     <i class="fa fa-bars"></i>
@@ -96,13 +96,13 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
+        <a href="{{ url('') }}"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
     </div>
 
     <nav class="humberger__menu__nav mobile-menu menu">
         <ul style=" border: #249bc8 solid 0.5px; padding: 20px;margin-right: 10px;border-radius: 20px;
             ">
-            <li class="active"><a href="./index.html">Trang Chủ</a></li>
+            <li class="active"><a href="{{ url('') }}">Trang Chủ</a></li>
             <li><a href="">Giới Thiệu</a></li>
             <li><a href="#">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="header__menu__dropdown" style="margin-left: 20px;">
@@ -121,8 +121,8 @@
 
                 </ul>
             </li>
-            <li><a href="./blog.html">Tin Tức</a></li>
-            <li><a href="./contact.html">Liên Hệ</a></li>
+            <li><a href="{{ route('blog')}}">Tin Tức</a></li>
+            <li><a href="{{ route('contact')}}">Liên Hệ</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -163,7 +163,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="{{asset("storage/img/logonlx.png")}}" alt=""
+                    <a href="{{ url('') }}"><img src="{{asset("storage/img/logonlx.png")}}" alt=""
                                                 style="margin-top: 7px; max-width: 85%;"></a>
                 </div>
             </div>
@@ -218,7 +218,7 @@
             <div class="col-lg-9">
                 <nav class="header__menu" style="background: #38A7FF;">
                     <ul>
-                        <li class="active"><a href="./index.html">Trang Chủ</a></li>
+                        <li class="active"><a href="{{ url('') }}">Trang Chủ</a></li>
                         <li><a href="">Giới Thiệu</a></li>
                         <li><a href="#">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="header__menu__dropdown">
@@ -237,8 +237,8 @@
 
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Tin Tức</a></li>
-                        <li><a href="./contact.html">Liên Hệ</a></li>
+                        <li><a href="{{ route('blog')}}">Tin Tức</a></li>
+                        <li><a href="{{ route('contact')}}">Liên Hệ</a></li>
 
                     </ul>
                 </nav>
@@ -247,7 +247,7 @@
     </div>
 </div>
 
-<section class="hero" style="position: absolute; left: 15px; z-index: 99;height: 500px;">
+<section class="hero" style="position: absolute; left: 15px; z-index: 99">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">

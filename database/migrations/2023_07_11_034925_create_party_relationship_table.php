@@ -12,12 +12,28 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('party_relationship', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger("party_id");
             $table->unsignedBigInteger("child_id");
-            $table->string("party_type");
-            $table->string("child_type");
-            $table->string("entity_child");
+            $table->text("party_type");
+            $table->text("child_type");
+            $table->text("entity_child");
             $table->timestamps();
+            $table->foreign('party_id')
+                ->references('id')
+                ->on('party')
+                ->onDelete('restrict');
+
+            $table->foreign('child_id')
+                ->references('id')
+                ->on('product')
+                ->onDelete('restrict');
+
+            $table->foreign('child_id')
+                ->references('id')
+                ->on('post')
+                ->onDelete('restrict');
+
         });
     }
 

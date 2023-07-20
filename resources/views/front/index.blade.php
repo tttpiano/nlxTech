@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
 @section('main-container')
     <!-- master -->
-    <section class="hero">
+    <section class="hero1" style="margin-bottom: 50px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
@@ -45,7 +45,9 @@
     <section>
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide--one">
+                <div class="swiper-slide swiper-slide--one" style="background: linear-gradient(to top, #255063, #203a4300, #2c536400),
+    url(https://maylanhgiadaily.b-cdn.net/picture1.jpg)
+      no-repeat 50% 50% / cover;">
                     <span>domestic</span>
                     <div>
                         <a href="#">Enjoy the exotic of sunny Hawaii</a>
@@ -53,82 +55,82 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
                             </svg>
                             Maui, Hawaii
                         </p>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide--two">
-                    <span>subtropical</span>
-                    <div>
-                        <a href="#">The Island of Eternal Spring</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
-                            Lanzarote, Spanien
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--two">--}}
+{{--                    <span>subtropical</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">The Island of Eternal Spring</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Lanzarote, Spanien--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--three">
-                    <span>history</span>
-                    <div>
-                        <a href="#">Awesome Eiffel Tower</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
-                            Paris, France
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--three">--}}
+{{--                    <span>history</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">Awesome Eiffel Tower</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Paris, France--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--four">
-                    <span>Mayans</span>
-                    <div>
-                        <a href="#">Awesome Eiffel Tower</a>
-                        <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
-                            The Yucatan, Mexico
-                        </p>
-                    </div>
-                </div>
+{{--                <div class="swiper-slide swiper-slide--four">--}}
+{{--                    <span>Mayans</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">Awesome Eiffel Tower</a>--}}
+{{--                        <p>--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            The Yucatan, Mexico--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper-slide swiper-slide--five">
-                    <span>native</span>
-                    <div>
-                        <a href="#">The most popular yachting destination</a>
-                        <p>
+{{--                <div class="swiper-slide swiper-slide--five">--}}
+{{--                    <span>native</span>--}}
+{{--                    <div>--}}
+{{--                        <a href="#">The most popular yachting destination</a>--}}
+{{--                        <p>--}}
 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
-                            Whitsunday Islands, Australia
-                        </p>
-                    </div>
-                </div>
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"--}}
+{{--                                 stroke="currentColor" class="w-6 h-6">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>--}}
+{{--                            </svg>--}}
+{{--                            Whitsunday Islands, Australia--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -155,110 +157,132 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
+                @foreach ($products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="featured__item">
+                            @if ($product->image)
 
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{ asset('storage/img/' . $product->image->file_name) }}">
+                                    @else
+                                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('storage/img/error.jpg') }}">
+                                            @endif
 
-                            </ul>
+                                            <ul class="featured__item__pic__hover">
+                                            </ul>
+                                        </div>
+                                        <div class="featured__item__text">
+                                            <h6><a href="#">{{$product->name}}</a></h6>
+                                            @if ($product->price !== null)
+                                                <h5>{{ $product->price }}</h5>
+                                            @else
+                                                <h5>Liên Hệ</h5>
+                                            @endif
+                                        </div>
+                                </div>
                         </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
 
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
+                        @endforeach
 
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
 
-                            </ul>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
                         </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
-                            <ul class="featured__item__pic__hover">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
 
-                            </ul>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
                         </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Sản Phẩm 1</a></h6>
-                            <h5>100.000.000</h5>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
+
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
+
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
+
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="{{asset('storage/img/quatdieuhoa.jpg')}}">
+                                    <ul class="featured__item__pic__hover">
+
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">Sản Phẩm 1</a></h6>
+                                    <h5>100.000.000</h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
-        </div>
     </section>
     <!-- Featured Section End -->
     <!-- Banner Begin -->

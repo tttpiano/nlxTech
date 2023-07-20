@@ -97,12 +97,57 @@
     });
 
 
-    $('.hero__categories__all').on('click', function () {
-        $('.hero__categories ul').slideToggle(400);
-        $('.spk').css({
-            'display': 'none'
+    var isClicked = false;
+
+    $(document).ready(function () {
+
+        $('.hero__categories__all').on('click', function () {
+            $('.hero__categories ul').animate({
+                height: 'toggle'
+            }, 500);
+            $('.spk').css({
+                'display': 'none'
+            });
+
+            if (isClicked) {
+                $('.hero').animate({
+                    height: '0'
+                }, 500);
+                isClicked = false;
+            } else {
+                $('.hero').animate({
+                    height: '500px'
+                }, 500);
+                isClicked = true;
+            }
+        });
+
+        $('.hero').click(function () {
+            if ($('.hero__categories ul').is(':visible')) {
+                $('.hero__categories ul').slideUp(500);
+            }
+            if (isClicked) {
+                $('.hero').animate({
+                    height: '0'
+                }, 500);
+                isClicked = false;
+            } else {
+                $('.hero').animate({
+                    height: '500px'
+                }, 500);
+                isClicked = true;
+            }
         });
     });
+
+
+
+    // $(document).ready(function () {
+    //     $('.hero__categories').hover(function () {
+    //         $('ul.category').slideToggle(400);
+    //     });
+    // });
+
 
     /*--------------------------
         Latest Product Slider
