@@ -73,6 +73,7 @@ Route::get('/admin/party_relationship/add', [PartyRelationshipController::class,
 Route::get('/admin/party_relationship/edit', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
 Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.add');
 
+
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------
 Route::get('/admin/category_child', [PartyController::class, 'indexCategory_child'])->name('category_child');

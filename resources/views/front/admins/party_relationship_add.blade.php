@@ -5,45 +5,60 @@
         <!-- Content -->
 
         <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="row">
-                <div class="col-md-12">
 
+            <div class="row">
+
+
+                <div class="col-md-12">
                     <div class="card mb-4">
                         <!-- Account -->
 
                         <div class="card-body">
                             <form id="formAccountSettings" method="POST" onsubmit="return false">
+
                                 <div class="row">
+
                                     <div class="mb-3 col-md-12">
-                                        <label class="form-label">Categoty</label>
-                                        <input
-                                            class="form-control"
-                                            type="text"
-                                            id="categoty"
-                                            name="categoty"
-                                            placeholder="Categoty"
-                                            autofocus
-                                        />
+                                        <label class="form-label">Category</label>
+
+                                        <select id="category" class="category form-select">
+                                            @foreach ($partyData['category'] as $party)
+                                                <option value="{{ $party->id }}">{{ $party->description }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="mb-3 col-md-12">
-                                        <label class="form-label">Categoty Child</label>
-                                        <input class="form-control" type="text" name="categoty_child"
-                                               id="categoty_child" placeholder="Categoty Child"/>
+                                        <label class="form-label">Category_child</label>
+                                        <select id="category_child" class="category_child form-select">
+                                            @foreach ($partyData['category_child'] as $party)
+                                                <option value="{{ $party->id }}">{{ $party->description }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Brand</label>
-                                        <input class="form-control" type="text" name="brand"
-                                               id="brand" placeholder="brand"/>
+                                        <div>
+                                            <select id="brand1" name="brand"  multiple>
+                                                @foreach ($partyData['brand'] as $party)
+                                                    <option value="{{ $party->id }}">{{ $party->description }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Wattage</label>
-                                        <input class="form-control" type="text" name="wattage" id="wattage"
-                                               placeholder="Wattage"/>
+                                        <select id="wattage" class="wattage form-select">
+                                            @foreach ($partyData['wattage'] as $party)
+                                                <option value="{{ $party->id }}">{{ $party->description }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Tag</label>
-                                        <input class="form-control" type="text" name="tag" id="tag" placeholder="Tag"/>
+                                        <select id="tag" class="tag form-select">
+                                            <option value="show" selected>Show</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mt-2" style="text-align: right">
@@ -52,13 +67,17 @@
                                     </button>
                                     <button type="submit" class="btn btn-outline-success me-2 add_party">Save</button>
                                 </div>
+
                             </form>
                         </div>
                         <!-- /Account -->
+
                     </div>
 
                 </div>
+
             </div>
+
         </div>
         <!-- / Content -->
     </div>

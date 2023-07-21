@@ -200,19 +200,19 @@ class PartyController extends Controller
     public function indexWattage()
     {
         $wattage = Party::where('type','wattage')->get();
-        $pageTitle = "";
+        $pageTitle = "Wattage";
         return view('front/admins/party/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage]);
     }
 
     public function addWattage()
     {
-        $pageTitle = "";
+        $pageTitle = "Add Wattage";
         return view('front/admins/party/wattage_add', ['pageTitle' => $pageTitle]);
     }
 
     public function editWattage($id)
     {
-        $pageTitle = "";
+        $pageTitle = "Edit Wattage";
         $party = Party::find($id);
         return view('front/admins/party/wattage_edit', ['pageTitle' => $pageTitle,'party'=>$party]);
     }

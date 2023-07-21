@@ -17,18 +17,19 @@ class PartyRelationshipController extends Controller
     public function partyAdd()
     {
         $pageTitle = "PartyController";
-
-        // Kiểm tra và xử lý trạng thái bài viết
-        return view('front.admins.party_relationship_add', compact('pageTitle'));
+        $types = ['category', 'category_child', 'brand', 'wattage'];
+        $partyData = Party::whereIn('type', $types)->get()->groupBy('type');
+        return view('front.admins.party_relationship_add', compact('partyData', 'pageTitle'));
     }
 
     public function partyEdit()
     {
-        $pageTitle = "PartyController";
-
-        // Kiểm tra và xử lý trạng thái bài viết
-        return view('front.admins.party_relationship_edit', compact('pageTitle'));
+        $pageTitle = "PartyController Edit";
+        $types = ['category', 'category_child', 'brand', 'wattage'];
+        $partyData = Party::whereIn('type', $types)->get()->groupBy('type');
+        return view('front.admins.party_relationship_edit', compact('partyData', 'pageTitle'));
     }
+
 
 //    public function insert(Request $request)
 //    {
