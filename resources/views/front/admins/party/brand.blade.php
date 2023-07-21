@@ -42,9 +42,11 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="color_tr">
                             <th>STT</th>
                             <th>Brand</th>
+                            <th>Action</th>
+
                         </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 alldata">

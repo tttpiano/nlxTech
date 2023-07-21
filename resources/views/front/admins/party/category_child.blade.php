@@ -42,7 +42,7 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                     <thead>
-                    <tr>
+                    <tr class="color_tr">
                         <th>STT</th>
                         <th>Category_Child</th>
                         <th>Action</th>

@@ -75,7 +75,9 @@
 @include('front/admins/layouts/footer')
 <script src="{{asset('storage/js/multi-select-tag.js')}}"></script>
 <script>
-    new MultiSelectTag('brand1')  // id
+    new MultiSelectTag('brand1')
+    new MultiSelectTag('category_child')
+    // id
 </script>
 <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{asset('storage/assets/vendor/libs/popper/popper.js')}}"></script>

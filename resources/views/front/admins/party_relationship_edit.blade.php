@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Wattage</label>
-                                        <select id="wattage" class="wattage form-select">
+                                        <select id="wattage" name="wattage" multiple>
                                             @foreach ($partyData['wattage'] as $party)
                                                 <option value="{{ $party->id }}">{{ $party->description }}</option>
                                             @endforeach
@@ -70,6 +70,7 @@
 
                             </form>
                         </div>
+
                         <!-- /Account -->
 
                     </div>

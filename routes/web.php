@@ -71,7 +71,8 @@ Route::get('/admin/party_relationship', function () {
 })->name('admin_party_relationship');
 Route::get('/admin/party_relationship/add', [PartyRelationshipController::class, 'partyAdd'])->name('party_relationship_add');
 Route::get('/admin/party_relationship/edit', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
-Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.add');
+Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.addcategory');
+Route::post('/admin/party_relationship2', [PartyRelationshipController::class, 'insert2'] )->name('party_relationship.addcategorychild');
 
 
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------

@@ -42,7 +42,7 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="color_tr">
                             <th>STT</th>
                             <th>Wattage</th>
                             <th>Action</th>
