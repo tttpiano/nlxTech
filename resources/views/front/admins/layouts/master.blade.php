@@ -60,7 +60,11 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('storage/assets/js/config.js')}}"></script>
-
+    <style>
+        .modal-header {
+            background: #14ed87;
+        }
+    </style>
 </head>
 
 <body>
@@ -121,7 +125,7 @@
             var statusValue1 = $('#status1 option:selected').val();
 
             var url_Seo1 = $('#url_seo1').val();
-            console.log(author1 + title1 + description1 +statusValue1+ content2 + meta_desc1 + meta_keyword1 + url_Seo1);
+            console.log(author1 + title1 + description1 + statusValue1 + content2 + meta_desc1 + meta_keyword1 + url_Seo1);
 
             $.ajax({
                 type: 'PUT',
@@ -140,7 +144,8 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        swal("Sửa thành công", "You clicked the button!", "success");;
+                        swal("Sửa thành công", "You clicked the button!", "success");
+                        ;
 
                     } else {
                         swal("Sửa không thành công", "You clicked the button!", "warning");
@@ -155,18 +160,18 @@
     });
 
     $(document).ready(function () {
-            var fileName = "uptoload.jpg";
-            $('.submitOk').click(function() {
-                // Lấy danh sách các tệp tin đã chọn
-                var files = $(this).prop('files');
+        var fileName = "uptoload.jpg";
+        $('.submitOk').click(function () {
+            // Lấy danh sách các tệp tin đã chọn
+            var files = $(this).prop('files');
 
-               // Kiểm tra xem đã có tệp tin được chọn hay chưa
-                if (files.length > 0) {
-                    // Lấy tên của tệp tin đầu tiên
-                   fileName = files[0].name;
-                   // In ra tên của tệp tin
-                    $('#fileUpload').attr('src', URL.createObjectURL(files[0]));
-                 }
+            // Kiểm tra xem đã có tệp tin được chọn hay chưa
+            if (files.length > 0) {
+                // Lấy tên của tệp tin đầu tiên
+                fileName = files[0].name;
+                // In ra tên của tệp tin
+                $('#fileUpload').attr('src', URL.createObjectURL(files[0]));
+            }
         });
         $('.add_post').click(function () {
             var img = fileName;
@@ -198,7 +203,8 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        swal("Thêm Thành công", "You clicked the button!", "success");;
+                        swal("Thêm Thành công", "You clicked the button!", "success");
+                        ;
 
                     } else {
                         swal("Thêm không thành công", "You clicked the button!", "warning");
@@ -212,31 +218,29 @@
         });
     });
 
-    $('#search_post').on('keyup',function () {
+    $('#search_post').on('keyup', function () {
         $value = $(this).val();
-        if($value) {
+        if ($value) {
             $('.alldata').hide();
             $('.searchdata').show();
-        }
-        else {
+        } else {
             $('.alldata').show();
             $('.searchdata').hide();
         }
         $.ajax(
             {
-                type:'get',
-                url:'{{route("search.post")}}',
-                data:{
-                    'search':$value
+                type: 'get',
+                url: '{{route("search.post")}}',
+                data: {
+                    'search': $value
                 },
-                success:function (data){
+                success: function (data) {
                     console.log(data);
                     $('#Content').html(data);
                 }
             }
         )
     });
-
 
 
 </script>

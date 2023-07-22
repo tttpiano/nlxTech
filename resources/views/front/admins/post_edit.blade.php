@@ -120,8 +120,6 @@
     <script>
         CKEDITOR.replace('content1' ,{
             filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}",
-
-
         });
 
     </script>

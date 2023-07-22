@@ -65,15 +65,16 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
 
 //// -------------------------------------- ADMIN -> PARTY_RELATIONSHIP  -----------------------------------------
-Route::get('/admin/party_relationship', function () {
-    $pageTitle = "admin_party";
-    return view('front.admins.party_relationship',   ['pageTitle' => $pageTitle]);
-})->name('admin_party_relationship');
+Route::get('/admin/party_relationship', [PartyRelationshipController::class, 'viewPartyRelationship'])->name('admin_party_relationship');
 Route::get('/admin/party_relationship/add', [PartyRelationshipController::class, 'partyAdd'])->name('party_relationship_add');
-Route::get('/admin/party_relationship/edit', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
+Route::get('/admin/party_relationship/{id}', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
+Route::get('/admin/party_relationship2/{id}', [PartyRelationshipController::class, 'partyEdit2'])->name('party_relationship_edit2');
 Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.addcategory');
 Route::post('/admin/party_relationship2', [PartyRelationshipController::class, 'insert2'] )->name('party_relationship.addcategorychild');
-
+Route::delete('/party_relationship/{id}', [PartyRelationshipController::class, 'destroy_category'])->name('party_relationship.destroy1');
+Route::delete('/party_relationship2/{id}', [PartyRelationshipController::class, 'destroy_category_child'])->name('party_relationship.destroy2');
+Route::put('/admin/party_relationship/edit', [PartyRelationshipController::class, 'updatetCategory'])->name('party_relationship_category_update');
+Route::put('/admin/party_relationship2/edit', [PartyRelationshipController::class, 'updatetCategory2'])->name('party_relationship_category_update2');
 
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------
@@ -87,7 +88,6 @@ Route::get('/admin/category_child/search', [PartyController::class, 'search_cate
 
 
 /// //// -------------------------------------- PARTY -> Brand  -----------------------------------------
-
 Route::get('/admin/brand',[PartyController::class, 'indexBrand'])->name('brand');
 Route::get('/admin/brand_add',[PartyController::class, 'addBrand'])->name('brand_add');
 Route::get('/admin/brand_edit/{id}',[PartyController::class, 'editBrand'])->name('brand_edit');

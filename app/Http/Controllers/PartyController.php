@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Image_related;
 use App\Models\Party;
+use App\Models\PartyRelationship;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,14 @@ class PartyController extends Controller
     public function destroy_category_child($id){
         $category_child = Party::find($id);
         $category_child->delete();
+        PartyRelationship::where(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'category_child');
+        })->orWhere(function($query) use ($id) {
+            $query->where('child_id', $id)
+                ->where('child_type', 'category_child');
+        })->delete();
+
         return redirect()->route('category_child')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_category_child(Request $request)
@@ -337,6 +346,8 @@ class PartyController extends Controller
     public function destroy_category($id){
         $category = Party::find($id);
         $category->delete();
+        PartyRelationship::where('party_id', $id)->where('party_type','category')
+            ->delete();
         return redirect()->route('category')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_category(Request $request)
