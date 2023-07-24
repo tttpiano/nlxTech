@@ -3,8 +3,11 @@
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyRelationshipController;
 use App\Http\Controllers\ProductController;
+use App\Models\Party;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\View;
+use Illuminate\Contracts\Support\Renderable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +98,9 @@ Route::post('/admin/brand/add', [PartyController::class, 'insertBrand'] )->name(
 Route::put('/admin/brand_edit/edit', [PartyController::class, 'updatetBrand'])->name('brand_update');
 Route::delete('/brands/{id}', [PartyController::class, 'destroy_brand'])->name('brand.destroy');
 Route::get('/admin/brand/search', [PartyController::class, 'search_brand'])->name('search.brand');
+Route::get('/admin/brand/pagin/{id}', [PartyController::class, 'pagin_brand'])->name('pagin.brand');
+Route::get('/ajax/brands', [PartyController::class, 'ajaxPagination'])->name('ajax.brands');
+
 
 /// //// -------------------------------------- PARTY -> Wattage  -----------------------------------------
 

@@ -9,8 +9,27 @@ use App\Models\PartyRelationship;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+
 class PartyController extends Controller
 {
+    public function ajaxPagination()
+    {
+        $perPage = 2; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $brands = Party::where('type', 'brand')->paginate($perPage);
+        $brands->withPath(route('ajax.brands')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $brands->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.party.text', ['brand' => $brands])->render();
+    }
+
     //------------------------------ Category_child -----------------------------
     public function indexCategory_Child()
     {
@@ -116,8 +135,14 @@ class PartyController extends Controller
     public function indexBrand()
     {
         $pageTitle = "Brand";
-        $brand = Party::where('type','brand')->get();
+        $brand = Party::where('type','brand')->paginate(1);
         return view('front/admins/party/brand', ['pageTitle' => $pageTitle,'brand' => $brand]);
+    }
+    public function pagin_brand()
+    {
+        $pageTitle = "Brand";
+        $brand = Party::where('type','brand')->paginate(1);
+        return view('front/admins/party/text', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
     }
 
 
