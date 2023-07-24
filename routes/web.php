@@ -92,7 +92,8 @@ Route::post('/admin/category_child/add', [PartyController::class, 'insertCategor
 Route::put('/admin/category_child_edit/edit', [PartyController::class, 'updatetCategory_child'])->name('category_child_update');
 Route::delete('/categorys_child/{id}', [PartyController::class, 'destroy_category_child'])->name('category_child.destroy');
 Route::get('/admin/category_child/search', [PartyController::class, 'search_category_child'])->name('search.category_child');
-
+Route::get('/admin/category_child/pagin/{id}', [PartyController::class, 'pagin_category_child'])->name('pagin.category_child');
+Route::get('/ajax/category_childs', [PartyController::class, 'ajaxPaginationCategory_child'])->name('ajax.category_childs');
 
 /// //// -------------------------------------- PARTY -> Brand  -----------------------------------------
 Route::get('/admin/brand',[PartyController::class, 'indexBrand'])->name('brand');
@@ -103,7 +104,7 @@ Route::put('/admin/brand_edit/edit', [PartyController::class, 'updatetBrand'])->
 Route::delete('/brands/{id}', [PartyController::class, 'destroy_brand'])->name('brand.destroy');
 Route::get('/admin/brand/search', [PartyController::class, 'search_brand'])->name('search.brand');
 Route::get('/admin/brand/pagin/{id}', [PartyController::class, 'pagin_brand'])->name('pagin.brand');
-Route::get('/ajax/brands', [PartyController::class, 'ajaxPagination'])->name('ajax.brands');
+Route::get('/ajax/brands', [PartyController::class, 'ajaxPaginationBrand'])->name('ajax.brands');
 
 
 /// //// -------------------------------------- PARTY -> Wattage  -----------------------------------------
@@ -115,6 +116,8 @@ Route::post('/admin/wattage/add', [PartyController::class, 'insertWattage'] )->n
 Route::put('/admin/wattage_edit/edit', [PartyController::class, 'updatetWattage'])->name('wattage_update');
 Route::delete('/wattage/{id}', [PartyController::class, 'destroy_wattage'])->name('wattage.destroy');
 Route::get('/admin/wattage/search', [PartyController::class, 'search_wattage'])->name('search.wattage');
+Route::get('/admin/wattage/pagin/{id}', [PartyController::class, 'pagin_wattage'])->name('pagin.wattage');
+Route::get('/ajax/wattages', [PartyController::class, 'ajaxPaginationWattage'])->name('ajax.wattages');
 
 /// //// -------------------------------------- PARTY -> Category  -----------------------------------------
 Route::get('/admin/category', [PartyController::class, 'indexCategory'])->name('category');
@@ -124,6 +127,9 @@ Route::post('/admin/category/add', [PartyController::class, 'insertCategory'] )-
 Route::put('/admin/category_edit/edit', [PartyController::class, 'updatetCategory'])->name('category_update');
 Route::delete('/categorys/{id}', [PartyController::class, 'destroy_category'])->name('category.destroy');
 Route::get('/admin/category/search', [PartyController::class, 'search_category'])->name('search.category');
+Route::get('/admin/category/pagin/{id}', [PartyController::class, 'pagin_category'])->name('pagin.category');
+Route::get('/ajax/categorys', [PartyController::class, 'ajaxPaginationCategory'])->name('ajax.categorys');
+
 /// ----------------------------------- UPLOAD_IMG -----------------------------------------------
 ///
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
