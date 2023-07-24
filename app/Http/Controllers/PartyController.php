@@ -12,29 +12,39 @@ use Illuminate\Http\Request;
 
 class PartyController extends Controller
 {
-    public function ajaxPagination()
+    
+
+    //------------------------------ Category_child -----------------------------
+
+    public function ajaxPaginationCategory_child()
     {
-        $perPage = 2; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
         $page = request('page') ?: 1;
 
-        $brands = Party::where('type', 'brand')->paginate($perPage);
-        $brands->withPath(route('ajax.brands')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+        $category_childs = Party::where('type', 'category_child')->paginate($perPage);
+        $category_childs->withPath(route('ajax.category_childs')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
 
         // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
         $startNumber = ($page - 1) * $perPage + 1;
-        $brands->getCollection()->transform(function ($item, $index) use ($startNumber) {
+        $category_childs->getCollection()->transform(function ($item, $index) use ($startNumber) {
             $item->stt = $startNumber + $index;
             return $item;
         });
 
-        return view('front.admins.party.text', ['brand' => $brands])->render();
+        return view('front.admins.pagination_party.category_child', ['category_child' => $category_childs])->render();
     }
 
-    //------------------------------ Category_child -----------------------------
+    public function pagin_category_child()
+    {
+        $pageTitle = "Category_Child";
+        $category_child = Party::where('type','category_child')->paginate(5);
+        return view('front/admins/pagination_party/category_child', ['pageTitle' => $pageTitle,'category_child' => $category_child])->render();
+    }
+
     public function indexCategory_Child()
     {
         $pageTitle = "Category_Child";
-        $category_child = Party::where('type','category_child')->get();
+        $category_child = Party::where('type','category_child')->paginate(5);
         return view('front/admins/party/category_child', ['pageTitle' => $pageTitle,'category_child' => $category_child]);
     }
 
@@ -132,18 +142,38 @@ class PartyController extends Controller
 
 
     //------------------------------ Brand -----------------------------
-    public function indexBrand()
+    public function ajaxPaginationBrand()
     {
-        $pageTitle = "Brand";
-        $brand = Party::where('type','brand')->paginate(1);
-        return view('front/admins/party/brand', ['pageTitle' => $pageTitle,'brand' => $brand]);
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $brands = Party::where('type', 'brand')->paginate($perPage);
+        $brands->withPath(route('ajax.brands')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $brands->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination_party.brand', ['brand' => $brands])->render();
     }
+
     public function pagin_brand()
     {
         $pageTitle = "Brand";
-        $brand = Party::where('type','brand')->paginate(1);
-        return view('front/admins/party/text', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
+        $brand = Party::where('type','brand')->paginate(5);
+        return view('front/admins/pagination_party/brand', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
     }
+
+    public function indexBrand()
+    {
+        $pageTitle = "Brand";
+        $brand = Party::where('type','brand')->paginate(5);
+        return view('front/admins/party/brand', ['pageTitle' => $pageTitle,'brand' => $brand]);
+    }
+    
 
 
 
@@ -231,9 +261,35 @@ class PartyController extends Controller
         return response($output);
     }
     //------------------------------ Wattage -----------------------------
+
+    public function ajaxPaginationWattage()
+    {
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $wattages = Party::where('type', 'wattage')->paginate($perPage);
+        $wattages->withPath(route('ajax.wattages')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $wattages->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination_party.wattage', ['wattage' => $wattages])->render();
+    }
+
+    public function pagin_wattage()
+    {
+        $pageTitle = "Wattage";
+        $wattage = Party::where('type','wattage')->paginate(5);
+        return view('front/admins/pagination_party/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage])->render();
+    }
+
     public function indexWattage()
     {
-        $wattage = Party::where('type','wattage')->get();
+        $wattage = Party::where('type','wattage')->paginate(5);
         $pageTitle = "Wattage";
         return view('front/admins/party/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage]);
     }
@@ -326,10 +382,35 @@ class PartyController extends Controller
     }
     //------------------------------ Category -----------------------------
 
+    public function ajaxPaginationCategory()
+    {
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $categorys = Party::where('type', 'category')->paginate($perPage);
+        $categorys->withPath(route('ajax.categorys')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $categorys->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination_party.category', ['category' => $categorys])->render();
+    }
+
+    public function pagin_category()
+    {
+        $pageTitle = "Category";
+        $category = Party::where('type','category')->paginate(5);
+        return view('front/admins/pagination_party/category', ['pageTitle' => $pageTitle,'category' => $category])->render();
+    }
+
     public function indexCategory()
     {
         $pageTitle = "Category";
-        $category = Party::where('type','category')->get();
+        $category = Party::where('type','category')->paginate(5);
         return view('front/admins/party/category', ['pageTitle' => $pageTitle,'category' => $category]);
     }
 
