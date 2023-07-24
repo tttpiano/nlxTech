@@ -31,5 +31,13 @@ class PartyRelationship extends Model
         return $this->hasMany(Party::class);
     }
 
+    public function party()
+    {
+        return $this->belongsTo(Party::class, 'party_id');
+    }
 
+    public function child()
+    {
+        return $this->belongsTo(Party::class, 'child_id');
+    }
 }

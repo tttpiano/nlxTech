@@ -39,13 +39,12 @@
 
                     <a  class="btn btn-success" href="{{route('brand_add')}}">Add</a>
                 </div>
-                <div class="table-responsive text-nowrap">
+                <div class="table-responsive text-nowrap content1">
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="color_tr">
                             <th>STT</th>
                             <th>Brand</th>
-                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 alldata">
@@ -77,7 +76,8 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Bạn có muốn xoá bài viết này?
+                                                    Bạn có muốn xoá <strong style="text-transform: uppercase;">{{$brands -> description}}</strong> này? <br>
+                                                    Khi xóa mục này những bảng có liên kết cũng sẽ bị xóa theo
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -94,7 +94,9 @@
                         @endforeach
                         </tbody>
                         <tbody class="searchdata" id="Content"></tbody>
+
                     </table>
+                    {!! $brand->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
             <!--/ Basic Bootstrap Table -->
@@ -131,7 +133,40 @@
                 }
             )
         });
+
+
     </script>
+    <script>
+        $(document).ready(function () {
+            function loadBrands(page) {
+                $.ajax({
+                    url: '/ajax/brands?page=' + page,
+                    type: 'get',
+                    success: function (data) {
+                        $('.content1').html(data);
+                        // Rest of your code (e.g., update the STT column)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+
+            // Initial load
+            loadBrands(1);
+
+            // Handle pagination click
+            $(document).on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                loadBrands(page);
+            });
+
+            // ... Rest of your code (search functionality, etc.)
+        });
+    </script>
+
+
     <!-- Button trigger modal -->
     <!--  -->
 @endsection

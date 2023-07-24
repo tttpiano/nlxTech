@@ -5,11 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Image_related;
 use App\Models\Party;
+use App\Models\PartyRelationship;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+
 class PartyController extends Controller
 {
+    public function ajaxPagination()
+    {
+        $perPage = 2; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $brands = Party::where('type', 'brand')->paginate($perPage);
+        $brands->withPath(route('ajax.brands')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $brands->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.party.text', ['brand' => $brands])->render();
+    }
+
     //------------------------------ Category_child -----------------------------
     public function indexCategory_Child()
     {
@@ -56,6 +76,14 @@ class PartyController extends Controller
     public function destroy_category_child($id){
         $category_child = Party::find($id);
         $category_child->delete();
+        PartyRelationship::where(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'category_child');
+        })->orWhere(function($query) use ($id) {
+            $query->where('child_id', $id)
+                ->where('child_type', 'category_child');
+        })->delete();
+
         return redirect()->route('category_child')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_category_child(Request $request)
@@ -107,10 +135,16 @@ class PartyController extends Controller
     public function indexBrand()
     {
         $pageTitle = "Brand";
-        $brand = Party::where('type','brand')->get();
+        $brand = Party::where('type','brand')->paginate(1);
         return view('front/admins/party/brand', ['pageTitle' => $pageTitle,'brand' => $brand]);
     }
-    
+    public function pagin_brand()
+    {
+        $pageTitle = "Brand";
+        $brand = Party::where('type','brand')->paginate(1);
+        return view('front/admins/party/text', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
+    }
+
 
 
     public function addBrand()
@@ -199,22 +233,97 @@ class PartyController extends Controller
     //------------------------------ Wattage -----------------------------
     public function indexWattage()
     {
-        $pageTitle = "";
-        return view('front/admins/party/wattage', ['pageTitle' => $pageTitle]);
+        $wattage = Party::where('type','wattage')->get();
+        $pageTitle = "Wattage";
+        return view('front/admins/party/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage]);
     }
 
     public function addWattage()
     {
-        $pageTitle = "";
+        $pageTitle = "Add Wattage";
         return view('front/admins/party/wattage_add', ['pageTitle' => $pageTitle]);
     }
 
-    public function editWattage()
+    public function editWattage($id)
     {
-        $pageTitle = "";
-        return view('front/admins/party/wattage_edit', ['pageTitle' => $pageTitle]);
+        $pageTitle = "Edit Wattage";
+        $party = Party::find($id);
+        return view('front/admins/party/wattage_edit', ['pageTitle' => $pageTitle,'party'=>$party]);
     }
 
+
+    public function insertWattage(Request $request)
+    {
+        $wattages = ['wattage1', 'wattage2', 'wattage3', 'wattage4', 'wattage5'];
+        foreach ($wattages as $wattage) {
+            if ($request->has($wattage) && !empty($request->$wattage)) {
+                Party::create([
+                    'description' => $request->$wattage,
+                    'type' => 'wattage',
+                ]);
+            }
+        }
+        return response()->json(['success' => true]);
+    }
+
+    public function updatetWattage(Request $request)
+    {
+        Party::find($request->id)->update([
+            'description' => $request->wattage,
+            'type' => 'wattage',
+
+        ]);
+        return response()->json(['success' => true]);
+    }
+
+    public function destroy_wattage($id){
+        $wattage = Party::find($id);
+        $wattage->delete();
+        return redirect()->route('wattage')->with('success', 'Bài viết đã được xoá thành công');
+    }
+    public function search_wattage(Request $request)
+    {
+        $count = 1;
+        $output = '';
+        $wattage = Party::where('description', 'Like', '%' . $request->search . '%')->where('type', 'wattage')
+            ->get();
+        foreach ($wattage as $c) {
+            $output .= '<tr>
+            <td>'.$count.'</td>
+            <td>'.$c->description.'</td>
+
+            <td>
+                <a href="'.route('category_edit', $c->id).'" class="btn btn-outline-info"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                <br><br>
+                <form id="delete-form" action="'.route('wattage.destroy', $c->id).'" method="POST" style="display: inline-block;">
+                    '.csrf_field().'
+                    '.method_field('DELETE').'
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletes'.$c->id.'">Xoá</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deletes'.$c->id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xoá Bài Viết</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xoá bài viết này?'.$c->id.'
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-danger">Xoá</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>';
+            $count++;
+        }
+        return response($output);
+    }
     //------------------------------ Category -----------------------------
 
     public function indexCategory()
@@ -262,6 +371,8 @@ class PartyController extends Controller
     public function destroy_category($id){
         $category = Party::find($id);
         $category->delete();
+        PartyRelationship::where('party_id', $id)->where('party_type','category')
+            ->delete();
         return redirect()->route('category')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_category(Request $request)

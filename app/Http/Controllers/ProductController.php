@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Image_related;
+use App\Models\Party;
 use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Support\Carbon;
@@ -48,9 +49,23 @@ class ProductController extends Controller
     public function productAdd()
     {
         $pageTitle = "Add Product";
+        $types = ['category', 'category_child', 'brand', 'wattage'];
+        $partyData = Party::whereIn('type', $types)->get()->groupBy('type');
 
-        // Kiểm tra và xử lý trạng thái bài viết
-        return view('front.admins.product_add', compact('pageTitle'));
+
+        if (isset($partyData['category'])) {
+
+            $groupCounts = [];
+            foreach ($partyData as $type => $group) {
+                $groupCounts[$type] = $group->count();
+            }
+            return view('front.admins.product_add', compact('partyData', 'pageTitle', 'groupCounts'));
+        } else {
+
+            return view('front.admins.product_add', compact('partyData', 'pageTitle'));
+        }
+
+
     }
     public function productEdit()
     {

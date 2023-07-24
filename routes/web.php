@@ -3,8 +3,11 @@
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyRelationshipController;
 use App\Http\Controllers\ProductController;
+use App\Models\Party;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\View;
+use Illuminate\Contracts\Support\Renderable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,13 +68,16 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
 
 //// -------------------------------------- ADMIN -> PARTY_RELATIONSHIP  -----------------------------------------
-Route::get('/admin/party_relationship', function () {
-    $pageTitle = "admin_party";
-    return view('front.admins.party_relationship',   ['pageTitle' => $pageTitle]);
-})->name('admin_party_relationship');
+Route::get('/admin/party_relationship', [PartyRelationshipController::class, 'viewPartyRelationship'])->name('admin_party_relationship');
 Route::get('/admin/party_relationship/add', [PartyRelationshipController::class, 'partyAdd'])->name('party_relationship_add');
-Route::get('/admin/party_relationship/edit', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
-Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.add');
+Route::get('/admin/party_relationship/{id}', [PartyRelationshipController::class, 'partyEdit'])->name('party_relationship_edit');
+Route::get('/admin/party_relationship2/{id}', [PartyRelationshipController::class, 'partyEdit2'])->name('party_relationship_edit2');
+Route::post('/admin/party_relationship', [PartyRelationshipController::class, 'insert'] )->name('party_relationship.addcategory');
+Route::post('/admin/party_relationship2', [PartyRelationshipController::class, 'insert2'] )->name('party_relationship.addcategorychild');
+Route::delete('/party_relationship/{id}', [PartyRelationshipController::class, 'destroy_category'])->name('party_relationship.destroy1');
+Route::delete('/party_relationship2/{id}', [PartyRelationshipController::class, 'destroy_category_child'])->name('party_relationship.destroy2');
+Route::put('/admin/party_relationship/edit', [PartyRelationshipController::class, 'updatetCategory'])->name('party_relationship_category_update');
+Route::put('/admin/party_relationship2/edit', [PartyRelationshipController::class, 'updatetCategory2'])->name('party_relationship_category_update2');
 
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------
@@ -85,7 +91,6 @@ Route::get('/admin/category_child/search', [PartyController::class, 'search_cate
 
 
 /// //// -------------------------------------- PARTY -> Brand  -----------------------------------------
-
 Route::get('/admin/brand',[PartyController::class, 'indexBrand'])->name('brand');
 Route::get('/admin/brand_add',[PartyController::class, 'addBrand'])->name('brand_add');
 Route::get('/admin/brand_edit/{id}',[PartyController::class, 'editBrand'])->name('brand_edit');
@@ -93,12 +98,19 @@ Route::post('/admin/brand/add', [PartyController::class, 'insertBrand'] )->name(
 Route::put('/admin/brand_edit/edit', [PartyController::class, 'updatetBrand'])->name('brand_update');
 Route::delete('/brands/{id}', [PartyController::class, 'destroy_brand'])->name('brand.destroy');
 Route::get('/admin/brand/search', [PartyController::class, 'search_brand'])->name('search.brand');
+Route::get('/admin/brand/pagin/{id}', [PartyController::class, 'pagin_brand'])->name('pagin.brand');
+Route::get('/ajax/brands', [PartyController::class, 'ajaxPagination'])->name('ajax.brands');
+
 
 /// //// -------------------------------------- PARTY -> Wattage  -----------------------------------------
 
 Route::get('/admin/wattage', [PartyController::class, 'indexWattage'])->name('wattage');
 Route::get('/admin/wattage_add',[PartyController::class, 'addWattage'])->name('wattage_add');
-Route::get('/admin/wattage_edit', [PartyController::class, 'editWattage'])->name('wattage_edit');
+Route::get('/admin/wattage_edit/{id}', [PartyController::class, 'editWattage'])->name('wattage_edit');
+Route::post('/admin/wattage/add', [PartyController::class, 'insertWattage'] )->name('wattage.add');
+Route::put('/admin/wattage_edit/edit', [PartyController::class, 'updatetWattage'])->name('wattage_update');
+Route::delete('/wattage/{id}', [PartyController::class, 'destroy_wattage'])->name('wattage.destroy');
+Route::get('/admin/wattage/search', [PartyController::class, 'search_wattage'])->name('search.wattage');
 
 /// //// -------------------------------------- PARTY -> Category  -----------------------------------------
 Route::get('/admin/category', [PartyController::class, 'indexCategory'])->name('category');

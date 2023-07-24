@@ -42,7 +42,7 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                     <thead>
-                    <tr>
+                    <tr class="color_tr">
                         <th>STT</th>
                         <th>Category</th>
                         <th>Action</th>
@@ -76,7 +76,8 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Bạn có muốn xoá bài viết này?
+                                                    Bạn có muốn xoá <strong style="text-transform: uppercase ;">{{$categorys -> description}}</strong> này? <br>
+                                                    Khi xóa mục này những bảng có liên kết cũng sẽ bị xóa theo
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"

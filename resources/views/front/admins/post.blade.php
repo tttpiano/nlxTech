@@ -42,7 +42,7 @@
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="color_tr">
                             <th>STT</th>
                             <th>Author</th>
                             <th>Title</th>
@@ -104,8 +104,6 @@
                                             </div>
                                         </div>
                                     </form>
-
-
                                 </td>
                             </tr>
                         @endforeach

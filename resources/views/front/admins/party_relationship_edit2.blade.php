@@ -13,9 +13,9 @@
                                 <div class="row">
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Category</label>
-                                        <select id="category" class="category form-select">
-                                            @if (isset($partyData['category']) && count($partyData['category']) > 0)
-                                                @foreach ($partyData['category'] as $party)
+                                        <select id="category_child" class="category_child form-select">
+                                            @if (isset($partyData['category_child']) && count($partyData['category_child']) > 0)
+                                                @foreach ($partyData['category_child'] as $party)
                                                     <option value="{{ $party->id }}"
                                                             @if($relatedPartie->party_id == $party->id) selected @endif>{{ $party->description }}</option>
                                                 @endforeach
@@ -26,9 +26,9 @@
                                     </div>
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Category_child</label>
-                                        <select id="category_child" class="category_child form-select">
-                                            @if (isset($partyData['category_child']) && count($partyData['category_child']) > 0)
-                                                @foreach ($partyData['category_child'] as $party)
+                                        <select id="brand" class="brand form-select">
+                                            @if (isset($partyData['brand']) && count($partyData['brand']) > 0)
+                                                @foreach ($partyData['brand'] as $party)
                                                     <option value="{{ $party->id }}"
                                                             @if($relatedPartie->child_id == $party->id) selected @endif>{{ $party->description }}</option>
                                                 @endforeach
@@ -59,8 +59,8 @@
             $('.edit_category').click(function () {
                 var url = new URL(window.location.href);
                 var categoryId = url.pathname.split('/').pop();
-                var category = $('#category option:selected').val();
-                var selectedOptions1 = $('#category_child option:selected');
+                var category = $('#category_child option:selected').val();
+                var selectedOptions1 = $('#brand option:selected');
                 var selectedValues1 = selectedOptions1.map(function () {
                     return $(this).val();
                 }).get();
@@ -70,12 +70,12 @@
                 console.log(categoryId + category);
                 $.ajax({
                     type: 'PUT',
-                    url: '{{ route('party_relationship_category_update') }}',
+                    url: '{{ route('party_relationship_category_update2') }}',
                     data: {
                         _token: '{{ csrf_token() }}',
                         id: categoryId,
-                        category: category,
-                        category_child: selectedValues1,
+                        category_child: category,
+                        brand: selectedValues1,
                     },
                     success: function (response) {
                         if (response.success) {

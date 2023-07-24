@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('party_id')
                 ->references('id')
                 ->on('party')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             $table->foreign('child_id')
                 ->references('id')
