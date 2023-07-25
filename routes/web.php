@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyRelationshipController;
 use App\Http\Controllers\ProductController;
@@ -126,3 +127,11 @@ Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.im
 Route::post('upload-image',[PostController::class, 'storeImage'])->name('image.store');
 Route::post('/upload', [PostController::class, 'uploadBanner'])->name('upload.banner');
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
+
+//Banner
+Route::get('admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
+Route::get('banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
+Route::post('banners', [BannerController::class, 'store'])->name('admin.banners.store');
+Route::get('banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
+Route::put('banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
+Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');

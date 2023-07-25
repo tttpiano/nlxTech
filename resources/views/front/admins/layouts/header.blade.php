@@ -124,6 +124,12 @@
                     <div data-i18n="Tables">Party_RelationShip</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{route('admin.banners.index')}}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-table"></i>
+                    <div data-i18n="Tables">Banner</div>
+                </a>
+            </li>
           <!-- Misc -->
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
           <li class="menu-item">

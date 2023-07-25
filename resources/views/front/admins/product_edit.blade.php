@@ -99,29 +99,53 @@
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Category</label>
                         <select id="category" class="select2 form-select">
-                        <option value="Show" selected>Show</option>
-                        <option value="Hidden">Hidden</option>
+                            @if (isset($partyData['category']) && count($partyData['category']) > 0)
+                                @foreach ($partyData['category'] as $party)
+                                    <option value="{{ $party->id }}"
+                                            @if($relatedPartie->party_id == $party->id) selected @endif>{{ $party->description }}</option>
+                                @endforeach
+                            @else
+                                <option value="" disabled>Không có danh mục</option>
+                            @endif
                         </select>
                     </div>
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Category Child</label>
                         <select id="category_child" class="select2 form-select">
-                        <option value="Show" selected>Show</option>
-                        <option value="Hidden">Hidden</option>
+                            @if (isset($partyData['category_child']) && count($partyData['category_child']) > 0)
+                                @foreach ($partyData['category_child'] as $party)
+                                    <option value="{{ $party->id }}"
+                                            @if($relatedPartie->party_id == $party->id) selected @endif>{{ $party->description }}</option>
+                                @endforeach
+                            @else
+                                <option value="" disabled>Không có danh mục</option>
+                            @endif
                         </select>
                     </div>
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Brand</label>
                         <select id="brand" class="select2 form-select">
-                        <option value="Show" selected>Show</option>
-                        <option value="Hidden">Hidden</option>
+                            @if (isset($partyData['brand']) && count($partyData['brand']) > 0)
+                                @foreach ($partyData['brand'] as $party)
+                                    <option value="{{ $party->id }}"
+                                            @if($relatedPartie->party_id == $party->id) selected @endif>{{ $party->description }}</option>
+                                @endforeach
+                            @else
+                                <option value="" disabled>Không có danh mục</option>
+                            @endif
                         </select>
                     </div>
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Wattage</label>
                         <select id="wattage" class="select2 form-select">
-                        <option value="Show" selected>Show</option>
-                        <option value="Hidden">Hidden</option>
+                            @if (isset($partyData['wattage']) && count($partyData['wattage']) > 0)
+                                @foreach ($partyData['wattage'] as $party)
+                                    <option value="{{ $party->id }}"
+                                            @if($relatedPartie->party_id == $party->id) selected @endif>{{ $party->description }}</option>
+                                @endforeach
+                            @else
+                                <option value="" disabled>Không có danh mục</option>
+                            @endif
                         </select>
                     </div>
                     </div>
