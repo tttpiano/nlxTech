@@ -153,7 +153,5 @@
       <!-- Layout container -->
       <div class="layout-page">
         <!-- Navbar -->
-      </div>
 
-    </div>
-</div>
+
