@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Image;
 use App\Models\Image_related;
 use App\Models\Party;
@@ -43,8 +44,9 @@ class ProductController extends Controller
 
             // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
         }
+            $slides = Banner::where('active', true)->orderBy('order')->get();
             // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
-        return view('front.index', ['products' => $products, 'pageTitle' => $pageTitle,'posts' => $posts]);
+        return view('front.index', ['products' => $products, 'pageTitle' => $pageTitle,'posts' => $posts,'slides'=>$slides]);
     }
     public function productAdd()
     {
