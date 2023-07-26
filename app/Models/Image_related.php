@@ -29,6 +29,14 @@ class Image_related extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'img_id', 'id');
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'related_id', 'id')->where('entity', 'product');
+    }
 
 
 }

@@ -155,7 +155,7 @@
                             @if ($product->image)
 
                                 <div class="featured__item__pic set-bg"
-                                     data-setbg="{{ asset('storage/img/' . $product->image->file_name) }}">
+                                     data-setbg="{{ asset('images/' . $product->image->file_name) }}">
                                     @else
                                         <div class="featured__item__pic set-bg" data-setbg="{{ asset('storage/img/error.jpg') }}">
                                             @endif

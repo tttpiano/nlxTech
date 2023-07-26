@@ -24,6 +24,15 @@ class Image extends Model
         'level',
         'created_at'
     ];
+    public function imageRelated()
+    {
+        return $this->hasMany(Image_related::class, 'img_id', 'id');
+    }
 
+    // Quan hệ nhiều-nhiều (Many-to-Many) với Model Product
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'image_related', 'img_id', 'related_id')->where('entity', 'product');
+    }
 
 }

@@ -78,11 +78,18 @@ class PartyController extends Controller
         $category_child->delete();
         PartyRelationship::where(function($query) use ($id) {
             $query->where('party_id', $id)
-                ->where('party_type', 'category_child');
+                ->where('party_type', 'category_child')
+                ->where('entity_child', 'party');
         })->orWhere(function($query) use ($id) {
             $query->where('child_id', $id)
-                ->where('child_type', 'category_child');
+                ->where('child_type', 'category_child')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'category_child')
+                ->where('entity_child', 'product');
         })->delete();
+
 
         return redirect()->route('category_child')->with('success', 'Bài viết đã được xoá thành công');
     }
@@ -182,9 +189,32 @@ class PartyController extends Controller
         }
         return response()->json(['success' => true]);
     }
-    public function destroy_brand($id){
+
+    public function destroy_brand($id)
+    {
         $brand = Party::find($id);
+
+        if (!$brand) {
+            return redirect()->route('brand')->with('error', 'Không tìm thấy bản ghi');
+        }
+
+        PartyRelationship::where(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'brand')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('child_id', $id)
+                ->where('child_type', 'brand')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'brand')
+                ->where('entity_child', 'product');
+        })->delete();
+
+        // Xoá bản ghi trong bảng 'party'
         $brand->delete();
+
         return redirect()->route('brand')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_brand(Request $request)
@@ -279,6 +309,19 @@ class PartyController extends Controller
     public function destroy_wattage($id){
         $wattage = Party::find($id);
         $wattage->delete();
+        PartyRelationship::where(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'wattage')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('child_id', $id)
+                ->where('child_type', 'wattage')
+                ->where('entity_child', 'party');;
+        })->orWhere(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'wattage')
+                ->where('entity_child', 'product');
+        })->delete();
         return redirect()->route('wattage')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_wattage(Request $request)
@@ -371,8 +414,19 @@ class PartyController extends Controller
     public function destroy_category($id){
         $category = Party::find($id);
         $category->delete();
-        PartyRelationship::where('party_id', $id)->where('party_type','category')
-            ->delete();
+        PartyRelationship::where(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'category')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('child_id', $id)
+                ->where('child_type', 'category')
+                ->where('entity_child', 'party');
+        })->orWhere(function($query) use ($id) {
+            $query->where('party_id', $id)
+                ->where('party_type', 'category')
+                ->where('entity_child', 'product');
+        })->delete();
         return redirect()->route('category')->with('success', 'Bài viết đã được xoá thành công');
     }
     public function search_category(Request $request)
