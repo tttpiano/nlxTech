@@ -2,6 +2,12 @@
 * demo.css
 * File include item demo only specific css only
 ******************************************************************************/
+.modal-header {
+    background: #14ed87;
+}
+.table:not(.table-dark) th {
+    color: #000000;
+}
 .color_tr{
     background-color: #16f6f8;
     font-weight: bold;

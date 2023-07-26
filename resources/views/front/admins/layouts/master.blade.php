@@ -20,7 +20,7 @@
     <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('storage/assets/img/favicon/favicon.ico')}}"/>
+    <link rel="icon" href="{{asset('storage/img/logo/logo.jpg')}}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
             integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -60,11 +60,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('storage/assets/js/config.js')}}"></script>
-    <style>
-        .modal-header {
-            background: #14ed87;
-        }
-    </style>
 </head>
 
 <body>

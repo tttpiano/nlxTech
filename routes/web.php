@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyRelationshipController;
 use App\Http\Controllers\ProductController;
@@ -36,29 +37,30 @@ Route::get('/blog/{url_seo}', [PostController::class, 'show'])->name('posts.show
 
 Route::post('/posts/{postId}/update-status', [PostController::class, 'updateStatus']);
 
-
+///-------------------------------------------------------------------------------------------------------------------------
 /// ----------------------------------- ADMIN NLXTech ------------------------------------------
-///
+///---------------------------------------------------------------------------------------------------------------------------------
 Route::get('/admin', function () {
     $pageTitle = "admin";
     return view('front.admins.index',   ['pageTitle' => $pageTitle]);
 });
-Route::get('/admin/product', function () {
-    $pageTitle = "admin_product";
-    return view('front.admins.product',   ['pageTitle' => $pageTitle]);
-})->name('admin_product');
+Route::get('/admin/product',[ProductController::class, 'getAllProductAdmin'])->name('admin_product');
 
 //// -------------------------------------- ADMIN -> PRODUCT -----------------------------------------
-
 Route::get('/admin/product/add', [ProductController::class, 'productAdd'])->name('product_add');
-Route::get('/admin/product/edit', [ProductController::class, 'productEdit'])->name('product_edit');
+Route::get('/admin/product/edit/{id}', [ProductController::class, 'productEdit'])->name('product_edit');
+Route::post('/admin/product/add', [ProductController::class, 'insert'] )->name('product.add');
+Route::post('upload-images',[ProductController::class, 'storeImage'])->name('image_pro.store');
+Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('product.update');
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
+
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
 
 /// hien thi form
 Route::get('/admin/post/edit/{id}', [PostController::class, 'postEdit'])->name('post_edit');
 Route::get('/admin/post/add', [PostController::class, 'postAdd'])->name('post_add');
-
 Route::post('/admin/add', [PostController::class, 'insert'] )->name('post.add');
 Route::put('/admin/edit', [PostController::class, 'update'] )->name('post.edit');
 Route::get('/admin/posts/create', [PostController::class, 'create'])->name('posts.create');
@@ -132,3 +134,11 @@ Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.im
 Route::post('upload-image',[PostController::class, 'storeImage'])->name('image.store');
 Route::post('/upload', [PostController::class, 'uploadBanner'])->name('upload.banner');
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
+
+//Banner
+Route::get('admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
+Route::get('banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
+Route::post('banners', [BannerController::class, 'store'])->name('admin.banners.store');
+Route::get('banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
+Route::put('banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
+Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');

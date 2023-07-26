@@ -247,7 +247,7 @@ logo
     </div>
 </div>
 
-<section class="hero" style="position: absolute; left: 15px; z-index: 99">
+<section class="hero" style="position: absolute; z-index: 99">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">

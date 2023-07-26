@@ -22,6 +22,10 @@ class Party extends Model
     protected $fillable = [
         'description', 'party_id', 'type'
     ];
+    public function partyRelationships()
+    {
+        return $this->hasMany(PartyRelationship::class, 'party_id');
+    }
 
 
 }
