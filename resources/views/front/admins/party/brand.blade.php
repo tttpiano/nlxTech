@@ -46,7 +46,6 @@
                             <th>STT</th>
                             <th>Brand</th>
                             <th>Action</th>
-
                         </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 alldata">
@@ -94,12 +93,11 @@
                             </td>
                         </tr>
                         @endforeach
-
                         </tbody>
                         <tbody class="searchdata" id="Content"></tbody>
 
                     </table>
-                    {!! $brand->links('pagination::bootstrap-5') !!}
+                    
                 </div>
             </div>
             <!--/ Basic Bootstrap Table -->

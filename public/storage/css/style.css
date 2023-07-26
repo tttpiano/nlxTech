@@ -92,6 +92,53 @@ button:focus,
 textarea:focus {
     outline: none;
 }
+.box-product_brand {
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+element.style {
+}
+.box-product_brand {
+    padding: 50px 0;
+    overflow: hidden;
+}
+SSSS
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+.box-product_brand .advertise-product_brand {
+    display: grid;
+    gap: 50px 64px;
+    text-align: center;
+    align-items: center;
+    grid-template-columns: repeat(8, 1fr);
+}
+.box-product_brand .wrapper {
+    margin: 0 auto;
+    max-width: 1600px;
+    position: relative;
+}
+.webstore::after, .wrapper::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.box-product_brand .advertise-product_brand img {
+    width: 100%;
+    margin: auto;
+    display: block;
+    max-height: 48px;
+    aspect-ratio: 3/1;
+    object-fit: contain !important;
+}
 
 a:hover,
 a:focus {

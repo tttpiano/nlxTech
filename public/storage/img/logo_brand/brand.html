@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brands Gallery</title>
+  <!-- CSS Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- CSS custom -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+    }
+    .brand-item {
+      text-align: center;
+      padding: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      margin-bottom: 0; /* Loại bỏ khoảng cách dưới các hình ảnh */
+    }
+    .brand-item img {
+      max-width: 100%;
+      max-height: 40px; /* Giới hạn chiều cao tối đa là 40px */
+    }
+
+    /* Điều chỉnh số cột trên mỗi hàng khi kích thước màn hình nhỏ hơn hoặc bằng 375x667 */
+    @media (max-width: 375px) {
+      .row.justify-content-center .col-md-1 {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-1 brand-item">
+        <img src="daikin.png" alt="Brand 1">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="funiki.jpeg" alt="Brand 2">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="gree.png" alt="Brand 3">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="logo-reetech.jpeg" alt="Brand 4">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="logo-samsung-inkythuatso-01-29-08-50-42.jpeg" alt="Brand 4">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="hitachi-1.jpeg" alt="Brand 4">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="media.jpeg" alt="Brand 4">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="mitsubishi-electric.jpeg" alt="Brand 4">
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-1 brand-item">
+        <img src="nagakawa.jpeg" alt="Brand 5">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="panasonic-logo-scaled.jpeg" alt="Brand 6">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="partner5-1.jpeg" alt="Brand 7">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="sharp.jpeg" alt="Brand 8">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="sumikura.jpeg" alt="Brand 8">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="toshiba.jpeg" alt="Brand 8">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="yuiki.jpeg" alt="Brand 8">
+      </div>
+      <div class="col-md-1 brand-item">
+        <img src="sumikura.jpeg" alt="Brand 8">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
