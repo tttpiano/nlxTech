@@ -31,14 +31,14 @@ class PartyController extends Controller
             return $item;
         });
 
-        return view('front.admins.pagination_party.category_child', ['category_child' => $category_childs])->render();
+        return view('front.admins.pagination.category_child', ['category_child' => $category_childs])->render();
     }
 
     public function pagin_category_child()
     {
         $pageTitle = "Category_Child";
         $category_child = Party::where('type','category_child')->paginate(5);
-        return view('front/admins/pagination_party/category_child', ['pageTitle' => $pageTitle,'category_child' => $category_child])->render();
+        return view('front/admins/pagination/category_child', ['pageTitle' => $pageTitle,'category_child' => $category_child])->render();
     }
 
     public function indexCategory_Child()
@@ -164,14 +164,14 @@ class PartyController extends Controller
             return $item;
         });
 
-        return view('front.admins.pagination_party.brand', ['brand' => $brands])->render();
+        return view('front.admins.pagination.brand', ['brand' => $brands])->render();
     }
 
     public function pagin_brand()
     {
         $pageTitle = "Brand";
         $brand = Party::where('type','brand')->paginate(5);
-        return view('front/admins/pagination_party/brand', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
+        return view('front/admins/pagination/brand', ['pageTitle' => $pageTitle,'brand' => $brand])->render();
     }
 
     public function indexBrand()
@@ -307,14 +307,14 @@ class PartyController extends Controller
             return $item;
         });
 
-        return view('front.admins.pagination_party.wattage', ['wattage' => $wattages])->render();
+        return view('front.admins.pagination.wattage', ['wattage' => $wattages])->render();
     }
 
     public function pagin_wattage()
     {
         $pageTitle = "Wattage";
         $wattage = Party::where('type','wattage')->paginate(5);
-        return view('front/admins/pagination_party/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage])->render();
+        return view('front/admins/pagination/wattage', ['pageTitle' => $pageTitle,'wattage' => $wattage])->render();
     }
 
     public function indexWattage()
@@ -440,14 +440,14 @@ class PartyController extends Controller
             return $item;
         });
 
-        return view('front.admins.pagination_party.category', ['category' => $categorys])->render();
+        return view('front.admins.pagination.category', ['category' => $categorys])->render();
     }
 
     public function pagin_category()
     {
         $pageTitle = "Category";
         $category = Party::where('type','category')->paginate(5);
-        return view('front/admins/pagination_party/category', ['pageTitle' => $pageTitle,'category' => $category])->render();
+        return view('front/admins/pagination/category', ['pageTitle' => $pageTitle,'category' => $category])->render();
     }
 
     public function indexCategory()

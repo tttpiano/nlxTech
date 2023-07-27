@@ -1,33 +1,37 @@
+
 <table class="table">
     <thead>
     <tr class="color_tr">
         <th>STT</th>
+        <th>Categoty Child</th>
         <th>Brand</th>
-        <th>Action</th>
 
+        <th>Action</th>
     </tr>
     </thead>
-    <tbody class="table-border-bottom-0 alldata">
-    @foreach($brand as $brands)
-        <tr>
-            <td>{{$brands->stt}}</td>
-            <td>{{$brands -> description}}</td>
+    <tbody class="table-border-bottom-0">
+   
+    @foreach ($relatedParties2 as $related)
 
+        <tr>
+
+            <td>{{$related->stt}}</td>
+            <td>{{ $related->party->description}} </td>
+            <td>{{ $related->child->description }}</td>
             <td>
-                <a href="{{route('brand_edit',$brands -> id)}}" class="btn btn-outline-info"><i
-                        class="bx bx-edit-alt me-1"></i>Edit</a>
-                <br><br>
-                <form id="delete-form" action="{{ route('brand.destroy', $brands->id) }}"
-                      method="POST"
-                      style="display: inline-block;">
+                <a href="{{route('party_relationship_edit2',$related->id)}}" class="btn btn-outline-info"><i
+                        class="bx bx-edit-alt me-1"></i>Edit</a><br><br>
+                <form id="delete-form" action="{{ route('party_relationship.destroy2', $related->id) }}"
+                        method="POST"
+                        style="display: inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#delete{{$brands->id}}">Xoá
+                            data-bs-target="#delete{{$related->id}}">Xoá
                     </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="delete{{$brands->id}}" tabindex="-1"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   
+                    <div class="modal fade" id="delete{{$related->id}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -36,9 +40,7 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Bạn có muốn xoá <strong
-                                        style="text-transform: uppercase;">{{$brands -> description}}</strong> này? <br>
-                                    Khi xóa mục này những bảng có liên kết cũng sẽ bị xóa theo
+                                    Bạn có muốn xoá bài viết này?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -51,12 +53,12 @@
                     </div>
                 </form>
             </td>
+
         </tr>
     @endforeach
 
     </tbody>
-    <tbody class="searchdata" id="Content"></tbody>
-
 </table>
-{{$brand->links('pagination::bootstrap-5')}}
-
+<div class="pagin2">
+{{$relatedParties2->links('pagination::bootstrap-4')}}
+</div>

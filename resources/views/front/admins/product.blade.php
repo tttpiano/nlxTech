@@ -14,9 +14,8 @@
             <div class="navbar-nav align-items-center" style="width: 100%;">
                 <div class="nav-item d-flex align-items-center" style="width: 100%;">
                     <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none" id="search_product"
-                           placeholder="Search..."
-                           aria-label="Search..." style="width: 100%;"/>
+                    <input type="text" class="form-control border-0 shadow-none" id="search_product" placeholder="Search..."
+                           aria-label="Search..." style="width: 100%;" />
                 </div>
             </div>
             <!-- /Search -->
@@ -56,11 +55,9 @@
                         <tbody class="table-border-bottom-0">
                         @php
                             $count1 = 1;
-                            $id = 0;
                         @endphp
                         @foreach($products as $product)
-                            <tr class="alldata"  data-product="{{$product->id}}"
-                                >
+                            <tr class="alldata">
                                 <td>{{$count1++}}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>
@@ -81,9 +78,9 @@
                                         @endif
 
                                     @endforeach
-                                    @empty($product->partyRelationship->where('party_type', 'category')->first())
-                                        <strong style="color: red !important;">Trống</strong>
-                                    @endempty
+                                        @empty($product->partyRelationship->where('party_type', 'category')->first())
+                                            <strong style="color: red !important;">Trống</strong>
+                                        @endempty
                                 </td>
                                 <td>
                                     @foreach($product->partyRelationship as $relationship)
@@ -91,9 +88,9 @@
                                             {{ $relationship->party->description }}
                                         @endif
                                     @endforeach
-                                    @empty($product->partyRelationship->where('party_type', 'category_child')->first())
-                                        <strong style="color: red !important;">Trống</strong>
-                                    @endempty
+                                        @empty($product->partyRelationship->where('party_type', 'category_child')->first())
+                                            <strong style="color: red !important;">Trống</strong>
+                                        @endempty
                                 </td>
                                 <td>
                                     @foreach($product->partyRelationship as $relationship)
@@ -101,9 +98,9 @@
                                             {{ $relationship->party->description }}
                                         @endif
                                     @endforeach
-                                    @empty($product->partyRelationship->where('party_type', 'brand')->first())
-                                        <strong style="color: red !important;">Trống</strong>
-                                    @endempty
+                                        @empty($product->partyRelationship->where('party_type', 'brand')->first())
+                                            <strong style="color: red !important;">Trống</strong>
+                                        @endempty
                                 </td>
                                 <td>
                                     @foreach($product->partyRelationship as $relationship)
@@ -111,9 +108,9 @@
                                             {{ $relationship->party->description }}
                                         @endif
                                     @endforeach
-                                    @empty($product->partyRelationship->where('party_type', 'wattage')->first())
-                                        <strong style="color: red !important;">Trống</strong>
-                                    @endempty
+                                        @empty($product->partyRelationship->where('party_type', 'wattage')->first())
+                                            <strong style="color: red !important;">Trống</strong>
+                                        @endempty
                                 </td>
                                 <td>
                                     <a href="{{ route('product_edit', $product->id) }}" class="btn btn-outline-info"><i
@@ -137,8 +134,7 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Bạn có muốn xoá <strong><b>{{ $product->name }}</b></strong>
-                                                        này?
+                                                        Bạn có muốn xoá <strong><b>{{ $product->name }}</b></strong> này?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -158,20 +154,6 @@
                     </table>
                 </div>
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog  modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset">
-                            <div id="detalProduct"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%;">Close</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!--/ Basic Bootstrap Table -->
         </div>
     </div>
@@ -184,20 +166,6 @@
     @endif
     <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script>
-        $(document).ready(function () {
-            // Lấy danh sách tất cả các hàng <tr> có lớp "alldata"
-            const rows = $('tr.alldata');
-
-            // Lặp qua từng hàng <tr>
-            rows.each(function () {
-                // Lấy tất cả các ô <td> trong hàng trừ <td> cuối cùng
-                const tds = $(this).find('td:not(:last-child)');
-
-                // Thêm thuộc tính data-bs-toggle và data-bs-target vào các ô <td> tương ứng
-                tds.attr('data-bs-toggle', 'modal');
-                tds.attr('data-bs-target', '#exampleModal');
-            });
-        });
         // Lấy nội dung thông báo "Xoá thành công" từ div ẩn
         var successMessage = document.getElementById('deleteSuccessMessage');
         if (successMessage) {
@@ -222,30 +190,6 @@
                     success: function (data) {
                         console.log(data);
                         $('#Content').html(data);
-                    }
-                }
-            )
-        });
-        $('.alldata td').each(function () {
-            // Thêm thuộc tính CSS vào các thẻ <td> này (ví dụ: thêm màu nền và màu chữ)
-            $(this).css({
-                'cursor': 'pointer'
-            });
-        });
-        $('.alldata').on('click', 'td', function () {
-            var productId = $(this).closest('.alldata').data('product');
-            console.log('Product ID:', productId);
-            $.ajax(
-                {
-                    type: 'get',
-                    url: '{{route("detal.product")}}',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: productId,
-                    },
-                    success: function (data) {
-                        console.log('Received data:', data);
-                        $('#detalProduct').html(data);
                     }
                 }
             )

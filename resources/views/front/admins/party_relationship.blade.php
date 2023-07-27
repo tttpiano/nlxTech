@@ -17,7 +17,7 @@
                     <a class="btn btn-success" href="{{route('party_relationship_add')}}">Add</a>
                 </div>
 
-                <div class="table-responsive text-nowrap">
+                <div class="table-responsive text-nowrap content1">
 
                     <table class="table">
                         <thead>
@@ -30,14 +30,12 @@
                         </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                        @php
-                            $count1 = 1;
-                        @endphp
+                        
                         @foreach ($relatedParties as $relatedParty)
 
                             <tr>
 
-                            <td>{{$count1++}}</td>
+                            <td></td>
                             <td>{{ $relatedParty->party->description}} </td>
                             <td>{{ $relatedParty->child->description }}</td>
                             <td>
@@ -80,28 +78,26 @@
                         @endforeach
                         </tbody>
                     </table>
+                    
                 </div>
 
-                    <div class="table-responsive text-nowrap">
+                <div class="table-responsive text-nowrap content2">
                     <table class="table">
                         <thead>
                         <tr class="color_tr">
                             <th>STT</th>
                             <th>Categoty Child</th>
                             <th>Brand</th>
-
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                        @php
-                            $count2 = 1;
-                        @endphp
+                       
                         @foreach ($relatedParties2 as $related)
 
                             <tr>
 
-                                <td>{{$count2++}}</td>
+                                <td></td>
                                 <td>{{ $related->party->description}} </td>
                                 <td>{{ $related->child->description }}</td>
                                 <td>
@@ -145,7 +141,7 @@
 
                         </tbody>
                     </table>
-
+                    
                 </div>
             </div>
             <!--/ Basic Bootstrap Table -->
@@ -154,5 +150,69 @@
     </div>
     <!-- Button trigger modal -->
     <!--  -->
+    <script>
+        $(document).ready(function () {
+            function loadRelationships(page) {
+                $.ajax({
+                    url: '/ajax/party_relationships1?page=' + page,
+                    type: 'get',
+                    success: function (data) {
+                        $('.content1').html(data);
+                        // Rest of your code (e.g., update the STT column)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+            
 
+            // Initial load
+            loadRelationships(1);
+            
+
+            // Handle pagination click
+            $(document).on('click', '.pagin1 .pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                loadRelationships(page);
+               
+            });
+
+            // ... Rest of your code (search functionality, etc.)
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function loadRelationships2(page) {
+                $.ajax({
+                    url: '/ajax/party_relationships2?page=' + page,
+                    type: 'get',
+                    success: function (data) {
+                        $('.content2').html(data);
+                        // Rest of your code (e.g., update the STT column)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+            
+
+            // Initial load
+            loadRelationships2(1);
+            
+
+            // Handle pagination click
+            $(document).on('click', '.pagin2 .pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                loadRelationships2(page);
+               
+            });
+
+            // ... Rest of your code (search functionality, etc.)
+        });
+    </script>
+    
 @endsection
