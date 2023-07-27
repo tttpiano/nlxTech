@@ -129,62 +129,98 @@
         </div>
     </section>
     <!-- Categories Section End -->
-
-
-    <section id="box-product_brand" data-layout="boxed" class="box-product_brand outer container">
-        <div class="wrapper">
-            <section class="advertise-product_brand">
+    <div class="brand">
+        <div class="container">
+            <div class="row row-brand">
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Daikin" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/daikin.png') }}" alt="Daikin" title="Daikin" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/daikin.png') }}" alt="Daikin" title="Daikin" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Panasonic" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/panasonic-logo-scaled.jpeg') }}" alt="Panasonic" title="Panasonic" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/panasonic-logo-scaled.jpeg') }}" alt="Panasonic" title="Panasonic" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="GREE" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/gree.png') }}" alt="GREE" title="GREE" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/gree.png') }}" alt="GREE" title="GREE" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a>
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Samsung" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/logo-samsung-inkythuatso-01-29-08-50-42.jpeg') }}" alt="Samsung" title="Samsung" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/logo-samsung-inkythuatso-01-29-08-50-42.jpeg') }}" alt="Samsung" title="Samsung" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Reetech" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/logo-reetech.jpeg') }}" alt="Reetech" title="Reetech" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/logo-reetech.jpeg') }}" alt="Reetech" title="Reetech" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="YUKI" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/yuiki.jpeg') }}" alt="YUKI" title="YUKI" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/yuiki.jpeg') }}" alt="YUKI" title="YUKI" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a>
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Midea" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/media.jpeg') }}" alt="Midea" title="Midea" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/media.jpeg') }}" alt="Midea" title="Midea" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Funiki" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/funiki.jpeg') }}" alt="Funiki" title="Funiki" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/funiki.jpeg') }}" alt="Funiki" title="Funiki" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="row row-brand">
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Sumikura" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/sumikura.jpeg') }}" alt="Sumikura" title="Sumikura" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/sumikura.jpeg') }}" alt="Sumikura" title="Sumikura" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Toshiba" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/toshiba.jpeg') }}" alt="Toshiba" title="Toshiba" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/toshiba.jpeg') }}" alt="Toshiba" title="Toshiba" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a>
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Mitsubishi Electric" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}" alt="Mitsubishi Electric" title="Mitsubishi Electric" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
-                <a href="" title="Mitsubishi Heavy" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}" alt="Mitsubishi Heavy" title="Mitsubishi Heavy" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}" alt="Mitsubishi Electric" title="Mitsubishi Electric" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
+                <a href="" title="Mitsubishi Electric" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}" alt="Mitsubishi Electric" title="Mitsubishi Electric" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="LG" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/partner5-1.jpeg') }}" alt="LG" title="LG" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/partner5-1.jpeg') }}" alt="LG" title="LG" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Hitachi" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/hitachi-1.jpeg') }}" alt="Hitachi" title="Hitachi" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/hitachi-1.jpeg') }}" alt="Hitachi" title="Hitachi" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Sharp" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/sharp.jpeg') }}" alt="Sharp" title="Sharp" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a> 
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/sharp.jpeg') }}" alt="Sharp" title="Sharp" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a> 
+                </div>
+                <div class="col-3 col-md-3 col-lg col-brand">
                 <a href="" title="Nagakawa" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/nagakawa.jpeg') }}" alt="Nagakawa" title="Nagakawa" width="150" height="50" data-id="140" data-pos="product_brand" class="advertise-img img-cover">
-                </a>
-            </section>
+                        <img thumb="0" src="{{ asset('storage/img/logo_brand/nagakawa.jpeg') }}" alt="Nagakawa" title="Nagakawa" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                    </a>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+    
+
+   
 
     
     <!-- Featured Section Begin -->

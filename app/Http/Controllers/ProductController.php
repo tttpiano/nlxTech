@@ -14,6 +14,53 @@ use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
 {
+    public function ajaxPaginationProduct()
+    {
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $products = Product::with([
+            'images',
+            'partyRelationship' => function ($query) {
+                $query->with('party')->where(function ($q) {
+                    $q->where('party_type', 'category')
+                        ->orWhere('party_type', 'category_child')
+                        ->orWhere('party_type', 'brand')
+                        ->orWhere('party_type', 'wattage');
+                });
+            },
+            'partyRelationship.party'
+        ])->paginate($perPage);
+        $products->withPath(route('ajax.products')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $products->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination.product', ['products' => $products])->render();
+    }
+
+    public function pagin_product()
+    {
+        $product = Product::with([
+            'images',
+            'partyRelationship' => function ($query) {
+                $query->with('party')->where(function ($q) {
+                    $q->where('party_type', 'category')
+                        ->orWhere('party_type', 'category_child')
+                        ->orWhere('party_type', 'brand')
+                        ->orWhere('party_type', 'wattage');
+                });
+            },
+            'partyRelationship.party'
+        ])->paginate(5);
+
+        $pageTitle = "admin_product";
+        return view('front.admins.pagination.product', ['pageTitle' => $pageTitle, 'product' => $product])->render();
+    }
 
     public function getAllProductAdmin()
     {
@@ -29,7 +76,7 @@ class ProductController extends Controller
                 });
             },
             'partyRelationship.party'
-        ])->get();
+        ])->paginate(5);
 
         $pageTitle = "admin_product";
         return view('front.admins.product', ['pageTitle' => $pageTitle, 'products' => $products]);
