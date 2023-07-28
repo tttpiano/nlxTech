@@ -18,7 +18,7 @@
                                         <img
                                             src="{{ asset('images/'.Session::get('images')) }}"
                                             alt="user-avatar"
-                                            class="d-block rounded"
+                                            class="d-block rounded img_edit"
                                             height="100"
                                             width="100"
                                             id="fileUpload"
@@ -27,7 +27,7 @@
                                         <img
                                             src="{{ asset('storage/img/uptoload.jpg')}}"
                                             alt="user-avatar"
-                                            class="d-block rounded"
+                                            class="d-block rounded img_edit"
                                             height="100"
                                             width="100"
                                             id="fileUpload"
@@ -212,6 +212,22 @@
                     $('#fileUpload').attr('src', URL.createObjectURL(files[0]));
                 }
             });
+            var fileName= "";
+            var imageElement = $('.img_edit');
+
+            // Get the "src" attribute of the image
+            var imageSrc = imageElement.attr('src');
+
+            // Split the imageSrc to get the filename
+            var fileimg = imageSrc.split('/').pop();
+
+            if(fileimg !== null){
+                fileName = fileimg
+            }
+            else {
+                fileName = fileimg2
+            }
+            console.log('Image filename:', fileName);
             $('.add_product').click(function () {
                 var name = $('#name').val();
                 var price = $('#price').val();
@@ -237,6 +253,7 @@
                     url: '{{ route('product.add') }}',
                     data: {
                         _token: '{{ csrf_token() }}',
+                        img: fileName,
                         name: name,
                         price: price,
                         description: description,

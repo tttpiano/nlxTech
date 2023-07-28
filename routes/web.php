@@ -51,9 +51,11 @@ Route::get('/admin/product/add', [ProductController::class, 'productAdd'])->name
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'productEdit'])->name('product_edit');
 Route::post('/admin/product/add', [ProductController::class, 'insert'] )->name('product.add');
 Route::post('upload-images',[ProductController::class, 'storeImage'])->name('image_pro.store');
+Route::post('upload-images2',[ProductController::class, 'storeImage2'])->name('image_pro2.store');
 Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('product.update');
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
+Route::get('/admin/product/detal', [ProductController::class, 'detal'])->name('detal.product');
 
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
@@ -136,9 +138,11 @@ Route::post('/upload', [PostController::class, 'uploadBanner'])->name('upload.ba
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
 
 //Banner
+
+Route::post('upload-image',[BannerController::class, 'storeImage'])->name('image.banner');
 Route::get('admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
 Route::get('banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
-Route::post('banners', [BannerController::class, 'store'])->name('admin.banners.store');
+Route::post('banners/create/add', [BannerController::class, 'store'])->name('admin.banners.store');
 Route::get('banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
 Route::put('banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
 Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');
