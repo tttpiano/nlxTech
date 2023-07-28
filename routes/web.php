@@ -55,13 +55,10 @@ Route::post('upload-images2',[ProductController::class, 'storeImage2'])->name('i
 Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('product.update');
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
-<<<<<<< HEAD
 Route::get('/admin/product/detal', [ProductController::class, 'detal'])->name('detal.product');
-
-=======
 Route::get('/admin/product/pagin/{id}', [ProductController::class, 'pagin_product'])->name('pagin.product');
 Route::get('/ajax/products', [ProductController::class, 'ajaxPaginationProduct'])->name('ajax.products');
->>>>>>> Thang
+
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
 
