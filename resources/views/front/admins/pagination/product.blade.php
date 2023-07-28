@@ -18,10 +18,12 @@
     <tbody class="table-border-bottom-0">
     @php
         $count1 = 1;
+        $id = 0;
     @endphp
     @foreach($products as $product)
-        <tr class="alldata">
-            <td>{{$product->stt}}</td>
+        <tr class="alldata"  data-product="{{$product->id}}"
+            >
+            <td>{{$count1++}}</td>
             <td>{{ $product->name }}</td>
             <td>
                 @if($product->images->count() > 0)
@@ -41,9 +43,9 @@
                     @endif
 
                 @endforeach
-                    @empty($product->partyRelationship->where('party_type', 'category')->first())
-                        <strong style="color: red !important;">Trống</strong>
-                    @endempty
+                @empty($product->partyRelationship->where('party_type', 'category')->first())
+                    <strong style="color: red !important;">Trống</strong>
+                @endempty
             </td>
             <td>
                 @foreach($product->partyRelationship as $relationship)
@@ -51,9 +53,9 @@
                         {{ $relationship->party->description }}
                     @endif
                 @endforeach
-                    @empty($product->partyRelationship->where('party_type', 'category_child')->first())
-                        <strong style="color: red !important;">Trống</strong>
-                    @endempty
+                @empty($product->partyRelationship->where('party_type', 'category_child')->first())
+                    <strong style="color: red !important;">Trống</strong>
+                @endempty
             </td>
             <td>
                 @foreach($product->partyRelationship as $relationship)
@@ -61,9 +63,9 @@
                         {{ $relationship->party->description }}
                     @endif
                 @endforeach
-                    @empty($product->partyRelationship->where('party_type', 'brand')->first())
-                        <strong style="color: red !important;">Trống</strong>
-                    @endempty
+                @empty($product->partyRelationship->where('party_type', 'brand')->first())
+                    <strong style="color: red !important;">Trống</strong>
+                @endempty
             </td>
             <td>
                 @foreach($product->partyRelationship as $relationship)
@@ -71,9 +73,9 @@
                         {{ $relationship->party->description }}
                     @endif
                 @endforeach
-                    @empty($product->partyRelationship->where('party_type', 'wattage')->first())
-                        <strong style="color: red !important;">Trống</strong>
-                    @endempty
+                @empty($product->partyRelationship->where('party_type', 'wattage')->first())
+                    <strong style="color: red !important;">Trống</strong>
+                @endempty
             </td>
             <td>
                 <a href="{{ route('product_edit', $product->id) }}" class="btn btn-outline-info"><i
@@ -97,7 +99,8 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Bạn có muốn xoá <strong><b>{{ $product->name }}</b></strong> này?
+                                    Bạn có muốn xoá <strong><b>{{ $product->name }}</b></strong>
+                                    này?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

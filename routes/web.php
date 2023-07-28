@@ -56,7 +56,8 @@ Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
 Route::get('/admin/product/detal', [ProductController::class, 'detal'])->name('detal.product');
-
+Route::get('/admin/product/pagin/{id}', [ProductController::class, 'pagin_product'])->name('pagin.product');
+Route::get('/ajax/products', [ProductController::class, 'ajaxPaginationProduct'])->name('ajax.products');
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
 
