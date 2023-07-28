@@ -84,10 +84,35 @@ class PostController extends Controller
 
 //    admin
     // Phương thức hiển thị danh sách bài viết
+    public function ajaxPaginationPost()
+    {
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $posts = Post::paginate($perPage);
+        $posts->withPath(route('ajax.posts')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
+
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $posts->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination.post', ['posts' => $posts])->render();
+    }
+
+    public function pagin_post()
+    {
+        $pageTitle = "Post";
+        $post = Post::paginate(5);
+        return view('front/admins/pagination/post', ['pageTitle' => $pageTitle,'post' => $post])->render();
+    }
+
     public function index()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         // Kiểm tra và xử lý trạng thái bài viết
         return view('front.admins.post', compact('posts', 'pageTitle'));
     }

@@ -55,8 +55,13 @@ Route::post('upload-images2',[ProductController::class, 'storeImage2'])->name('i
 Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('product.update');
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
+<<<<<<< HEAD
 Route::get('/admin/product/detal', [ProductController::class, 'detal'])->name('detal.product');
 
+=======
+Route::get('/admin/product/pagin/{id}', [ProductController::class, 'pagin_product'])->name('pagin.product');
+Route::get('/ajax/products', [ProductController::class, 'ajaxPaginationProduct'])->name('ajax.products');
+>>>>>>> Thang
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
 
@@ -70,6 +75,8 @@ Route::get('/admin/post', [PostController::class, 'index'])->name('admin_post');
 Route::post('/admin/post/insert', [PostController::class, 'insert'])->name('admin_post_insert');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
+Route::get('/admin/post/pagin/{id}', [PostController::class, 'pagin_post'])->name('pagin.post');
+Route::get('/ajax/posts', [PostController::class, 'ajaxPaginationPost'])->name('ajax.posts');
 
 //// -------------------------------------- ADMIN -> PARTY_RELATIONSHIP  -----------------------------------------
 Route::get('/admin/party_relationship', [PartyRelationshipController::class, 'viewPartyRelationship'])->name('admin_party_relationship');
@@ -82,6 +89,10 @@ Route::delete('/party_relationship/{id}', [PartyRelationshipController::class, '
 Route::delete('/party_relationship2/{id}', [PartyRelationshipController::class, 'destroy_category_child'])->name('party_relationship.destroy2');
 Route::put('/admin/party_relationship/edit', [PartyRelationshipController::class, 'updatetCategory'])->name('party_relationship_category_update');
 Route::put('/admin/party_relationship2/edit', [PartyRelationshipController::class, 'updatetCategory2'])->name('party_relationship_category_update2');
+Route::get('/admin/party_relationship/pagin/{id}', [PartyRelationshipController::class, 'pagin_relationship'])->name('pagin.relationship');
+Route::get('/admin/party_relationship/pagin2/{id}', [PartyRelationshipController::class, 'pagin_relationship2'])->name('pagin.relationship2');
+Route::get('/ajax/party_relationships1', [PartyRelationshipController::class, 'ajaxPaginationRelationship'])->name('ajax.relationships1');
+Route::get('/ajax/party_relationships2', [PartyRelationshipController::class, 'ajaxPaginationRelationship2'])->name('ajax.relationships2');
 
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------

@@ -35,7 +35,7 @@
                 <div class="add">
                     <a class="btn btn-success" href="{{ route('product_add') }}">Add</a>
                 </div>
-                <div class="table-responsive text-nowrap">
+                <div class="table-responsive text-nowrap content1">
                     <table class="table">
                         <thead>
                         <tr class="color_tr">
@@ -158,6 +158,7 @@
                     </table>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog  modal-dialog-centered modal-xl">
@@ -172,6 +173,9 @@
                     </div>
                 </div>
             </div>
+=======
+            
+>>>>>>> Thang
             <!--/ Basic Bootstrap Table -->
         </div>
     </div>
@@ -249,6 +253,35 @@
                     }
                 }
             )
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function loadProducts(page) {
+                $.ajax({
+                    url: '/ajax/products?page=' + page,
+                    type: 'get',
+                    success: function (data) {
+                        $('.content1').html(data);
+                        // Rest of your code (e.g., update the STT column)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+
+            // Initial load
+            loadProducts(1);
+
+            // Handle pagination click
+            $(document).on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                loadProducts(page);
+            });
+
+            // ... Rest of your code (search functionality, etc.)
         });
     </script>
 @endsection

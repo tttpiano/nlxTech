@@ -39,7 +39,7 @@
 
                     <a class="btn btn-success" href="{{route('post_add')}}">Add</a>
                 </div>
-                <div class="table-responsive text-nowrap">
+                <div class="table-responsive text-nowrap content1">
                     <table class="table">
                         <thead>
                         <tr class="color_tr">
@@ -55,7 +55,7 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody class="table-border-bottom-0 alldata" >
+                        <tbody class="table-border-bottom-0 alldata " >
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{$post -> id}}</td>
@@ -127,5 +127,34 @@
         for (var i = 0; i < tdElements.length; i++) {
             tdElements[i].textContent = i + 1;
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            function loadPosts(page) {
+                $.ajax({
+                    url: '/ajax/posts?page=' + page,
+                    type: 'get',
+                    success: function (data) {
+                        $('.content1').html(data);
+                        // Rest of your code (e.g., update the STT column)
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+
+            // Initial load
+            loadPosts(1);
+
+            // Handle pagination click
+            $(document).on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                loadPosts(page);
+            });
+
+            // ... Rest of your code (search functionality, etc.)
+        });
     </script>
 @endsection

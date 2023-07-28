@@ -14,6 +14,77 @@ use Illuminate\Http\Request;
 
 class PartyRelationshipController extends Controller
 {
+    public function ajaxPaginationRelationship()
+    {
+        $pageTitle = "";
+        $partyType = 'category';
+        $childType = 'category_child';
+        
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        $relatedParties = PartyRelationship::where('party_type', $partyType)
+            ->where('child_type', $childType)
+            ->paginate($perPage);
+        $relatedParties->withPath(route('ajax.relationships1'));
+        
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        $relatedParties->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+       
+
+        return view('front.admins.pagination.party_relationship', compact('relatedParties', 'pageTitle'))->render();
+    }
+    public function ajaxPaginationRelationship2()
+    {
+        $pageTitle = "";
+     
+        $partyType2 = 'category_child';
+        $childType2 = 'brand';
+        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $page = request('page') ?: 1;
+
+        
+        $relatedParties2 = PartyRelationship::where('party_type', $partyType2)
+            ->where('child_type', $childType2)
+            ->paginate($perPage);
+        $relatedParties2->withPath(route('ajax.relationships2'));
+        // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
+        $startNumber = ($page - 1) * $perPage + 1;
+        
+        $relatedParties2->getCollection()->transform(function ($item, $index) use ($startNumber) {
+            $item->stt = $startNumber + $index;
+            return $item;
+        });
+
+        return view('front.admins.pagination.party_relationship2', compact('relatedParties2', 'pageTitle'))->render();
+    }
+
+    public function pagin_relationship()
+    {
+        $pageTitle = "";
+        $partyType = 'category';
+        $childType = 'category_child';
+        
+        $relatedParties = PartyRelationship::where('party_type', $partyType)
+            ->where('child_type', $childType)->paginate(5);
+        
+        return view('front.admins.pagination.party_relationship2', compact('relatedParties', 'pageTitle'))->render();
+    }
+    public function pagin_relationship2()
+    {
+        $pageTitle = "";
+        
+        $partyType2 = 'category_child';
+        $childType2 = 'brand';
+      
+        $relatedParties2 = PartyRelationship::where('party_type', $partyType2)
+            ->where('child_type', $childType2)->paginate(5);
+        return view('front.admins.pagination.party_relationship2', compact('relatedParties2', 'pageTitle'))->render();
+    }
 
     public function viewPartyRelationship()
     {
@@ -25,10 +96,10 @@ class PartyRelationshipController extends Controller
 
         $relatedParties = PartyRelationship::where('party_type', $partyType)
             ->where('child_type', $childType)
-            ->get();
+            ->paginate(5);
         $relatedParties2 = PartyRelationship::where('party_type', $partyType2)
             ->where('child_type', $childType2)
-            ->get();
+            ->paginate(5);
         return view('front.admins.party_relationship', compact('relatedParties', 'relatedParties2', 'pageTitle'));
     }
 
