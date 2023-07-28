@@ -10,12 +10,29 @@ use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
+    public function storeImage(Request $request)
+    {
+        if ($request->hasFile('fileUpload')) {
+            $originName = $request->file('fileUpload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('fileUpload')->getClientOriginalExtension();
+            $fileName = $fileName . '.' . $extension;
+            // Public Folder
+            $request->file('fileUpload')->move(public_path('storage/img/banner/'), $fileName);
+            $request->session()->put('fileName1', $fileName);
+
+            return back()->with('success', 'Image uploaded Successfully!')
+                ->with('images', $fileName);
+        }
+    }
+
     public function index()
     {
         $pageTitle = "Banner";
         $banners = Banner::orderBy('order')->get();
-        return view('front.admins.banners.index', compact('banners','pageTitle'));
+        return view('front.admins.banners.index', compact('banners', 'pageTitle'));
     }
+
     public function create()
     {
         $pageTitle = "Banner";
@@ -24,42 +41,29 @@ class BannerController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'order' => 'required|integer|min:0',
-            'active' => 'boolean',
-        ]);
-
-        // Xử lý upload hình ảnh và lưu vào thư mục public/uploads/banners
-        $imagePath = $request->file('image')->storePublicly('/storage/img/banner');
-
         Banner::create([
-            'image_path' => '/storage/img/banner/' . $request->file('image')->getClientOriginalName(),
+            'image_path' => '/storage/img/banner/' . $request->session()->get('fileName1'),
             'order' => $request->order,
-            'active' => $request->has('active'),
+            'active' => $request->active,
         ]);
-
-        return redirect()->route('admin.banners.index')->with('success', 'Banner created successfully.');
+        return response()->json(['success' => true]);
     }
 
     public function edit(Banner $banner)
     {
         $pageTitle = "Edit Banner";
-        return view('front.admins.banners.edit', compact('banner','pageTitle'));
+        return view('front.admins.banners.edit', compact('banner', 'pageTitle'));
     }
 
     public function update(Request $request, Banner $banner)
     {
-        $request->validate([
-            'order' => 'required|integer|min:0',
-            'active' => 'boolean',
-        ]);
 
-        // Cập nhật thông tin banner
-        $banner->update([
-            'order' => $request->order,
-            'active' => $request->has('active'),
-        ]);
+
+            // Cập nhật thông tin banner
+            $banner->update([
+                'order' => $request->order,
+                'active' => $request->has('active'),
+            ]);
 
         return redirect()->route('admin.banners.index')->with('success', 'Banner updated successfully.');
     }

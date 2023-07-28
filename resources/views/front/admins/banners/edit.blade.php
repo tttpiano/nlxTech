@@ -12,15 +12,68 @@
                 <div class="card mb-4">
                     <!-- Account -->
                     <div class="card-body">
+                        <label
+                            class="form-label">Banner</label>
+                        <form method="post" enctype="multipart/form-data" action="{{ route('image.banner') }}">
+                            @csrf
+                            <div class="card-body">
+                                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                    @if($message = Session::get('success'))
+                                        <img
+                                            src="{{ asset('images/'.Session::get('images')) }}"
+                                            alt="user-avatar"
+                                            class="d-block rounded"
+                                            height="100"
+                                            width="100"
+                                            id="fileUpload"
+                                        />
+                                    @else
+                                        <img
+                                            src="{{ asset($banner->image_path) }}"
+                                            alt="user-avatar"
+                                            class="d-block rounded"
+                                            height="100"
+                                            width="100"
+                                            id="fileUpload"
+                                        />
+                                    @endif
+                                    <div class="button-wrapper">
+
+                                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                            <span class="d-none d-sm-block">Upload new photo</span>
+                                            <i class="bx bx-upload d-block d-sm-none"></i>
+                                            <input
+                                                type="file"
+                                                id="upload"
+                                                name="fileUpload"
+                                                class="account-file-input"
+                                                hidden
+                                                accept="image/png, image/jpeg, image/jpg"
+                                            />
+                                        </label>
+
+                                        <button type="button"
+                                                class="btn btn-outline-secondary account-image-reset mb-4">
+                                            <i class="bx bx-reset d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Reset</span>
+                                        </button>
+                                        <button
+                                            class="btn btn-outline-success accougnt-image-reset mb-4 upload submitOk"
+                                            data-img="{{ Session::get('images') }}">
+                                            <i class="bx bx-reset d-block d-sm-none "></i>
+                                            <span class="d-none d-sm-block">OK</span>
+                                        </button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <form action="{{ route('admin.banners.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="mb-3 col-md-12">
-                                    <label
-                                        class="form-label">Banner</label>
-                                    <img src="{{ asset($banner->image_path) }}" alt="Banner Image" width="100">
-                                </div>
+
                                 <div class="mb-3 col-md-12">
                                     <label
                                         class="form-label">Order</label>

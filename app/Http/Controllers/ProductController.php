@@ -195,7 +195,7 @@ class ProductController extends Controller
             return response()->json(['success' => false, 'message' => 'Đã tồn tại ' . $existingProduct->name . ' trên dữ liệu']);
         }
         $img = Image::create([
-            'file_name' => $request->session()->get('fileName1'),
+            'file_name' => $request->img,
             'level' => 1,
         ]);
 
@@ -271,6 +271,20 @@ class ProductController extends Controller
             $request->file('fileUpload')->move(public_path('images'), $fileName);
             $request->session()->put('fileName1', $fileName);
 
+            return back()->with('success', 'Image uploaded Successfully!')
+                ->with('images', $fileName);
+        }
+    }
+
+    public function storeImage2(Request $request)
+    {
+        if ($request->hasFile('fileUpload')) {
+            $originName = $request->file('fileUpload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('fileUpload')->getClientOriginalExtension();
+            $fileName = $fileName . '.' . $extension;
+            // Public Folder
+            $request->file('fileUpload')->move(public_path('images'), $fileName);
             return back()->with('success', 'Image uploaded Successfully!')
                 ->with('images', $fileName);
         }
@@ -375,7 +389,7 @@ class ProductController extends Controller
         $img = Image::find($request->imgID);
         if ($img) {
             $img->update([
-                'file_name' => $request->session()->get('fileName1'),
+                'file_name' => $request->img,
                 'level' => 1,
             ]);
         }
@@ -514,4 +528,132 @@ class ProductController extends Controller
         }
         return response($output);
     }
+
+    public function detal(Request $request)
+    {
+        $id = $request->id;
+        $product = Product::find($id);
+
+        $types = ['category', 'category_child', 'brand', 'wattage'];
+        $partyData = Party::whereIn('type', $types)->get()->groupBy('type');
+
+        $productPartyRelationships = PartyRelationship::where('child_id', $id)
+            ->whereIn('party_type', $types)
+            ->get();
+
+        $linkedCategories = [];
+        $relationshipIdsByType = [];
+
+        foreach ($productPartyRelationships as $relationship) {
+            $linkedCategories[] = $relationship->party_id;
+            $relationshipIdsByType[$relationship->party_type][$relationship->party_id] = $relationship->id;
+        }
+
+        $output = '<style>';
+        $output .= '.custom-table { border-collapse: collapse; width: 100%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;}';
+        $output .= '.custom-table th { text-align: left; padding: 8px; width: 150px; background-color: #f2f2f2; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;}';
+        $output .= '.custom-table td { text-align: left; padding: 8px; }';
+        $output .= '.custom-table tr:nth-child(2n) td { background-color: #f1f1f1; }'; // Even rows (td)
+        $output .= '.custom-table tr:nth-child(2n) th { background-color: #f1f1f1; }'; // Even rows (th)
+        $output .= '.custom-table tr:nth-child(2n+1) th { background-color: #fff; }';
+        $output .= '';
+        $output .= '</style>';
+
+
+        $output .= '<table class="custom-table">';
+        // First column
+        $output .= '<tr><th>Name</th><td class="text-center">' . $product->name . '</td></tr>';
+        $output .= '<tr><th>Image</th><td class="text-center">';
+        if ($product->images->count() > 0) {
+            $output .= '<img style="width: 100px;width:100px;height:100px;object-fit: cover;" src="' . asset('images/' . $product->images->first()->image->file_name) . '" alt="Image">';
+        }
+        $output .= '</td></tr>';
+        $output .= '<tr><th>Description</th><td class="text-center">' . $product->description . '</td></tr>';
+        $output .= '<tr><th>Price</th><td class="text-center">' . $product->price . '</td></tr>';
+        $output .= '<tr><th>Price Status</th><td class="text-center">' . $product->price_status . '</td></tr>';
+        $output .= '<tr><th>URL SEO</th><td class="text-center">' . $product->url_seo . '</td></tr>';
+
+        // Second column
+        $output .= '<tr><th>Category</th><td class="text-center">';
+        foreach ($product->partyRelationship as $relationship) {
+            if ($relationship->party_type === 'category') {
+                $output .= $relationship->party->description . '<br>';
+            }
+
+        }
+        if ($product->partyRelationship->where('party_type', 'category')->isEmpty()) {
+            $output .= '<strong style="color: red !important;">Trống</strong><br>';
+        }
+        $output .= '<tr><th>Category_child</th><td class="text-center">';
+        foreach ($product->partyRelationship as $relationship) {
+            if ($relationship->party_type === 'category_child') {
+                $output .= $relationship->party->description . '<br>';
+            }
+
+        }
+        if ($product->partyRelationship->where('party_type', 'category_child')->isEmpty()) {
+            $output .= '<strong style="color: red !important;">Trống</strong><br>';
+        }
+        $output .= '<tr><th>Brand</th><td class="text-center">';
+        foreach ($product->partyRelationship as $relationship) {
+            if ($relationship->party_type === 'brand') {
+                $output .= $relationship->party->description . '<br>';
+            }
+
+        }
+        if ($product->partyRelationship->where('party_type', 'brand')->isEmpty()) {
+            $output .= '<strong style="color: red !important;">Trống</strong><br>';
+        }
+        $output .= '<tr><th>Wattage</th><td class="text-center">';
+        foreach ($product->partyRelationship as $relationship) {
+            if ($relationship->party_type === 'wattage') {
+                $output .= $relationship->party->description . '<br>';
+            }
+
+        }
+        if ($product->partyRelationship->where('party_type', 'wattage')->isEmpty()) {
+            $output .= '<strong style="color: red !important;">Trống</strong><br>';
+        }
+        $output .= '</td></tr>';
+
+
+        // Add similar sections for category_child, brand, and wattage in the second column.
+        // ...
+
+        $output .= '</table>';
+        $output .= '<div style="display: flex; justify-content: center ; margin-top: 20px">';
+        $output .= ' <a href="'. route('product_edit', $id) .'" class="btn btn-info" style="margin-right: 20px"><i
+                                            class="bx bx-edit-alt me-1"></i>Edit</a>';
+        $output .= '
+                <form id="delete-form" action="' . route('product.destroy', $product->id) . '" method="POST" style="display: inline-block;">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete' . $product->id . '">Xoá</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete' . $product->id . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xoá Bài Viết</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xoá <strong><b>' . $product->name . '</b></strong> này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-danger">Xoá</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            ';
+        $output .= '</div>';
+        return response($output);
+
+    }
+
+
 }
