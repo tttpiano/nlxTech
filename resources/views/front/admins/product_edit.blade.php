@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <!-- Account -->
-                        <form method="post" enctype="multipart/form-data" action="{{ route('image.store') }}">
+                        <form method="post" enctype="multipart/form-data" action="{{ route('image_pro2.store') }}">
                             @csrf
                             <div class="card-body">
 
@@ -18,7 +18,7 @@
                                         @if ($imageInfo)
                                         <img
                                             src="{{ asset('images/'.Session::get('images')) }}"
-                                            class="d-block rounded"
+                                            class="d-block rounded img_edit"
                                             height="100"
                                             width="100"
                                             id="fileUpload"
@@ -28,7 +28,7 @@
                                     @else
                                         @if ($imageInfo)
                                         <img src="{{ asset('images/' . $imageInfo['file_name']) }}" alt="{{$imageInfo['id']}}" id="fileUpload"
-                                             class="d-block rounded" height="100" width="100">
+                                             class="d-block rounded img_edit" height="100" width="100">
                                         @endif
                                     @endif
                                     <div class="button-wrapper">
@@ -217,6 +217,24 @@
         });
 
         $(document).ready(function () {
+            var fileName= "";
+            var imageElement = $('.img_edit');
+
+            // Get the "src" attribute of the image
+            var imageSrc = imageElement.attr('src');
+
+            // Split the imageSrc to get the filename
+            var fileimg = imageSrc.split('/').pop();
+
+            if(fileimg !== null){
+                fileName = fileimg
+            }
+            else {
+                fileName = fileimg2
+            }
+            console.log('Image filename:', fileName);
+
+
             var altValue = $('#fileUpload').attr('alt');
             console.log('Alt attribute value: ' + altValue);
             $('.edit_product').click(function () {
@@ -246,6 +264,7 @@
                     url: '{{ route('product.update') }}',
                     data: {
                         _token: '{{ csrf_token() }}',
+                        img: fileName,
                         id: productId,
                         name: name,
                         price: price,
@@ -276,7 +295,6 @@
                         swal("sửa không thành công.", "You clicked the button!", "warning");
                     }
                 });
-
             });
         });
     </script>
