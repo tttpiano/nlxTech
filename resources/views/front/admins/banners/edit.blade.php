@@ -1,5 +1,3 @@
-
-
 @extends('front.admins.layouts.master')
 @section('admin-container')
 
@@ -22,7 +20,7 @@
                                         <img
                                             src="{{ asset('images/'.Session::get('images')) }}"
                                             alt="user-avatar"
-                                            class="d-block rounded"
+                                            class="d-block rounded img_edit"
                                             height="100"
                                             width="100"
                                             id="fileUpload"
@@ -31,7 +29,7 @@
                                         <img
                                             src="{{ asset($banner->image_path) }}"
                                             alt="user-avatar"
-                                            class="d-block rounded"
+                                            class="d-block rounded img_edit"
                                             height="100"
                                             width="100"
                                             id="fileUpload"
@@ -69,7 +67,8 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{ route('admin.banners.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
+                        <form method="POST"
+                              enctype="multipart/form-data" onsubmit="return false">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -86,7 +85,8 @@
                                 <div class="mb-3 col-md-12">
                                     <label
                                         class="form-label">Active</label>
-                                    <input  type="checkbox" id="active" name="active" value="1" @if($banner->active) checked @endif/>
+                                    <input type="checkbox" id="active" name="active" value="1"
+                                           @if($banner->active) checked @endif/>
                                 </div>
                             </div>
                             <div class="mt-2"
@@ -98,7 +98,7 @@
                                         Close
                                     </button>
                                 </a>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary edit_banner">Save</button>
 
                             </div>
                         </form>
@@ -110,4 +110,73 @@
         </div>
     </div>
     <!-- / Content -->
+
+    <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            var check = 0;
+            var fileName = "";
+            var imageElement = $('.img_edit');
+
+            // Get the "src" attribute of the image
+            var imageSrc = imageElement.attr('src');
+
+            // Split the imageSrc to get the filename
+            var fileimg = imageSrc.split('/').pop();
+
+            if (fileimg !== null) {
+                fileName = fileimg
+            }
+
+            $('#active').on('change', function () {
+
+                // Check if the checkbox is checked
+                if ($(this).is(':checked')) {
+                    // Get the value of the checkbox
+                    var value = $(this).val();
+                    check = value;
+                    // Use the value as needed
+                    console.log('Checkbox is checked. Value:', value);
+                    // Do something with the value
+                } else {
+                    console.log('Checkbox is not checked.');
+                    // Do something when the checkbox is not checked
+                }
+            });
+            console.log('Image filename:', fileName);
+            var altValue = $('#fileUpload').attr('alt');
+            console.log('Alt attribute value: ' + altValue);
+            $('.edit_banner').click(function () {
+                var url = new URL(window.location.href);
+                var bannerId = url.pathname.split('/').pop();
+                console.log(bannerId)
+                var order = $('#order').val();
+                $.ajax({
+                    type: 'PUT',
+                    url: '{{ route('admin.banners.update') }}',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: bannerId,
+                        img: fileName,
+                        order: order,
+                        active: check,
+
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            swal("sửa Thành công", "You clicked the button!", "success");
+
+
+                        } else {
+                            swal("", "You clicked the button!", "warning");
+                        }
+                    },
+                    error: function () {
+                        swal("sửa không thành công.", "You clicked the button!", "warning");
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

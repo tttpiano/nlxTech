@@ -150,6 +150,6 @@ Route::post('upload-image',[BannerController::class, 'storeImage'])->name('image
 Route::get('admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
 Route::get('banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
 Route::post('banners/create/add', [BannerController::class, 'store'])->name('admin.banners.store');
-Route::get('banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
-Route::put('banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
+Route::get('banners/edit/{banner}', [BannerController::class, 'edit'])->name('admin.banners.edit');
+Route::put('/banners/update', [BannerController::class, 'update_banner'])->name('admin.banners.update');
 Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');

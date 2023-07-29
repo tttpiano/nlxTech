@@ -55,17 +55,18 @@ class BannerController extends Controller
         return view('front.admins.banners.edit', compact('banner', 'pageTitle'));
     }
 
-    public function update(Request $request, Banner $banner)
+    public function update_banner(Request $request)
     {
+        $banner = Banner::find($request->id);
+        // Cập nhật thông tin banner
+        $banner->update([
+            'image_path' => 'storage/img/banner/'. $request->img,
+            'order' => $request->order,
+            'active' => $request->active,
 
+        ]);
 
-            // Cập nhật thông tin banner
-            $banner->update([
-                'order' => $request->order,
-                'active' => $request->has('active'),
-            ]);
-
-        return redirect()->route('admin.banners.index')->with('success', 'Banner updated successfully.');
+        return response()->json(['success' => true]);
     }
 
     public function destroy(Banner $banner)
