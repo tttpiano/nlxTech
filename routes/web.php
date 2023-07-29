@@ -51,10 +51,13 @@ Route::get('/admin/product/add', [ProductController::class, 'productAdd'])->name
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'productEdit'])->name('product_edit');
 Route::post('/admin/product/add', [ProductController::class, 'insert'] )->name('product.add');
 Route::post('upload-images',[ProductController::class, 'storeImage'])->name('image_pro.store');
+Route::post('upload-images2',[ProductController::class, 'storeImage2'])->name('image_pro2.store');
 Route::put('/admin/product/edit', [ProductController::class, 'update'] )->name('product.update');
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/product/search', [ProductController::class, 'search'])->name('search.product');
-
+Route::get('/admin/product/detal', [ProductController::class, 'detal'])->name('detal.product');
+Route::get('/admin/product/pagin/{id}', [ProductController::class, 'pagin_product'])->name('pagin.product');
+Route::get('/ajax/products', [ProductController::class, 'ajaxPaginationProduct'])->name('ajax.products');
 
 //// -------------------------------------- ADMIN -> POST -----------------------------------------
 
@@ -68,6 +71,8 @@ Route::get('/admin/post', [PostController::class, 'index'])->name('admin_post');
 Route::post('/admin/post/insert', [PostController::class, 'insert'])->name('admin_post_insert');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
+Route::get('/admin/post/pagin/{id}', [PostController::class, 'pagin_post'])->name('pagin.post');
+Route::get('/ajax/posts', [PostController::class, 'ajaxPaginationPost'])->name('ajax.posts');
 
 //// -------------------------------------- ADMIN -> PARTY_RELATIONSHIP  -----------------------------------------
 Route::get('/admin/party_relationship', [PartyRelationshipController::class, 'viewPartyRelationship'])->name('admin_party_relationship');
@@ -80,6 +85,10 @@ Route::delete('/party_relationship/{id}', [PartyRelationshipController::class, '
 Route::delete('/party_relationship2/{id}', [PartyRelationshipController::class, 'destroy_category_child'])->name('party_relationship.destroy2');
 Route::put('/admin/party_relationship/edit', [PartyRelationshipController::class, 'updatetCategory'])->name('party_relationship_category_update');
 Route::put('/admin/party_relationship2/edit', [PartyRelationshipController::class, 'updatetCategory2'])->name('party_relationship_category_update2');
+Route::get('/admin/party_relationship/pagin/{id}', [PartyRelationshipController::class, 'pagin_relationship'])->name('pagin.relationship');
+Route::get('/admin/party_relationship/pagin2/{id}', [PartyRelationshipController::class, 'pagin_relationship2'])->name('pagin.relationship2');
+Route::get('/ajax/party_relationships1', [PartyRelationshipController::class, 'ajaxPaginationRelationship'])->name('ajax.relationships1');
+Route::get('/ajax/party_relationships2', [PartyRelationshipController::class, 'ajaxPaginationRelationship2'])->name('ajax.relationships2');
 
 //// -------------------------------------- ADMIN -> PARTY -----------------------------------------
 /// //// -------------------------------------- PARTY -> Categotry_Child  -----------------------------------------
@@ -136,9 +145,11 @@ Route::post('/upload', [PostController::class, 'uploadBanner'])->name('upload.ba
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
 
 //Banner
+
+Route::post('upload-image',[BannerController::class, 'storeImage'])->name('image.banner');
 Route::get('admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
 Route::get('banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
-Route::post('banners', [BannerController::class, 'store'])->name('admin.banners.store');
+Route::post('banners/create/add', [BannerController::class, 'store'])->name('admin.banners.store');
 Route::get('banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
 Route::put('banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
 Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');
