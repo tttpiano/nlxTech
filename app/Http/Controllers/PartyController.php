@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class PartyController extends Controller
 {
-    
+
 
     //------------------------------ Category_child -----------------------------
 
@@ -180,7 +180,7 @@ class PartyController extends Controller
         $brand = Party::where('type','brand')->paginate(5);
         return view('front/admins/party/brand', ['pageTitle' => $pageTitle,'brand' => $brand]);
     }
-    
+
 
 
 
