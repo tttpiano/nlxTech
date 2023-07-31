@@ -73,6 +73,8 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
 Route::get('/admin/post/pagin/{id}', [PostController::class, 'pagin_post'])->name('pagin.post');
 Route::get('/ajax/posts', [PostController::class, 'ajaxPaginationPost'])->name('ajax.posts');
+Route::get('/admin/post/detal', [PostController::class, 'detal'])->name('detal.post');
+
 
 //// -------------------------------------- ADMIN -> PARTY_RELATIONSHIP  -----------------------------------------
 Route::get('/admin/party_relationship', [PartyRelationshipController::class, 'viewPartyRelationship'])->name('admin_party_relationship');

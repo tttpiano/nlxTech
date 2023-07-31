@@ -62,7 +62,7 @@
                             <tr class="alldata"  data-product="{{$product->id}}"
                                 >
                                 <td>{{$count1++}}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{  \Illuminate\Support\Str::limit(  $product->name, 10) }}</td>
                                 <td>
                                     @if($product->images->count() > 0)
                                         <img style="width: 100px;"
@@ -70,7 +70,7 @@
                                              alt="Image">
                                     @endif
                                 </td>
-                                <td>{{ $product->description }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit(  $product->description, 10)}}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->price_status }}</td>
                                 <td>{{ $product->url_seo }}</td>

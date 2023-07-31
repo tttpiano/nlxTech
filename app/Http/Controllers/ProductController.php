@@ -438,7 +438,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $output .= '<tr>
             <td>' . $count++ . '</td>
-            <td>' . $product->name . '</td>
+            <td>' .  \Illuminate\Support\Str::limit(  $product->name, 10)  . '</td>
             <td>';
 
             if ($product->images->count() > 0) {
@@ -446,7 +446,7 @@ class ProductController extends Controller
             }
 
             $output .= '</td>
-            <td>' . $product->description . '</td>
+            <td>' .  \Illuminate\Support\Str::limit(  $product->description, 10) . '</td>
             <td>' . $product->price . '</td>
             <td>' . $product->price_status . '</td>
             <td>' . $product->url_seo . '</td>
@@ -570,7 +570,7 @@ class ProductController extends Controller
         $output .= '</td></tr>';
         $output .= '<tr><th>Description</th><td class="text-center">' . $product->description . '</td></tr>';
         $output .= '<tr><th>Price</th><td class="text-center">' . $product->price . '</td></tr>';
-        $output .= '<tr><th>Price Status</th><td class="text-center">' . $product->price_status . '</td></tr>';
+        $output .= '<tr><th>Price Status</th><td class="text-center"><span class="s_h">' . $product->price_status . '</span></td></tr>';
         $output .= '<tr><th>URL SEO</th><td class="text-center">' . $product->url_seo . '</td></tr>';
 
         // Second column

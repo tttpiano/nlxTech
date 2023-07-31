@@ -24,7 +24,8 @@
                                     @endif
                                 @else
                                     @if ($imageInfo)
-                                        <img src="{{ asset('images/' . $imageInfo['file_name']) }}" alt="{{$imageInfo['id']}}" id="fileUpload"
+                                        <img src="{{ asset('images/' . $imageInfo['file_name']) }}"
+                                             alt="{{$imageInfo['id']}}" id="fileUpload"
                                              class="d-block rounded img_edit" height="100" width="100">
                                     @endif
                                 @endif
@@ -120,8 +121,12 @@
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Status</label>
                                     <select id="status1" class="select1 form-select">
-                                        <option value="show" selected>Show</option>
-                                        <option value="hidden">Hidden</option>
+                                        <option value="Show" @if($post->status === 'show') selected @endif>
+                                            Show
+                                        </option>
+                                        <option value="Hidden"
+                                                @if($post->status === 'hidden') selected @endif>Hidden
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="mb-3 col-md-12">
@@ -138,11 +143,11 @@
                                  style="text-align: right">
 
                                 <a href="{{route('admin_post')}}">
-                                <button type="button"
-                                        class="btn btn-outline-danger"
-                                       >
-                                    Close
-                                </button>
+                                    <button type="button"
+                                            class="btn btn-outline-danger"
+                                    >
+                                        Close
+                                    </button>
                                 </a>
                                 <button type="submit"
                                         class="btn btn-outline-success me-2 edit_post">
@@ -161,7 +166,7 @@
     <!-- / Content -->
 
     <script>
-        CKEDITOR.replace('content1' ,{
+        CKEDITOR.replace('content1', {
             filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}",
         });
 

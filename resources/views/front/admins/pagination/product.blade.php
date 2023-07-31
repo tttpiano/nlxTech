@@ -24,7 +24,7 @@
             <tr class="alldata"  data-product="{{$product->id}}"
             >
             <td>{{$count1++}}</td>
-            <td>{{ $product->name }}</td>
+            <td>{{  \Illuminate\Support\Str::limit(  $product->name, 10) }}</td>
             <td>
                 @if($product->images->count() > 0)
                     <img style="width: 100px;"
@@ -32,9 +32,9 @@
                             alt="Image">
                 @endif
             </td>
-            <td>{{ $product->description }}</td>
+            <td>{{  \Illuminate\Support\Str::limit(  $product->description, 10) }}</td>
             <td>{{ $product->price }}</td>
-            <td>{{ $product->price_status }}</td>
+            <td><span class="s_h">{{ $product->price_status }}</span></td>
             <td>{{ $product->url_seo }}</td>
             <td>
                 @foreach($product->partyRelationship as $relationship)
@@ -136,6 +136,17 @@
 <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('.s_h').each(function() {
+            // Lấy nội dung text của phần tử
+            var contentText = $(this).text().trim();
+            console.log(contentText)
+            // Kiểm tra nội dung text và thêm lớp màu tương ứng
+            if (contentText === 'Show') {
+                $(this).addClass('show1').removeClass('hidden1');
+            } if (contentText === 'Hidden') {
+                $(this).addClass('hidden1').removeClass('show1');
+            }
+        });
         // Lấy danh sách tất cả các hàng <tr> có lớp "alldata"
         const rows = $('tr.alldata');
 

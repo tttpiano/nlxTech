@@ -37,6 +37,10 @@ class Image_related extends Model
     {
         return $this->belongsTo(Product::class, 'related_id', 'id')->where('entity', 'product');
     }
+    public function post()
+    {
+        return $this->belongsTo(Product::class, 'related_id', 'id')->where('entity', 'post');
+    }
 
 
 }

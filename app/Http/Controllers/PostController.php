@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Image_related;
+use App\Models\Party;
+use App\Models\PartyRelationship;
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -106,7 +109,7 @@ class PostController extends Controller
     {
         $pageTitle = "Post";
         $post = Post::paginate(5);
-        return view('front/admins/pagination/post', ['pageTitle' => $pageTitle,'post' => $post])->render();
+        return view('front/admins/pagination/post', ['pageTitle' => $pageTitle, 'post' => $post])->render();
     }
 
     public function index()
@@ -134,7 +137,7 @@ class PostController extends Controller
                 // Add any other image properties you want to use in the view
             ];
         }
-        return view('front.admins.post_edit', compact('pageTitle', 'post','imageInfo'));
+        return view('front.admins.post_edit', compact('pageTitle', 'post', 'imageInfo'));
     }
 
     public function postAdd()
@@ -264,39 +267,43 @@ class PostController extends Controller
         }
     }
 
+
     public function search(Request $request)
     {
         $count = 1;
         $output = '';
-        $post = Post::where('title', 'Like', '%' . $request->search . '%')
-            ->orWhere('meta_keyword', 'Like', '%' . $request->search . '%')->get();
-        foreach ($post as $p) {
+        $posts = Post::where('title', 'like', '%' . $request->search . '%')
+            ->orWhere('meta_keyword', 'like', '%' . $request->search . '%')
+            ->with('images') // Eager load the 'images' relationship
+            ->get();
+
+        foreach ($posts as $post) {
             $output .= '<tr>
-            <td>'.$count.'</td>
-             <td>';
+            <td>' . $count . '</td>
+            <td>';
 
             if ($post->images->count() > 0) {
                 $output .= '<img style="width: 100px;" src="' . asset('images/' . $post->images->first()->image->file_name) . '" alt="Image">';
             }
 
             $output .= '</td>
-            <td>'.$p->author.'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->title, 10).'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->description, 10).'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->content ,10).'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->meta_desc, 10).'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->meta_keyword, 10).'</td>
-            <td>'.\Illuminate\Support\Str::limit($p->url_seo,10).'</td>
-            <td>'.$p->status.'</td>
+            <td>' . $post->author . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->title, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->description, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->content, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->meta_desc, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->meta_keyword, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($post->url_seo, 10) . '</td>
+            <td>' . $post->status . '</td>
             <td>
-                <a href="'.route('post_edit', $p->id).'" class="btn btn-outline-info"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                <a href="' . route('post_edit', $post->id) . '" class="btn btn-outline-info"><i class="bx bx-edit-alt me-1"></i>Edit</a>
                 <br><br>
-                <form id="delete-form" action="'.route('posts.destroy', $p->id).'" method="POST" style="display: inline-block;">
-                    '.csrf_field().'
-                    '.method_field('DELETE').'
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete'.$p->id.'">Xoá</button>
+                <form id="delete-form" action="' . route('posts.destroy', $post->id) . '" method="POST" style="display: inline-block;">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete' . $post->id . '">Xoá</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="delete'.$p->id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="delete' . $post->id . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -320,4 +327,80 @@ class PostController extends Controller
         }
         return response($output);
     }
+    public function detal(Request $request)
+    {
+        $id = $request->id;
+        $post = Post::find($id);
+
+
+
+
+
+        $output = '<style>';
+        $output .= '.custom-table { border-collapse: collapse; width: 100%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;}';
+        $output .= '.custom-table th { text-align: left; padding: 8px; width: 150px; background-color: #f2f2f2; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;}';
+        $output .= '.custom-table td { text-align: left; padding: 8px; }';
+        $output .= '.custom-table tr:nth-child(2n) td { background-color: #f1f1f1; }'; // Even rows (td)
+        $output .= '.custom-table tr:nth-child(2n) th { background-color: #f1f1f1; }'; // Even rows (th)
+        $output .= '.custom-table tr:nth-child(2n+1) th { background-color: #fff; }';
+        $output .= '';
+        $output .= '</style>';
+
+
+        $output .= '<table class="custom-table">';
+        // First column
+        $output .= '<tr><th>Title</th><td class="text-center">' . $post->title . '</td></tr>';
+        $output .= '<tr><th>Image</th><td class="text-center">';
+        if ($post->images->count() > 0) {
+            $output .= '<img style="width: 100px;width:100px;height:100px;object-fit: cover;" src="' . asset('images/' . $post->images->first()->image->file_name) . '" alt="Image">';
+        }
+        $output .= '</td></tr>';
+        $output .= '<tr><th>Description</th><td class="text-center">' . $post->description . '</td></tr>';
+        $output .= '<tr><th>Content</th><td class="text-center">' .  \Illuminate\Support\Str::limit($post->content, 30) . '</td></tr>';
+        $output .= '<tr><th>Meta Desc</th><td class="text-center">' . $post->meta_desc . '</td></tr>';
+        $output .= '<tr><th>Meta Keyword</th><td class="text-center">' . $post->meta_keyword . '</td></tr>';
+        $output .= '<tr><th>Status</th><td class="text-center"><span class="s_h">' . $post->status . '</span></td></tr>';
+
+
+        $output .= '</td></tr>';
+
+
+        // Add similar sections for category_child, brand, and wattage in the second column.
+        // ...
+
+        $output .= '</table>';
+        $output .= '<div style="display: flex; justify-content: center ; margin-top: 20px">';
+        $output .= ' <a href="'. route('post_edit', $id) .'" class="btn btn-info" style="margin-right: 20px"><i
+                                            class="bx bx-edit-alt me-1"></i>Edit</a>';
+        $output .= '
+                <form id="delete-form" action="' . route('posts.destroy', $post->id) . '" method="POST" style="display: inline-block;">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete' . $post->id . '">Xoá</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete' . $post->id . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Xoá Bài Viết</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xoá <strong><b>' . $post->name . '</b></strong> này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-danger">Xoá</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            ';
+        $output .= '</div>';
+        return response($output);
+
+    }
+
 }

@@ -107,6 +107,7 @@
 <script>
 
     $(document).ready(function () {
+
             var fileName = "";
             var imageElement = $('.img_edit');
 

@@ -16,7 +16,7 @@
     </thead>
     <tbody class="table-border-bottom-0 " >
     @foreach($posts as $post)
-        <tr class="alldata">
+        <tr class="alldata"  data-post="{{$post->id}}">
             <td>{{$post->stt}}</td>
             <td>
                 @if($post->images->count() > 0)
@@ -34,7 +34,7 @@
             <td>{{ \Illuminate\Support\Str::limit($post-> meta_desc, 10)}}</td>
             <td>{{ \Illuminate\Support\Str::limit($post-> meta_keyword, 10)}}</td>
             <td>{{ \Illuminate\Support\Str::limit($post-> url_seo, 10)}}</td>
-            <td>{{$post-> status}} </td>
+            <td><span class="s_h">{{$post->status }}</span></td>
             <td>
                 <a href="{{route('post_edit', $post->id)}}" class="btn btn-outline-info"><i
                         class="bx bx-edit-alt me-1"></i>Edit</a>
@@ -96,6 +96,17 @@
 <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script>
     $(document).ready(function () {
+        $('.s_h').each(function() {
+            // Lấy nội dung text của phần tử
+            var contentText = $(this).text().trim();
+            console.log(contentText)
+            // Kiểm tra nội dung text và thêm lớp màu tương ứng
+            if (contentText === 'show') {
+                $(this).addClass('show1').removeClass('hidden1');
+            } else if (contentText === 'hidden') {
+                $(this).addClass('hidden1').removeClass('show1');
+            }
+        });
         // Lấy danh sách tất cả các hàng <tr> có lớp "alldata"
         const rows = $('tr.alldata');
 
@@ -122,12 +133,12 @@
         });
     });
     $('.alldata').on('click', 'td', function () {
-        var productId = $(this).closest('.alldata').data('product');
+        var productId = $(this).closest('.alldata').data('post');
         console.log('Product ID:', productId);
         $.ajax(
             {
                 type: 'get',
-                url: '{{route("detal.product")}}',
+                url: '{{route("detal.post")}}',
                 data: {
                     _token: '{{ csrf_token() }}',
                     id: productId,
