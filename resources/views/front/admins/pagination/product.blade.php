@@ -21,7 +21,7 @@
         $id = 0;
     @endphp
     @foreach($products as $product)
-        <tr class="alldata"  data-product="{{$product->id}}"
+            <tr class="alldata"  data-product="{{$product->id}}"
             >
             <td>{{$count1++}}</td>
             <td>{{ $product->name }}</td>

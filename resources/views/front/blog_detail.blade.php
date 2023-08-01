@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="blog__sidebar__item">
-                            <h4>Tin Lien Quan</h4>
+                            <h4>Tin Liên Quan</h4>
                             <div class="blog__sidebar__recent">
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
@@ -99,34 +99,5 @@
     </section>
     <!-- Blog Details Section End -->
 
-    <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title related-blog-title">
-                        <h2>Tin Tức Liên Quan</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach ($relatedPosts as $relatedPost)
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img  alt="{{ $relatedPost->title }}">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i>{{$relatedPost -> formattedCreatedAt}}</li>
-                            </ul>
-                            <h5><a href="#"></a>{{$relatedPost -> title}}</h5>
-                            <p>{{$relatedPost -> description}}</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+
 @endsection

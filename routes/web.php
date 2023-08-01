@@ -140,7 +140,7 @@ Route::get('/ajax/categorys', [PartyController::class, 'ajaxPaginationCategory']
 /// ----------------------------------- UPLOAD_IMG -----------------------------------------------
 ///
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
-Route::post('upload-image',[PostController::class, 'storeImage'])->name('image.store');
+Route::post('upload-image-post',[PostController::class, 'storeImage'])->name('image.store');
 Route::post('/upload', [PostController::class, 'uploadBanner'])->name('upload.banner');
 Route::post('/upload/image', [PostController::class, 'upload'])->name('upload.image');
 

@@ -44,6 +44,7 @@
                         <thead>
                         <tr class="color_tr">
                             <th>STT</th>
+                            <th>Image</th>
                             <th>Author</th>
                             <th>Title</th>
                             <th>Description</th>
@@ -59,6 +60,14 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{$post -> id}}</td>
+                                <td>
+                                    @if($post->images->count() > 0)
+                                        <img style="width: 100px;"
+                                             src="{{asset('images/' . $post->images->first()->image->file_name) }}"
+                                             alt="Image">
+                                    @endif
+                                </td>
+
                                 <td>{{$post -> author}}</td>
                                 <td>{{ \Illuminate\Support\Str::limit($post -> title,10)}}</td>
                                 <td>{{ \Illuminate\Support\Str::limit($post->description, 10) }}
@@ -119,6 +128,10 @@
     </div>
     <!-- Button trigger modal -->
     <!--  -->
+    @if(session('success'))
+        <div class="hidden" id="deleteSuccessMessage">{{ session('success') }}</div>
+    @endif
+
     <script>
         // Sử dụng document.querySelectorAll để lấy tất cả các thẻ td chứa giá trị $post -> id
         var tdElements = document.querySelectorAll("td:nth-child(1)");
@@ -126,6 +139,10 @@
         // Duyệt qua từng thẻ td và thay đổi giá trị của nó từ 1 đến n
         for (var i = 0; i < tdElements.length; i++) {
             tdElements[i].textContent = i + 1;
+        }
+        var successMessage = document.getElementById('deleteSuccessMessage');
+        if (successMessage) {
+            swal(successMessage.innerText, "You clicked the button!", "success");
         }
     </script>
     <script>

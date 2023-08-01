@@ -15,7 +15,7 @@
                             </form>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>Tin moi</h4>
+                            <h4>Tin Mới</h4>
                             <div class="blog__sidebar__recent">
                                 @foreach($latestPost as $l)
                                 <a href="#" class="blog__sidebar__recent__item">
@@ -40,7 +40,7 @@
                             <div class="blog__item">
                                 @if ($post->image)
                                 <div class="blog__item__pic">
-                                    <img src="{{ asset('images/' . $post->image->file_name) }}" alt="">
+                                    <img src="{{ asset('images/' . $post->image->file_name) }}" width="400" height="300" alt="">
                                 </div>
                                 @else
                                     <div class="blog__item__pic">

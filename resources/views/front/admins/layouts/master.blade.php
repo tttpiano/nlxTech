@@ -107,6 +107,37 @@
 <script>
 
     $(document).ready(function () {
+            var fileName = "";
+            var imageElement = $('.img_edit');
+
+            // Get the "src" attribute of the image
+            var imageSrc = imageElement.attr('src');
+
+            // Split the imageSrc to get the filename
+            var fileimg = imageSrc.split('/').pop();
+
+            if (fileimg !== null) {
+                fileName = fileimg
+            } else {
+                fileName = fileimg2
+            }
+            console.log('Image filename:', fileName);
+        var altValue = $('#fileUpload').attr('alt');
+        console.log('Alt attribute value: ' + altValue);
+        $("#title1").on("keyup input", function() {
+            // Lấy giá trị nhập vào
+            var inputValue = $(this).val();
+            var trimmedValue = inputValue.replace(/\s+$/, "");
+
+            // Thay thế các khoảng trắng còn lại bằng dấu _
+            var formattedValue = trimmedValue
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "_");
+
+
+            $("#url_seo1").val(formattedValue);// Hiển thị giá trị nhập vào trong console
+        });
         $('.edit_post').click(function () {
             var url = new URL(window.location.href);
             var postId = url.pathname.split('/').pop();
@@ -128,6 +159,7 @@
                 data: {
                     _token: '{{ csrf_token() }}',
                     id: postId,
+                    img: fileName,
                     author1: author1,
                     title1: title1,
                     description1: description1,
@@ -135,7 +167,8 @@
                     meta_desc1: meta_desc1,
                     meta_keyword1: meta_keyword1,
                     status1: statusValue1,
-                    url_Seo1: url_Seo1
+                    url_Seo1: url_Seo1,
+                    imgID: altValue
                 },
                 success: function (response) {
                     if (response.success) {
@@ -168,10 +201,24 @@
                 $('#fileUpload').attr('src', URL.createObjectURL(files[0]));
             }
         });
+        $("#title").on("keyup input", function() {
+            // Lấy giá trị nhập vào
+            var inputValue = $(this).val();
+            var trimmedValue = inputValue.replace(/\s+$/, "");
+
+            // Thay thế các khoảng trắng còn lại bằng dấu _
+            var formattedValue = trimmedValue
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "_");
+
+
+            $("#Url_Seo").val(formattedValue);// Hiển thị giá trị nhập vào trong console
+        });
         $('.add_post').click(function () {
             var img = fileName;
             console.log(img);
-            var author = $('#author').val();
+            var author = $('#author').val();add
             var title = $('#title').val();
             var description = $('#description').val();
             var content = CKEDITOR.instances.content.getData();

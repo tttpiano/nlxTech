@@ -112,17 +112,29 @@ class PostController extends Controller
     public function index()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::paginate(5);
         // Kiểm tra và xử lý trạng thái bài viết
+        $posts = Post::with([
+            'images',
+        ])->paginate(5);
         return view('front.admins.post', compact('posts', 'pageTitle'));
     }
 
     public function postEdit($id)
     {
-        $pageTitle = "Sua Tin Tức";
+        $pageTitle = "Sửa Tin Tức";
         $post = Post::find($id);
         // Kiểm tra và xử lý trạng thái bài viết
-        return view('front.admins.post_edit', compact('pageTitle', 'post'));
+
+        $imageInfo = null;
+        $imageRelated = $post->relatedImages()->where('entity', 'post')->first();
+        if ($imageRelated) {
+            $imageInfo = [
+                'id' => $imageRelated->image->id,
+                'file_name' => $imageRelated->image->file_name,
+                // Add any other image properties you want to use in the view
+            ];
+        }
+        return view('front.admins.post_edit', compact('pageTitle', 'post','imageInfo'));
     }
 
     public function postAdd()
@@ -175,6 +187,14 @@ class PostController extends Controller
             'status' => $request->status1,
             'url_seo' => $request->url_Seo1
         ]);
+        $img = Image::find($request->imgID);
+        if ($img) {
+            $img->update([
+                'file_name' => $request->img,
+                'level' => 1,
+            ]);
+        }
+
         return response()->json(['success' => true]);
     }
 
@@ -253,6 +273,13 @@ class PostController extends Controller
         foreach ($post as $p) {
             $output .= '<tr>
             <td>'.$count.'</td>
+             <td>';
+
+            if ($post->images->count() > 0) {
+                $output .= '<img style="width: 100px;" src="' . asset('images/' . $post->images->first()->image->file_name) . '" alt="Image">';
+            }
+
+            $output .= '</td>
             <td>'.$p->author.'</td>
             <td>'.\Illuminate\Support\Str::limit($p->title, 10).'</td>
             <td>'.\Illuminate\Support\Str::limit($p->description, 10).'</td>
@@ -293,7 +320,4 @@ class PostController extends Controller
         }
         return response($output);
     }
-
-
-
 }

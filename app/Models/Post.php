@@ -22,7 +22,10 @@ class Post extends Model
     protected $fillable = [
         'author', 'title', 'description', 'content', 'meta_desc', 'meta_keyword', 'status', 'url_seo'
     ];
-
+    public function relatedImages()
+    {
+        return $this->hasMany(Image_related::class, 'related_id', 'id')->where('entity', 'post');
+    }
     public function partyRelationship()
     {
         return $this->hasMany(PartyRelationship::class, 'child_id','id');
