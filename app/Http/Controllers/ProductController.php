@@ -214,16 +214,16 @@ class ProductController extends Controller
             // Các cặp key-value tương ứng với các trường bạn muốn kiểm tra
             $relationships = [
                 [
-                    'party_id' => $request->category_child,
+                    'party_id' => $request->category,
                     'child_id' => $product->id,
-                    'party_type' => 'category_child',
+                    'party_type' => 'category',
                     'child_type' => 'product',
                     'entity_child' => 'product'
                 ],
                 [
-                    'party_id' => $request->category,
+                    'party_id' => $request->category_child,
                     'child_id' => $product->id,
-                    'party_type' => 'category',
+                    'party_type' => 'category_child',
                     'child_type' => 'product',
                     'entity_child' => 'product'
                 ],
@@ -345,7 +345,7 @@ class ProductController extends Controller
             $category_child = new PartyRelationship([
                 'party_id' => $request->category_child,
                 'child_id' => $request->id,
-                'party_type' => 'brand',
+                'party_type' => 'category_child',
                 'child_type' => 'product',
                 'entity_child' => 'product'
             ]);
@@ -389,7 +389,7 @@ class ProductController extends Controller
                 $wattage = new PartyRelationship([
                     'party_id' => $request->wattage,
                     'child_id' => $request->id,
-                    'party_type' => 'brand',
+                    'party_type' => 'wattage',
                     'child_type' => 'product',
                     'entity_child' => 'product'
                 ]);
