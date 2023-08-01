@@ -30,7 +30,7 @@ class ProductController extends Controller
                 });
             },
             'partyRelationship.party'
-        ])->paginate($perPage);
+        ])->orderBy('id', 'desc')->paginate($perPage);
         $products->withPath(route('ajax.products')); // Đặt đường dẫn phân trang cho các yêu cầu AJAX
 
         // Tính toán số thứ tự (STT) cho mỗi mục dựa trên trang hiện tại và chỉ số
@@ -76,7 +76,7 @@ class ProductController extends Controller
                 });
             },
             'partyRelationship.party'
-        ])->paginate(5);
+        ])->orderBy('id', 'desc')->paginate(5);
 
         $pageTitle = "admin_product";
         return view('front.admins.product', ['pageTitle' => $pageTitle, 'products' => $products]);
@@ -128,7 +128,6 @@ class ProductController extends Controller
 
 
         if (isset($partyData['category'])) {
-
             $groupCounts = [];
             foreach ($partyData as $type => $group) {
                 $groupCounts[$type] = $group->count();
@@ -228,21 +227,27 @@ class ProductController extends Controller
                     'child_type' => 'product',
                     'entity_child' => 'product'
                 ],
-                [
+
+            ];
+            if (!empty($request->brand)) {
+                $relationships[] = [
                     'party_id' => $request->brand,
                     'child_id' => $product->id,
                     'party_type' => 'brand',
                     'child_type' => 'product',
                     'entity_child' => 'product'
-                ],
-                [
+                ];
+            }
+
+            if (!empty($request->wattage)) {
+                $relationships[] = [
                     'party_id' => $request->wattage,
                     'child_id' => $product->id,
                     'party_type' => 'wattage',
                     'child_type' => 'product',
                     'entity_child' => 'product'
-                ],
-            ];
+                ];
+            }
 
             // Lặp qua các cặp key-value và kiểm tra 'child_id' đã tồn tại hay chưa
             foreach ($relationships as $relationship) {
@@ -357,14 +362,17 @@ class ProductController extends Controller
                 'entity_child' => 'product'
             ]);
         } else {
-            $brand = new PartyRelationship([
-                'party_id' => $request->brand,
-                'child_id' => $request->id,
-                'party_type' => 'brand',
-                'child_type' => 'product',
-                'entity_child' => 'product'
-            ]);
-            $brand->save();
+            if ($request->brand !== null) {
+                $brand = new PartyRelationship([
+                    'party_id' => $request->brand,
+                    'child_id' => $request->id,
+                    'party_type' => 'brand',
+                    'child_type' => 'product',
+                    'entity_child' => 'product'
+                ]);
+                $brand->save();
+            }
+
         }
 
         $wattage = PartyRelationship::find($request->wattagePartyRelationshipId);
@@ -377,14 +385,16 @@ class ProductController extends Controller
                 'entity_child' => 'product'
             ]);
         } else {
-            $wattage = new PartyRelationship([
-                'party_id' => $request->wattage,
-                'child_id' => $request->id,
-                'party_type' => 'brand',
-                'child_type' => 'product',
-                'entity_child' => 'product'
-            ]);
-            $wattage->save();
+            if ($request->wattage !== null) {
+                $wattage = new PartyRelationship([
+                    'party_id' => $request->wattage,
+                    'child_id' => $request->id,
+                    'party_type' => 'brand',
+                    'child_type' => 'product',
+                    'entity_child' => 'product'
+                ]);
+                $wattage->save();
+            }
         }
         $img = Image::find($request->imgID);
         if ($img) {
@@ -438,7 +448,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $output .= '<tr>
             <td>' . $count++ . '</td>
-            <td>' .  \Illuminate\Support\Str::limit(  $product->name, 10)  . '</td>
+            <td>' . \Illuminate\Support\Str::limit($product->name, 10) . '</td>
             <td>';
 
             if ($product->images->count() > 0) {
@@ -446,7 +456,7 @@ class ProductController extends Controller
             }
 
             $output .= '</td>
-            <td>' .  \Illuminate\Support\Str::limit(  $product->description, 10) . '</td>
+            <td>' . \Illuminate\Support\Str::limit($product->description, 10) . '</td>
             <td>' . $product->price . '</td>
             <td>' . $product->price_status . '</td>
             <td>' . $product->url_seo . '</td>
@@ -568,7 +578,7 @@ class ProductController extends Controller
             $output .= '<img style="width: 100px;width:100px;height:100px;object-fit: cover;" src="' . asset('images/' . $product->images->first()->image->file_name) . '" alt="Image">';
         }
         $output .= '</td></tr>';
-        $output .= '<tr><th>Description</th><td class="text-center">' . $product->description . '</td></tr>';
+        $output .= '<tr><th>Description</th><td class="text-center">' . \Illuminate\Support\Str::limit($product->description, 10) . '</td></tr>';
         $output .= '<tr><th>Price</th><td class="text-center">' . $product->price . '</td></tr>';
         $output .= '<tr><th>Price Status</th><td class="text-center"><span class="s_h">' . $product->price_status . '</span></td></tr>';
         $output .= '<tr><th>URL SEO</th><td class="text-center">' . $product->url_seo . '</td></tr>';
@@ -622,7 +632,7 @@ class ProductController extends Controller
 
         $output .= '</table>';
         $output .= '<div style="display: flex; justify-content: center ; margin-top: 20px">';
-        $output .= ' <a href="'. route('product_edit', $id) .'" class="btn btn-info" style="margin-right: 20px"><i
+        $output .= ' <a href="' . route('product_edit', $id) . '" class="btn btn-info" style="margin-right: 20px"><i
                                             class="bx bx-edit-alt me-1"></i>Edit</a>';
         $output .= '
                 <form id="delete-form" action="' . route('product.destroy', $product->id) . '" method="POST" style="display: inline-block;">

@@ -138,10 +138,11 @@
                                         <label class="form-label">Brand</label>
                                         <select id="brand" class="select2 form-select">
                                             @if (isset($partyData['brand']) && count($partyData['brand']) > 0)
+                                                <option value=""  {{ empty($partyData['brand']) ? 'selected' : '' }}></option>
+
                                                 @foreach ($partyData['brand'] as $party)
                                                     <option value="{{ $party->id }}"
-                                                            @if(in_array($party->id, $linkedCategories)) selected @endif
-                                                            data-party-relationship-id="{{ $relationshipIdsByType['brand'][$party->id] ?? '' }}">
+                                                            @if(in_array($party->id, $linkedCategories)) selected data-party-relationship-id="{{ $relationshipIdsByType['brand'][$party->id] ?? '' }}" @endif>
                                                         {{ $party->description }}
                                                     </option>
                                                 @endforeach
@@ -155,10 +156,11 @@
                                         <label class="form-label">Wattage</label>
                                         <select id="wattage" class="select2 form-select">
                                             @if (isset($partyData['wattage']) && count($partyData['wattage']) > 0)
+                                                <option value=""  {{ empty($partyData['wattage']) ? 'selected' : '' }}></option>
+
                                                 @foreach ($partyData['wattage'] as $party)
                                                     <option value="{{ $party->id }}"
-                                                            @if(in_array($party->id, $linkedCategories)) selected @endif
-                                                            data-party-relationship-id="{{ $relationshipIdsByType['wattage'][$party->id] ?? '' }}">
+                                                            @if(in_array($party->id, $linkedCategories)) selected data-party-relationship-id="{{ $relationshipIdsByType['wattage'][$party->id] ?? '' }}" @endif>
                                                         {{ $party->description }}
                                                     </option>
                                                 @endforeach

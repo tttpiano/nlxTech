@@ -141,6 +141,7 @@
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Brand</label>
                                         <select id="brand" class="select2 form-select">
+                                            <option value="" ></option>
                                             @if (isset($partyData['brand']) && count($partyData['brand']) > 0)
                                                 @foreach ($partyData['brand'] as $party)
                                                     <option value="{{ $party->id }}">{{ $party->description }}</option>
@@ -153,6 +154,7 @@
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Wattage</label>
                                         <select id="wattage" class="select2 form-select">
+                                            <option value="" ></option>
                                             @if (isset($partyData['wattage']) && count($partyData['wattage']) > 0)
                                                 @foreach ($partyData['wattage'] as $party)
                                                     <option value="{{ $party->id }}">{{ $party->description }}</option>
