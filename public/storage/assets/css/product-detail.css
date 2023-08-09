@@ -405,3 +405,10 @@ li {
     height: 100%;
     object-fit: contain;
 }
+.button_share a{
+    font-family: auto;  
+    width: 135px;
+    height: 36px;
+    border: none;
+    text-align: left;
+}

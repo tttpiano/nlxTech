@@ -126,7 +126,7 @@
     </div>
 </section>
 <!-- Categories Section End -->
-<div class="brand">
+<div class="logo_brand">
     <div class="container">
         <div class="row row-brand">
             <div class="col-3 col-md-3 col-lg col-brand">
@@ -188,8 +188,8 @@
                 </a>
             </div>
             <div class="col-3 col-md-3 col-lg col-brand">
-                <a href="" title="Mitsubishi Electric" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                    <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}" alt="Mitsubishi Electric" title="Mitsubishi Electric" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
+                <a href="" title="Mitsubishi Heavy" target="_self" class="advertise-item advertise-140 advertise-item-product_brand advertise">
+                    <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi_heavy.png') }}" alt="Mitsubishi Heavy" title="Mitsubishi Heavy" width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
                 </a>
             </div>
             <div class="col-3 col-md-3 col-lg col-brand">
@@ -273,8 +273,11 @@
                 <div class="mb ">
                     <div class="brand">
                         <a href="">
-                            <img src="../storage/img/logo_brand/daikin.png" alt="" width="40%">
+                            @if($product->brand !== null && $product->brand->img !== null)
+                            <img src="{{asset('storage/img/logo_brand/' . $product->brand->img->file_name)}}" class="img-fluid" alt="{{$product->brand->description}}" width="37%">
+                            @endif
                         </a>
+
                     </div>
                     <a class="link-img" href="{{route('detail', $product->url_seo)}}">
                         <div class="img-content">

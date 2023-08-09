@@ -716,9 +716,7 @@ footer ul {
     padding: 5px 15px;
 }
 
-.header__menu ul li.active a {
-    /* color: #000; */
-}
+
 
 .header__menu ul li:hover .header__menu__dropdown {
     top: 30px;
@@ -3625,8 +3623,7 @@ td.shoping__cart__quantity
         visibility: visible;
     }
 
-    .header__top {
-    }
+    
 
     .header__menu {
         display: none;
@@ -3941,8 +3938,7 @@ td.shoping__cart__quantity
         visibility: visible;
     }
 
-    .header__top {
-    }
+   
 
     .header__menu {
         display: none;

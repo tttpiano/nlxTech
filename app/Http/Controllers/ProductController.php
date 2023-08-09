@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-
+    
 
     public function product_detail($url_seo)
     {
@@ -56,11 +56,13 @@ class ProductController extends Controller
                 foreach ($img as $imgRelate) {
                     $imgBrand = Image_related::where('entity', $imgRelate->description)
                     ->first();
-                    
-                    $image2 = Image::find($imgBrand->img_id);
-                    if($image2 !== null){
-                         $productDetail->img = $image2;
+                    if($imgBrand !== null){
+                        $image2 = Image::find($imgBrand->img_id);
+                        if($image2 !== null){   
+                             $productDetail->img = $image2;
+                        }
                     }
+                    
                    
                 }
                 
@@ -161,38 +163,61 @@ class ProductController extends Controller
     {
         $pageTitle = "nlxTech";
         $products = Product::all();
-
+    
         foreach ($products as $product) {
             $imageRelated = Image_related::where('related_id', $product->id)
                 ->where('entity', 'product')
                 ->first();
-
+    
             if ($imageRelated) {
                 $image = Image::find($imageRelated->img_id);
                 $product->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
             }
+            
             if ($product->price_status !== 'show' || empty($product->price)) {
                 $product->price = null;
             }
+    
+            // Lấy thông tin của brand và hình ảnh liên quan nếu có
+            $brandRelations = PartyRelationship::where('party_type', 'brand')
+                ->where('child_id', $product->id)
+                ->where('entity_child', 'product')
+                ->get();
+    
+            foreach ($brandRelations as $brandRelation) {
+                $brand = Party::find($brandRelation->party_id);
+    
+                if ($brand) {
+                    $imageRelated = Image_related::where('entity', $brand->description)->first();
+    
+                    if ($imageRelated) {
+                        $brandImage = Image::find($imageRelated->img_id);
+                        $brand->img = $brandImage;
+                    }
+    
+                    $product->brand = $brand;
+                }
+            }
         }
-        $posts = Post::where('status', 'show')->get(); // Lấy  các bài viết có status là "show"
+    
+        $posts = Post::where('status', 'show')->get();
+    
         foreach ($posts as $post) {
             $imageRelated = Image_related::where('related_id', $post->id)
                 ->where('entity', 'post')
                 ->first();
-
+    
             if ($imageRelated) {
                 $image = Image::find($imageRelated->img_id);
                 $post->image = $image;
             }
-
-
-            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
         }
+    
         $slides = Banner::where('active', true)->orderBy('order')->get();
-        // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+    
         return view('front.index', ['products' => $products, 'pageTitle' => $pageTitle, 'posts' => $posts, 'slides' => $slides]);
     }
+    
 
     public function productAdd()
     {

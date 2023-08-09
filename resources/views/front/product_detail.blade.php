@@ -54,11 +54,30 @@
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy tín</strong>!
                             </p>
-                            <div class="share" >
-                                <h5 class="price">Chia sẻ: </h5>
-                            <div class="elfsight-app-fcc1ac66-e5f7-45c1-80a7-0bc34b8d9700"></div>
-                            </div>
+                            <h5 class="price">Chia sẻ:</h5>
+                            <div class="button_share">
+                               
+                                <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
+                                    <i class="fab fa-facebook-f me-2"></i>
+                                    Facebook        
+                                </a>
                             
+                                <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button">
+                                <i class="fa-brands fa-facebook-messenger me-2"></i>
+                                    Messenger
+                                </a>
+                            
+                                <a class="btn btn-primary" style="background-color: #ffac44;" href="#!" role="button">
+                                    <i class="fa-solid fa-envelope me-2"></i>
+                                    Gmail
+                                </a>
+                            
+                                <a class="btn btn-primary" style="background-color: #ac2bac;" href="#!" role="button">
+                                    <i class="fab fa-instagram me-2"></i>
+                                </a>
+                                    
+                            </div>
+
                         </div>
                         <div class="details col-md col-lg-3">
                             <div class="row row-cols-1 bg-light mb-5 py-3 px-4 g-0">
@@ -153,12 +172,12 @@
                         <div class="mb ">
                             <div class="brand">
                                 <a href="">
-                                    @if($product->brand !== null)
+                                    @if($product->brand !== null && $product->img !== null)
                                     <img src="{{asset('storage/img/logo_brand/' . $product->img->file_name)}}" class="img-fluid" alt="{{$product->brand->description}}" width="37%">
                                     @endif
                                 </a>
                             </div>
-                            <a class="link-img" href="">
+                            <a class="link-img" href="{{route('detail', $product->url_seo)}}">
                                 <div class="img-content">
                                     <img style="height: 300px; width: auto" src="{{ asset('images/' . $product->image->file_name) }}" class="img-fluid featured__item__pic set-bg" alt="">
                                 </div>
@@ -169,7 +188,7 @@
 
                             <div class="product-name title" id="product-name-container{{$product->id}}">
                                 <span>
-                                    <a class="disable-hover" href="">
+                                    <a class="disable-hover" href="{{route('detail', $product->url_seo)}}">
                                         {{$product->name}}
                                     </a>
                                 </span>
@@ -180,8 +199,8 @@
                                 var productNameContainer = document.getElementById('product-name-container{{$product->id}}');
                                 var productNameLink = productNameContainer.querySelector('a');
 
-                                var shortenedText = {!! json_encode(substr($product->name, 0, 70)) !!} + '...';
-                                
+                                var shortenedText = {!!json_encode(substr($product->name, 0, 70)) !!} + '...';
+
                                 if (window.innerWidth < 1400) {
                                     shortenedText = originalText.substring(0, 80) + '...';
                                 }
@@ -189,7 +208,7 @@
                                     shortenedText = originalText.substring(0, 70) + '...';
                                 }
                                 if (window.innerWidth < 767) {
-                                    shortenedText =  {!! json_encode(substr($product->name, 0, 70)) !!} + '...';
+                                    shortenedText = {!!json_encode(substr($product->name, 0, 70)) !!} + '...';
                                 }
                                 productNameLink.innerHTML = shortenedText;
                             </script>
@@ -207,12 +226,7 @@
     </div>
     <!-- End block content -->
 </main>
-
-
-
-
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
