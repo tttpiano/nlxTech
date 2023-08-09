@@ -22,14 +22,17 @@ use Illuminate\Contracts\Support\Renderable;
 
 
 Route::get('', [ProductController::class, 'getProductsWithImages'])->name('home');
+
 Route::get('/contact', function () {
     $pageTitle = "Liên Hệ";
     return view('front.contact', ['pageTitle' => $pageTitle]);
-
 })->name('contact');
 //Blog
 Route::get('/blog', [PostController::class, 'getAllBlogs'])->name('blog');
 Route::get('/blog/{url_seo}', [PostController::class, 'show'])->name('posts.show');
+//detail
+Route::get('detail/{url_seo}', [ProductController::class, 'product_detail'])->name('detail');
+Route::get('details/{id}', [ProductController::class, 'getFullDescription'])->name('details');
 //admin
 
 //Post Admin

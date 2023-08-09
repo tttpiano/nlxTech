@@ -134,7 +134,7 @@
             var formattedValue = trimmedValue
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
-                .replace(/\s+/g, "_");
+                .replace(/\s+/g, "-");
 
 
             $("#url_seo1").val(formattedValue);// Hiển thị giá trị nhập vào trong console
@@ -211,7 +211,7 @@
             var formattedValue = trimmedValue
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
-                .replace(/\s+/g, "_");
+                .replace(/\s+/g, "-");
 
 
             $("#Url_Seo").val(formattedValue);// Hiển thị giá trị nhập vào trong console
@@ -219,7 +219,7 @@
         $('.add_post').click(function () {
             var img = fileName;
             console.log(img);
-            var author = $('#author').val();add
+            var author = $('#author').val();   
             var title = $('#title').val();
             var description = $('#description').val();
             var content = CKEDITOR.instances.content.getData();

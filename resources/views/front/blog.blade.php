@@ -37,7 +37,7 @@
                     <div class="row">
                         @foreach($posts as $post)
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
+                            <div class="blog__item" style="height: 590px;">
                                 @if ($post->image)
                                 <div class="blog__item__pic">
                                     <img src="{{ asset('images/' . $post->image->file_name) }}" width="400" height="300" alt="">

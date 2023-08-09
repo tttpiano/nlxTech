@@ -11,9 +11,83 @@ use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
+
+    public function product_detail($url_seo)
+    {
+
+        $pageTitle = "";
+        $product = Product::where('url_seo', Str::slug($url_seo))->firstOrFail();
+        $imageRelated = Image_related::where('related_id', $product->id)
+            ->where('entity', 'product')
+            ->first();
+
+        if ($imageRelated) {
+            $image = Image::find($imageRelated->img_id);
+            $product->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+        }
+        $party = PartyRelationship::where('child_id', $product->id)->where('entity_child', 'product')
+            ->where('party_type', 'category_child')->get();
+        foreach ($party as $item) {
+            // Truy vấn để lấy chi tiết sản phẩm từ cơ sở dữ liệu bằng cột 'party_id'
+            $partyDetail = PartyRelationship::where('party_id', $item->party_id)
+                ->where('entity_child', 'product')
+                ->get();
+            $value = [];
+            $img = [];
+            foreach ($partyDetail as $detail) {
+
+                // Lấy chi tiết sản phẩm thông qua cột 'child_id'
+                $productDetail = Product::find($detail->child_id);
+                $brand = PartyRelationship::where('party_type', 'brand')
+                    ->where('child_id', $productDetail->id)
+                    ->where('entity_child', 'product')->get();
+                foreach ($brand as $item) {
+                    $brandParty = Party::find($item->party_id);
+                    $productDetail->brand = $brandParty;
+                    $img[] = $productDetail->brand;
+                }
+                
+                
+                foreach ($img as $imgRelate) {
+                    $imgBrand = Image_related::where('entity', $imgRelate->description)
+                    ->first();
+                    
+                    $image2 = Image::find($imgBrand->img_id);
+                    if($image2 !== null){
+                         $productDetail->img = $image2;
+                    }
+                   
+                }
+                
+                $value[] = $productDetail;
+                // dd($value);
+                $imageRelatedship = Image_related::where('related_id', $detail->child_id)
+                    ->where('entity', 'product')
+                    ->first();
+
+                if ($imageRelatedship) {
+                    $image = Image::find($imageRelatedship->img_id);
+                    $productDetail->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+                }
+            }
+        }
+
+
+        if (!$product) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
+        }
+        return view('front.product_detail', ['product' => $product, 'pageTitle' => $pageTitle, 'value' => $value]);
+    }
+    public function getFullDescription($id)
+    {
+        $product = Product::find($id);
+        return response()->json(['full_description' => $product->description]);
+    }
     public function ajaxPaginationProduct()
     {
         $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
@@ -137,8 +211,6 @@ class ProductController extends Controller
 
             return view('front.admins.product_add', compact('partyData', 'pageTitle'));
         }
-
-
     }
 
     public function productEdit($id)
@@ -204,7 +276,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'price_status' => $request->price_status,
-                'url_seo' => $request->url_seo,
+                'url_seo' => Str::slug($request->url_seo),
             ]);
             Image_related::create([
                 'img_id' => $img->id,
@@ -271,6 +343,7 @@ class ProductController extends Controller
             $originName = $request->file('fileUpload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('fileUpload')->getClientOriginalExtension();
+            $fileName = str_replace(' ', '-', $fileName); // Thay thế khoảng trắng bằng dấu '-'
             $fileName = $fileName . '.' . $extension;
             // Public Folder
             $request->file('fileUpload')->move(public_path('images'), $fileName);
@@ -287,9 +360,12 @@ class ProductController extends Controller
             $originName = $request->file('fileUpload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('fileUpload')->getClientOriginalExtension();
+            $fileName = str_replace(' ', '-', $fileName); // Thay thế khoảng trắng bằng dấu '-'
             $fileName = $fileName . '.' . $extension;
             // Public Folder
             $request->file('fileUpload')->move(public_path('images'), $fileName);
+            $request->session()->put('fileName1', $fileName);
+
             return back()->with('success', 'Image uploaded Successfully!')
                 ->with('images', $fileName);
         }
@@ -308,7 +384,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'price_status' => $request->price_status,
-            'url_seo' => $request->url_seo,
+            'url_seo' => Str::slug($request->url_seo),
         ]);
 
         $category = PartyRelationship::find($request->categoryPartyRelationshipId);
@@ -372,7 +448,6 @@ class ProductController extends Controller
                 ]);
                 $brand->save();
             }
-
         }
 
         $wattage = PartyRelationship::find($request->wattagePartyRelationshipId);
@@ -589,7 +664,6 @@ class ProductController extends Controller
             if ($relationship->party_type === 'category') {
                 $output .= $relationship->party->description . '<br>';
             }
-
         }
         if ($product->partyRelationship->where('party_type', 'category')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -599,7 +673,6 @@ class ProductController extends Controller
             if ($relationship->party_type === 'category_child') {
                 $output .= $relationship->party->description . '<br>';
             }
-
         }
         if ($product->partyRelationship->where('party_type', 'category_child')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -609,7 +682,6 @@ class ProductController extends Controller
             if ($relationship->party_type === 'brand') {
                 $output .= $relationship->party->description . '<br>';
             }
-
         }
         if ($product->partyRelationship->where('party_type', 'brand')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -619,7 +691,6 @@ class ProductController extends Controller
             if ($relationship->party_type === 'wattage') {
                 $output .= $relationship->party->description . '<br>';
             }
-
         }
         if ($product->partyRelationship->where('party_type', 'wattage')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -662,8 +733,5 @@ class ProductController extends Controller
             ';
         $output .= '</div>';
         return response($output);
-
     }
-
-
 }

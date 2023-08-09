@@ -20,6 +20,7 @@
     <!-- Css Styles -->
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
     <link rel="stylesheet" href="{{asset('storage/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('storage/assets/css/product-detail.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('storage/css/elegant-icons.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('storage/css/nice-select.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('storage/css/jquery-ui.min.css')}}" type="text/css">
@@ -54,6 +55,7 @@
 <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 <!-- Js Plugins -->
 <script src="{{asset('storage/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('storage/assets/js/app.js')}}"></script>
 <script src="{{asset('storage/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('storage/js/jquery.nice-select.min.js')}}"></script>
 <script src="{{asset('storage/js/jquery-ui.min.js')}}"></script>
@@ -67,7 +69,33 @@
         crossorigin="anonymous"></script>
 
 <script src="{{asset('storage/js/index.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+     $(document).ready(function() {
+        // Xử lý sự kiện cuộc trượt
+        function handleScroll() {
+            var windowHeight = $(window).height(); // Chiều cao của cửa sổ trình duyệt
+            var documentHeight = $(document).height(); // Chiều cao của toàn bộ tài liệu (toàn bộ trang web)
+            var scrollDistance = $(this).scrollTop();
 
+            // Thay đổi giá trị 0.5 thành tỷ lệ cuộc trượt mà bạn muốn để hiển thị nút "Back to Top"
+            if (scrollDistance > (documentHeight - windowHeight) * 0.5) {
+                $('.back-to-top').fadeIn();
+            } else {
+                $('.back-to-top').fadeOut();
+            }
+        }
+
+        // Xử lý sự kiện cuộc trượt khi trang được tải lại và cuộc trượt
+        $(window).on('load scroll', handleScroll);
+
+        // Xử lý sự kiện khi nhấp vào nút "Back to Top"
+        $('.back-to-top').click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, 10); // Tốc độ cuộc trượt lên top
+        });
+    });
+</script>
 </body>
 
 </html>
