@@ -16,10 +16,82 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function ajaxPaginationBlog()
+    {
+        $pageTitle = "Tin Tức";
+        $posts = Post::where('status', 'show')->paginate(4); 
+        $posts->withPath(route('ajax.blogs'));
+        $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
+
+        foreach ($posts as $post) {
+            $imageRelated = Image_related::where('related_id', $post->id)
+                ->where('entity', 'post')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $post->image = $image;
+            }
+
+            $post->formattedCreatedAt = Carbon::parse($post->created_at)->format('d/m/Y');
+            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+        }
+        foreach ($latestPost as $l) {
+            $imageRelated = Image_related::where('related_id', $l->id)
+                ->where('entity', 'post')
+                ->first();
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $l->image = $image;
+            }
+
+            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+            $l->formattedCreatedAt = Carbon::parse($l->created_at)->format('d/m/Y');
+        }
+
+        return view('front.pagination.blog', ['posts' => $posts, 'pageTitle' => $pageTitle, 'latestPost' => $latestPost])->render();
+    }
+
+    public function pagin_blog()
+    {
+        $pageTitle = "Tin Tức";
+        $posts = Post::where('status', 'show')->paginate(4); 
+        $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
+
+        foreach ($posts as $post) {
+            $imageRelated = Image_related::where('related_id', $post->id)
+                ->where('entity', 'post')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $post->image = $image;
+            }
+
+            $post->formattedCreatedAt = Carbon::parse($post->created_at)->format('d/m/Y');
+            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+        }
+        foreach ($latestPost as $l) {
+            $imageRelated = Image_related::where('related_id', $l->id)
+                ->where('entity', 'post')
+                ->first();
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $l->image = $image;
+            }
+
+            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+            $l->formattedCreatedAt = Carbon::parse($l->created_at)->format('d/m/Y');
+        }
+
+        return view('front.pagination.blog', ['posts' => $posts, 'pageTitle' => $pageTitle, 'latestPost' => $latestPost])->render();
+        
+    }
+
     public function getAllBlogs()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::where('status', 'show')->get(); // Lấy  các bài viết có status là "show"
+        $posts = Post::where('status', 'show')->paginate(4); 
         $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
 
         foreach ($posts as $post) {
@@ -87,7 +159,7 @@ class PostController extends Controller
 
 //    admin
     // Phương thức hiển thị danh sách bài viết
-    public function ajaxPaginationPost()
+    public function ajaxPaginationPostAdmin()
     {
         $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
         $page = request('page') ?: 1;
@@ -105,7 +177,7 @@ class PostController extends Controller
         return view('front.admins.pagination.post', ['posts' => $posts])->render();
     }
 
-    public function pagin_post()
+    public function pagin_postAdmin()
     {
         $pageTitle = "Post";
         $post = Post::paginate(5);

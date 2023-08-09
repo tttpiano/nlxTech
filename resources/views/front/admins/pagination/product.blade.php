@@ -17,13 +17,13 @@
     </thead>
     <tbody class="table-border-bottom-0">
     @php
-        $count1 = 1;
+
         $id = 0;
     @endphp
     @foreach($products as $product)
             <tr class="alldata"  data-product="{{$product->id}}"
             >
-            <td>{{$count1++}}</td>
+            <td>{{$product->stt}}</td>
             <td>{{  \Illuminate\Support\Str::limit(  $product->name, 10) }}</td>
             <td>
                 @if($product->images->count() > 0)
@@ -71,7 +71,7 @@
                 @foreach($product->partyRelationship as $relationship)
                     @if($relationship->party_type === 'wattage')
                         {{ $relationship->party->description }}
-                    @endif
+@endif
                 @endforeach
                 @empty($product->partyRelationship->where('party_type', 'wattage')->first())
                     <strong style="color: red !important;">Trống</strong>
@@ -125,7 +125,7 @@
         <div class="modal-content">
             <div class="modal-body" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset">
                 <div id="detalProduct"></div>
-            </div>
+</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%;">Close</button>
 
@@ -135,6 +135,7 @@
 </div>
 <script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script>
+
     $(document).ready(function () {
         $('.s_h').each(function() {
             // Lấy nội dung text của phần tử

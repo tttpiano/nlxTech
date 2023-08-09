@@ -30,9 +30,13 @@ Route::get('/contact', function () {
 //Blog
 Route::get('/blog', [PostController::class, 'getAllBlogs'])->name('blog');
 Route::get('/blog/{url_seo}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/blog/pagin/{id}', [PostController::class, 'pagin_blog'])->name('pagin.blog');
+Route::get('/ajax/blogs', [PostController::class, 'ajaxPaginationBlog'])->name('ajax.blogs');
+
 //detail
 Route::get('detail/{url_seo}', [ProductController::class, 'product_detail'])->name('detail');
 Route::get('details/{id}', [ProductController::class, 'getFullDescription'])->name('details');
+
 //admin
 
 //Post Admin
@@ -74,8 +78,8 @@ Route::get('/admin/post', [PostController::class, 'index'])->name('admin_post');
 Route::post('/admin/post/insert', [PostController::class, 'insert'])->name('admin_post_insert');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/admin/post/search', [PostController::class, 'search'])->name('search.post');
-Route::get('/admin/post/pagin/{id}', [PostController::class, 'pagin_post'])->name('pagin.post');
-Route::get('/ajax/posts', [PostController::class, 'ajaxPaginationPost'])->name('ajax.posts');
+Route::get('/admin/post/pagin/{id}', [PostController::class, 'pagin_postAdmin'])->name('pagin.post');
+Route::get('/ajax/posts', [PostController::class, 'ajaxPaginationPostAdmin'])->name('ajax.posts');
 Route::get('/admin/post/detal', [PostController::class, 'detal'])->name('detal.post');
 
 

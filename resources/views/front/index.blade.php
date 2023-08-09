@@ -280,9 +280,9 @@
 
                     </div>
                     <a class="link-img" href="{{route('detail', $product->url_seo)}}">
-                        <div class="img-content">
+                        <div class="img-content" >
                             @if ($product->image)
-                            <img style="height: 300px; width: auto" src="{{ asset('images/' . $product->image->file_name) }}" class="img-fluid featured__item__pic set-bg" alt="">
+                            <img src="{{ asset('images/' . $product->image->file_name) }}" class="img-fluid featured__item__pic set-bg" alt="">
                             @else
                             <img src="{{ asset('storage/img/error.jpg') }}" class="img-fluid product-img" alt="">
                             @endif

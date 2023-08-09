@@ -556,10 +556,10 @@ class ProductController extends Controller
             }
 
             $output .= '</td>
-            <td>' . \Illuminate\Support\Str::limit($product->description, 10) . '</td>
+            <td></td>
             <td>' . $product->price . '</td>
             <td>' . $product->price_status . '</td>
-            <td>' . $product->url_seo . '</td>
+            <td>' . \Illuminate\Support\Str::limit($product->url_seo, 15) . '</td>
             <td>';
             $category = $product->partyRelationship->where('party_type', 'category');
             foreach ($category as $categorys) {
@@ -610,7 +610,7 @@ class ProductController extends Controller
             <td>
                 <a href="' . route('product_edit', $product->id) . '" class="btn btn-outline-info"><i class="bx bx-edit-alt me-1"></i>Edit</a>
                 <br><br>
-                <form id="delete-form" action="' . route('product.destroy', $product->id) . '" method="POST" style="display: inline-block;">
+<form id="delete-form" action="' . route('product.destroy', $product->id) . '" method="POST" style="display: inline-block;">
                     ' . csrf_field() . '
                     ' . method_field('DELETE') . '
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete' . $product->id . '">Xoá</button>
@@ -678,7 +678,7 @@ class ProductController extends Controller
             $output .= '<img style="width: 100px;width:100px;height:100px;object-fit: cover;" src="' . asset('images/' . $product->images->first()->image->file_name) . '" alt="Image">';
         }
         $output .= '</td></tr>';
-        $output .= '<tr><th>Description</th><td class="text-center">' . \Illuminate\Support\Str::limit($product->description, 10) . '</td></tr>';
+        $output .= '<tr><th>Description</th><td class="text-center"></td></tr>';
         $output .= '<tr><th>Price</th><td class="text-center">' . $product->price . '</td></tr>';
         $output .= '<tr><th>Price Status</th><td class="text-center"><span class="s_h">' . $product->price_status . '</span></td></tr>';
         $output .= '<tr><th>URL SEO</th><td class="text-center">' . $product->url_seo . '</td></tr>';
@@ -689,15 +689,17 @@ class ProductController extends Controller
             if ($relationship->party_type === 'category') {
                 $output .= $relationship->party->description . '<br>';
             }
+
         }
         if ($product->partyRelationship->where('party_type', 'category')->isEmpty()) {
-            $output .= '<strong style="color: red !important;">Trống</strong><br>';
+$output .= '<strong style="color: red !important;">Trống</strong><br>';
         }
         $output .= '<tr><th>Category_child</th><td class="text-center">';
         foreach ($product->partyRelationship as $relationship) {
             if ($relationship->party_type === 'category_child') {
                 $output .= $relationship->party->description . '<br>';
             }
+
         }
         if ($product->partyRelationship->where('party_type', 'category_child')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -707,6 +709,7 @@ class ProductController extends Controller
             if ($relationship->party_type === 'brand') {
                 $output .= $relationship->party->description . '<br>';
             }
+
         }
         if ($product->partyRelationship->where('party_type', 'brand')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -716,6 +719,7 @@ class ProductController extends Controller
             if ($relationship->party_type === 'wattage') {
                 $output .= $relationship->party->description . '<br>';
             }
+
         }
         if ($product->partyRelationship->where('party_type', 'wattage')->isEmpty()) {
             $output .= '<strong style="color: red !important;">Trống</strong><br>';
@@ -743,7 +747,7 @@ class ProductController extends Controller
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Xoá Bài Viết</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
+</div>
                                 <div class="modal-body">
                                     Bạn có muốn xoá <strong><b>' . $product->name . '</b></strong> này?
                                 </div>
@@ -758,5 +762,6 @@ class ProductController extends Controller
             ';
         $output .= '</div>';
         return response($output);
+
     }
 }

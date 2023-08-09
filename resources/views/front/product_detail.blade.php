@@ -179,7 +179,7 @@
                             </div>
                             <a class="link-img" href="{{route('detail', $product->url_seo)}}">
                                 <div class="img-content">
-                                    <img style="height: 300px; width: auto" src="{{ asset('images/' . $product->image->file_name) }}" class="img-fluid featured__item__pic set-bg" alt="">
+                                    <img src="{{ asset('images/' . $product->image->file_name) }}" class="img-fluid featured__item__pic set-bg" alt="">
                                 </div>
                                 <span class="ribbons" style="position: absolute;top: -27px;right: 41px;">
                                     <span class="ribbon" style="background-color: #ec2434">Hot</span>

@@ -205,8 +205,16 @@
         if (successMessage) {
             swal(successMessage.innerText, "You clicked the button!", "success");
         }
-        $('#search_product').on('keyup', function () {
-            $value = $(this).val();
+        function debounce(func, delay) {
+            let timer;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(func, delay);
+            };
+        }
+
+        function searchProduct() {
+            const $value = $('#search_product').val();
             if ($value) {
                 $('.alldata').hide();
                 $('.searchdata').show();
@@ -214,20 +222,23 @@
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
-            $.ajax(
-                {
-                    type: 'get',
-                    url: '{{route("search.product")}}',
-                    data: {
-                        'search': $value
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        $('#Content').html(data);
-                    }
+
+            $.ajax({
+                type: 'get',
+                url: '{{route("search.product")}}',
+                data: {
+                    'search': $value
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('#Content').html(data);
                 }
-            )
-        });
+            });
+        }
+
+        const delayTime = 500;
+        $('#search_product').on('keyup', debounce(searchProduct, delayTime));
+
         $('.alldata td').each(function () {
             // Thêm thuộc tính CSS vào các thẻ <td> này (ví dụ: thêm màu nền và màu chữ)
             $(this).css({
