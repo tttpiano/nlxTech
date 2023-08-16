@@ -50,6 +50,10 @@
                                     <input class="form-control" type="text" id="name" name="name" placeholder="Name" autofocus />
                                 </div>
                                 <div class="mb-3 col-md-12">
+                                    <label class="form-label">Descrips</label>
+                                    <input class="form-control" type="text" name="descrips" id="descrips" placeholder="Descrips" />
+                                </div>
+                                <div class="mb-3 col-md-12">
                                     <label class="form-label">Description</label>
                                     <input class="form-control" type="text" name="description" id="description" placeholder="Description" />
                                 </div>
@@ -140,6 +144,9 @@
     CKEDITOR.replace('description', {
         filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
     });
+    CKEDITOR.replace('descrips', {
+        filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
+    });
     $("#name").on("keyup input", function() {
         // Lấy giá trị nhập vào
         var inputValue = $(this).val();
@@ -195,6 +202,7 @@
             var url_seo = $('#url_seo').val();
             console.log(name + price);
             var description = CKEDITOR.instances.description.getData();
+            var descrips = CKEDITOR.instances.descrips.getData();
             var price_status = $('#price_status option:selected').text();
             console.log(price_status)
             var category = $('#category option:selected').val();
@@ -218,6 +226,7 @@
                     name: name,
                     price: price,
                     description: description,
+                    descrips: descrips,
                     category: category,
                     category_child: category_child,
                     brand: brand,

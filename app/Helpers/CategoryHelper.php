@@ -86,7 +86,13 @@ class CategoryHelper
                         $getProduct->brand = $brandParty;
                         $img[] = $getProduct->brand;
                     }
-
+                    $wattageParty = PartyRelationship::where('party_type', 'wattage')
+                ->where('child_id', $getProduct->id)
+                ->where('entity_child', 'product')->first();
+            if ($wattageParty) {
+                $wattage = Party::find($wattageParty->party_id);
+                $getProduct->wattage = $wattage;
+            }
 
                     foreach ($img as $imgRelate) {
                         $imgBrand = Image_related::where('entity', $imgRelate->description)

@@ -56,7 +56,13 @@ class ProductController extends Controller
                     $productDetail->brand = $brandParty;
                     $img[] = $productDetail->brand;
                 }
-
+                $wattageParty = PartyRelationship::where('party_type', 'wattage')
+                    ->where('child_id', $productDetail->id)
+                    ->where('entity_child', 'product')->first();
+                if ($wattageParty) {
+                    $wattage = Party::find($wattageParty->party_id);
+                    $productDetail->wattage = $wattage;
+                }
 
                 foreach ($img as $imgRelate) {
                     $imgBrand = Image_related::where('entity', $imgRelate->description)
@@ -97,7 +103,7 @@ class ProductController extends Controller
     }
     public function ajaxPaginationProduct()
     {
-        $perPage = 5; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
+        $perPage = 10; // Đặt số mục hiển thị trên mỗi trang theo mong muốn của bạn
         $page = request('page') ?: 1;
 
         $products = Product::with([
@@ -137,7 +143,7 @@ class ProductController extends Controller
                 });
             },
             'partyRelationship.party'
-        ])->paginate(5);
+        ])->paginate(10);
 
         $pageTitle = "admin_product";
         return view('front.admins.pagination.product', ['pageTitle' => $pageTitle, 'product' => $product])->render();
@@ -157,7 +163,7 @@ class ProductController extends Controller
                 });
             },
             'partyRelationship.party'
-        ])->orderBy('id', 'desc')->paginate(5);
+        ])->orderBy('id', 'desc')->paginate(10);
 
         $pageTitle = "admin_product";
         return view('front.admins.product', ['pageTitle' => $pageTitle, 'products' => $products]);
@@ -181,6 +187,7 @@ class ProductController extends Controller
 //            if ($product->price_status !== 'Show') {
 //                $product->price = null;
 //            }
+            
         }
         //Product in slide
             $productInSlide = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->take(3)->get();
@@ -365,6 +372,7 @@ class ProductController extends Controller
             $product = Product::create([
                 'name' => $request->name,
                 'description' => $request->description,
+                'descrips' => $request->descrips,
                 'price' => $request->price,
                 'price_status' => $request->price_status,
                 'url_seo' => Str::slug($request->url_seo)
@@ -473,6 +481,7 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
+            'descrips' => $request->descrips,
             'price' => $request->price,
             'price_status' => $request->price_status,
             'url_seo' => Str::slug($request->url_seo),

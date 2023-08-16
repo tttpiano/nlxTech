@@ -52,6 +52,10 @@
                                     <input class="form-control" type="text" id="name" name="name" placeholder="Name" autofocus value="{{ $product->name }}">
                                 </div>
                                 <div class="mb-3 col-md-12">
+                                    <label class="form-label">Descrips</label>
+                                    <textarea style="resize: none" rows="8" class="form-control" id="descrips" name="descrips">{{$product->descrips}}</textarea>
+                                </div>
+                                <div class="mb-3 col-md-12">
                                     <label class="form-label">Description</label>
                                     <textarea style="resize: none" rows="8" class="form-control" id="description" name="description">{{$product->description}}</textarea>
                                 </div>
@@ -159,6 +163,9 @@
     CKEDITOR.replace('description', {
         filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
     });
+    CKEDITOR.replace('descrips', {
+        filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
+    });
     $("#name").on("keyup input", function() {
         // Lấy giá trị nhập vào
         var inputValue = $(this).val();
@@ -219,7 +226,8 @@
             var url_seo = $('#url_seo').val();
             console.log(name + price);
             var description = CKEDITOR.instances.description.getData();
-            console.log(description);
+            var descrips = CKEDITOR.instances.descrips.getData();
+            console.log(descrips);
             var price_status = $('#price_status option:selected').text();
             console.log(price_status)
             var category = $('#category option:selected').val();
@@ -243,6 +251,7 @@
                     name: name,
                     price: price,
                     description: description,
+                    descrips: descrips,
                     category: category,
                     category_child: category_child,
                     brand: brand,

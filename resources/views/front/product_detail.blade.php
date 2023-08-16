@@ -56,6 +56,10 @@
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy tín</strong>!
                             </p>
+                            <div style="margin-bottom: 20px;">
+                            {!! html_entity_decode($product->descrips) !!}
+                            </div>
+
                             <h5 class="price">Chia sẻ:</h5>
                             <div class="button_share">
 
@@ -69,14 +73,12 @@
                                     Messenger
                                 </a>
 
-                                <a class="btn btn-primary" style="background-color: #ffac44;" href="#!" role="button">
+                                <a class="btn btn-primary" style="background-color: #dd4b39;" href="#!" role="button">
                                     <i class="fa-solid fa-envelope me-2"></i>
                                     Gmail
                                 </a>
 
-                                <a class="btn btn-primary" style="background-color: #ac2bac;" href="#!" role="button">
-                                    <i class="fab fa-instagram me-2"></i>
-                                </a>
+                                
 
                             </div>
 
@@ -187,7 +189,17 @@
                                     <span class="ribbon" style="background-color: #ec2434">Hot</span>
                                 </span>
                             </a>
-
+                            @if($product->wattage !== null)
+                            <div class="info">  
+                                <span class="wattage me-2">
+                               
+                                    {{ $product->wattage->description }} | NGỰA
+                                    
+                                </span>
+                            </div>
+                            @else
+                            <div class="info-null"></div>
+                            @endif
                             <div class="product-name title" id="product-name-container{{$product->id}}">
                                 <span>
                                     <a class="disable-hover" href="{{route('detail', $product->url_seo)}}">

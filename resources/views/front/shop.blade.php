@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                         @foreach($products as $product)
-                        <div class="col-sm-6 col-md-4 col-lg-3" style="margin-top: 20px">
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3" style="margin-top: 20px">
                             <div class="mb ">
                                 <div class="brand">
                                     <a href="">

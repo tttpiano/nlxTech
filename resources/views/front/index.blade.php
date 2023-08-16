@@ -341,7 +341,15 @@
                             <span class="ribbon" style="background-color: #ec2434">Hot</span>
                         </span>
                                     </a>
-
+                                    @if($product->wattage !== null)
+                    <div class="info">  
+                        <span class="wattage me-2">
+                            {{ $product->wattage->description }} | NGỰA
+                        </span>
+                    </div>
+                    @else
+                    <div class="info-null"></div>
+                    @endif
                                     <div class="product-name title" id="product-name-container{{$product->id}}">
                         <span>
                             <a class="disable-hover" href="{{route('detail', $product->url_seo)}}">
@@ -370,11 +378,11 @@
                                     </script>
                                     <div class="prices title">
                                         @if ($product->price !== null)
-                                            <h5>{{number_format($product->price)}} <i class="fa-solid fa-dong-sign"></i>
-                                            </h5>
+                                            <span>{{number_format($product->price)}} <i class="fa-solid fa-dong-sign"></i>
+                                            </span>
 
                                         @else
-                                            <h5>Liên Hệ</h5>
+                                            <span>Liên Hệ</span>
                                         @endif
                                     </div>
                                 </div>

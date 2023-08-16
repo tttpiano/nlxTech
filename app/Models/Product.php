@@ -21,10 +21,12 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
+        'descrips',
         'description',
         'price',
         'price_status',
-        'url_seo'
+        'url_seo',
+        'view_count'
     ];
 
     public function partys_Relationship()

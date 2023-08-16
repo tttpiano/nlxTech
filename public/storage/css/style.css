@@ -4126,7 +4126,7 @@ ul.category1.show {
 .phone2-icon::before {
     padding-left: 20px;
     content: "0905.211.689";
-    z-index: 100;
+    z-index: 5;
     position: fixed;
     bottom: 37px;
     left: 32px;
