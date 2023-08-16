@@ -11,7 +11,7 @@ use App\Models\Product;
 class CategoryHelper
 {
 
-    public static function getNestedCategories($parentType = null)
+    public static function getNestedCategories3($parentType = null)
     {
         $categories = Party::where('type', $parentType)
             ->get();
@@ -119,7 +119,47 @@ class CategoryHelper
         return $categories;
     }
 
+
+
+
+
+    //////// Menu đa cấp
+    public static function getNestedCategories($parentType = null)
+    {
+        $categories = Party::where('type', $parentType)
+            ->get();
+
+        $nestedCategories = [];
+
+        foreach ($categories as $category) {
+            $category->children = self::getNestedChildren($category->id);
+            $nestedCategories[] = $category;
+        }
+
+        return $nestedCategories;
+    }
+
+    public static function getNestedChildren($partyId)
+    {
+        $children = [];
+
+        $relationships = PartyRelationship::where('party_id', $partyId)
+            ->where('entity_child', 'party')
+            ->get();
+
+        foreach ($relationships as $relationship) {
+            $childParty = Party::find($relationship->child_id);
+            if ($childParty) {
+                $childParty->children = self::getNestedChildren($childParty->id);
+                $children[] = $childParty;
+            }
+        }
+
+        return $children;
+    }
+
 }
+
 
 
 

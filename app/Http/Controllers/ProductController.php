@@ -16,8 +16,11 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-
-
+     // trang gioi thieu
+    public function introduce_header(){
+        $pageTitle = "Giới Thiệu";
+        return view('front.introduce', ['pageTitle' => $pageTitle]);
+    }
     public function product_detail($url_seo)
     {
 

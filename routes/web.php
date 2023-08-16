@@ -8,6 +8,7 @@ use App\Http\Controllers\WebsiteController;
 use App\Models\Party;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Contracts\Support\Renderable;
 /*
@@ -20,7 +21,8 @@ use Illuminate\Contracts\Support\Renderable;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('gioithieu', [ProductController::class, 'introduce_header'])->name('introduce');
+Route::get('SanPham', [ShopController::class, 'shop'])->name('shop');
 Route::get('/index/filter_brand', [HomeController::class, 'filterProduct'])->name('filter_index');
 Route::get('', [ProductController::class, 'getProductsWithImages'])->name('home');
 

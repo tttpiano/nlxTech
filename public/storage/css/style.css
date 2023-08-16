@@ -234,7 +234,7 @@ footer ul {
 }
 
 @media only screen and (max-width: 995px) {
-   
+
     .phone1 {
         justify-content: center;
     }
@@ -3285,7 +3285,7 @@ td.shoping__cart__quantity
     .container {
         max-width: 1170px;
     }
-    
+
 }
 @media only screen and (max-width: 992px) {
     .col-brand{
@@ -3623,7 +3623,7 @@ td.shoping__cart__quantity
         visibility: visible;
     }
 
-    
+
 
     .header__menu {
         display: none;
@@ -3938,7 +3938,7 @@ td.shoping__cart__quantity
         visibility: visible;
     }
 
-   
+
 
     .header__menu {
         display: none;
@@ -4514,8 +4514,8 @@ ul.category1.show {
     border: 0px solid #c9c9c9;
     border-width: 1px;
     padding: 10px;
-    
-    
+
+
 }
 .link-img {
     padding: 20px 0;
@@ -4559,3 +4559,192 @@ ul.category1.show {
     background-size: cover;
     text-align:center;
 }
+
+
+
+/*-----------------------------Menu---------*/
+
+
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-item:hover {
+    transition: all, 0.3s;
+    background-color: #38A7FF !important;
+    border-radius: 10px;
+}
+
+
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 55%;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    transition: all, 0.3s;
+    display: block;
+}
+
+.menu__party {
+    top: 35px;
+    background-color: #ffffff;
+    border: 0.5px solid #38A7FF;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    position: absolute;
+    left: -65px;
+}
+
+.menu__party2 {
+    top: 35px;
+    background-color: #ffffff;
+    border: 0.5px solid #38A7FF;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 80%;
+    position: absolute;
+    left: -30px;
+}
+
+.abc {
+    display: grid;
+    white-space: nowrap; /* Ngăn ngừng xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá khung */
+    text-overflow: ellipsis;
+}
+
+.hero__categories1 ul li a {
+    padding-right: 20px;
+}
+
+.hero__categories ul li a {
+    padding-right: 20px;
+}
+
+@media only screen and (max-width: 1198px) {
+    .hero__categories1 ul {
+        transition: all, 0.3s;
+        padding-left: 0px !important;
+    }
+    .hero__categories1 ul dropdown-item  {
+        transition: all, 0.3s;
+        padding-left: 0px !important;
+    }
+
+    .hero__categories ul dropdown-item{
+        transition: all, 0.3s;
+        padding-left: 0px !important;
+    }
+    .hero__categories1 ul li a  {
+        transition: all, 0.3s;
+        padding-left: 10px !important;
+    }
+
+    .hero__categories ul li a{
+        padding-left: 10px !important;
+    }
+
+}
+
+
+.introduce{
+    text-align: center;
+    color: #12424d;
+    font-weight: 800 !important;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.content_introduce h3{
+    color: #2fb950;
+
+}
+.content_introduce h2{
+    margin-top: 40px;
+    color: red;
+
+}
+.content_introduce h4{
+    margin-top: 30px;
+    color: #25576e;
+    font-weight: 700;
+
+}
+.content_introduce p:nth-child(2){
+    color: #0000cc;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+
+}
+.content_introduce p{
+    color: #25576e;
+    font-size: 17px;
+}
+.content_introduce p strong{
+    font-size: 19px;
+}
+.content_introduce .aa {
+    color: #25576e;
+    font-size: 20px;
+    font-weight: 700 !important;
+}
+.content_introduce p a:hover{
+    color: red !important;
+}
+.content_introduce h5{
+    font-size: 25px;
+    font-weight: 700;
+    color: #0ecdcd;
+}
+.dc, ol {
+    list-style: none; /* Loại bỏ dấu chấm thẻ li */
+    padding-left: 0; /* Để đảm bảo không còn khoảng trống */
+    font-size: 20px;
+
+    font-weight: 700 !important;
+    color: #264a59;
+}
+.dc li strong {
+    margin-left: 20px;
+
+}
+.dc{
+    padding: 0;
+    margin-bottom: 50px !important;
+}
+.dropdown2:hover ul{
+    display: block !important;
+}
+.dropdown2{
+    position: relative;
+}
+.dropdown-menu2{
+    position: absolute;
+    background-color: white;
+    left: 180px;
+    top: -10px;
+}
+.dropdown-toggle::after{
+    contain: none !important;
+}
+.menu__party7 {
+    display: none !important;
+    top: 35px;
+    background-color: #ffffff;
+    border: 0.5px solid #38A7FF;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 80%;
+    position: absolute;
+    left: -30px;
+}
+.anx:hover .menu__party7{
+    display: block !important;
+}
+
+
+
+
