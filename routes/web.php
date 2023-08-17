@@ -1,9 +1,10 @@
 <?php
-
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyRelationshipController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebsiteController;
 use App\Models\Party;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -20,7 +21,7 @@ use Illuminate\Contracts\Support\Renderable;
 |
 */
 
-
+Route::get('/index/filter_brand', [HomeController::class, 'filterProduct'])->name('filter_index');
 Route::get('', [ProductController::class, 'getProductsWithImages'])->name('home');
 
 Route::get('/contact', function () {
@@ -51,7 +52,14 @@ Route::get('/admin', function () {
     $pageTitle = "admin";
     return view('front.admins.index',   ['pageTitle' => $pageTitle]);
 });
+Route::get('/admin/login', function () {
+    $pageTitle = "Login";
+    return view('front.admins.auth.login',   ['pageTitle' => $pageTitle]);
+});
+
 Route::get('/admin/product',[ProductController::class, 'getAllProductAdmin'])->name('admin_product');
+Route::get('/admin', [WebsiteController::class, 'showVisitsChart'])->name('admin.visits');
+
 
 //// -------------------------------------- ADMIN -> PRODUCT -----------------------------------------
 Route::get('/admin/product/add', [ProductController::class, 'productAdd'])->name('product_add');

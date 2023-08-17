@@ -46,6 +46,8 @@
 
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <div class="contacts">
+                                <p>Lượt xem: {{ $product->view_count }}</p>
+
                                 <h4 class="price">Giá: <span>Liên hệ</span></h4>
 
                             </div>
@@ -56,26 +58,26 @@
                             </p>
                             <h5 class="price">Chia sẻ:</h5>
                             <div class="button_share">
-                               
+
                                 <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
                                     <i class="fab fa-facebook-f me-2"></i>
-                                    Facebook        
+                                    Facebook
                                 </a>
-                            
+
                                 <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button">
                                 <i class="fa-brands fa-facebook-messenger me-2"></i>
                                     Messenger
                                 </a>
-                            
+
                                 <a class="btn btn-primary" style="background-color: #ffac44;" href="#!" role="button">
                                     <i class="fa-solid fa-envelope me-2"></i>
                                     Gmail
                                 </a>
-                            
+
                                 <a class="btn btn-primary" style="background-color: #ac2bac;" href="#!" role="button">
                                     <i class="fab fa-instagram me-2"></i>
                                 </a>
-                                    
+
                             </div>
 
                         </div>

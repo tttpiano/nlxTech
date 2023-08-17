@@ -18,7 +18,7 @@
                         <h4>Tin Mới</h4>
                         <div class="blog__sidebar__recent">
                             @foreach($latestPost as $l)
-                            <a href="#" class="blog__sidebar__recent__item">
+                            <a href="{{route('posts.show', $l->url_seo)}}" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
                                     <img src="{{ asset('images/' . $l->image->file_name) }}" style="width: 70px;height: 70px;object-fit: cover" alt="">
                                 </div>
@@ -98,7 +98,7 @@
 
         // ... Rest of your code (search functionality, etc.)
     });
-    
+
 
 </script>
 @endsection

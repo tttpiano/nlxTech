@@ -69,7 +69,7 @@
                         <a href="{{ url('') }}"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
                     </div>
                     <div id="mobile-menu-wrap"></div>
-logo
+
                 </div>
                 <div class="humberger__open" style="color: #249bc8 !important; top: 17px !important;">
                     <i class="fa fa-bars"></i>

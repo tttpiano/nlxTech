@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CategoryHelper;
 use App\Models\Banner;
 use App\Models\Image;
 use App\Models\Image_related;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    
+
 
     public function product_detail($url_seo)
     {
@@ -25,7 +26,9 @@ class ProductController extends Controller
         $imageRelated = Image_related::where('related_id', $product->id)
             ->where('entity', 'product')
             ->first();
-
+        if ($product) {
+            $product->increment('view_count'); // Tăng giá trị cột view_count lên 1
+        }
         if ($imageRelated) {
             $image = Image::find($imageRelated->img_id);
             $product->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
@@ -40,7 +43,6 @@ class ProductController extends Controller
             $value = [];
             $img = [];
             foreach ($partyDetail as $detail) {
-
                 // Lấy chi tiết sản phẩm thông qua cột 'child_id'
                 $productDetail = Product::find($detail->child_id);
                 $brand = PartyRelationship::where('party_type', 'brand')
@@ -51,21 +53,21 @@ class ProductController extends Controller
                     $productDetail->brand = $brandParty;
                     $img[] = $productDetail->brand;
                 }
-                
-                
+
+
                 foreach ($img as $imgRelate) {
                     $imgBrand = Image_related::where('entity', $imgRelate->description)
                     ->first();
                     if($imgBrand !== null){
                         $image2 = Image::find($imgBrand->img_id);
-                        if($image2 !== null){   
+                        if($image2 !== null){
                              $productDetail->img = $image2;
                         }
                     }
-                    
-                   
+
+
                 }
-                
+
                 $value[] = $productDetail;
                 // dd($value);
                 $imageRelatedship = Image_related::where('related_id', $detail->child_id)
@@ -161,63 +163,124 @@ class ProductController extends Controller
 
     public function getProductsWithImages()
     {
-        $pageTitle = "nlxTech";
+        $pageTitle = "Năng Lượng Xanh";
         $products = Product::all();
-    
+
         foreach ($products as $product) {
             $imageRelated = Image_related::where('related_id', $product->id)
                 ->where('entity', 'product')
                 ->first();
-    
+
             if ($imageRelated) {
                 $image = Image::find($imageRelated->img_id);
                 $product->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
             }
-            
-            if ($product->price_status !== 'show' || empty($product->price)) {
-                $product->price = null;
-            }
-    
-            // Lấy thông tin của brand và hình ảnh liên quan nếu có
-            $brandRelations = PartyRelationship::where('party_type', 'brand')
-                ->where('child_id', $product->id)
-                ->where('entity_child', 'product')
-                ->get();
-    
-            foreach ($brandRelations as $brandRelation) {
-                $brand = Party::find($brandRelation->party_id);
-    
-                if ($brand) {
-                    $imageRelated = Image_related::where('entity', $brand->description)->first();
-    
-                    if ($imageRelated) {
-                        $brandImage = Image::find($imageRelated->img_id);
-                        $brand->img = $brandImage;
-                    }
-    
-                    $product->brand = $brand;
-                }
-            }
+//            if ($product->price_status !== 'Show') {
+//                $product->price = null;
+//            }
         }
-    
-        $posts = Post::where('status', 'show')->get();
-    
+        //Product in slide
+            $productInSlide = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->take(3)->get();
+        foreach ($productInSlide as $productSlide) {
+
+            $imageRelated = Image_related::where('related_id', $productSlide->id)
+                ->where('entity', 'product')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $productSlide->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+            }
+
+        }
+
+        $productInSlide1 = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->skip(3)->take(3)->get();
+        foreach ($productInSlide1 as $productSlide1) {
+
+            $imageRelated = Image_related::where('related_id', $productSlide1->id)
+                ->where('entity', 'product')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $productSlide1->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+
+            }
+
+        }
+        $productInSlide2 = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->skip(6)->take(3)->get();
+        foreach ($productInSlide2 as $productSlide1) {
+
+            $imageRelated = Image_related::where('related_id', $productSlide1->id)
+                ->where('entity', 'product')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $productSlide1->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+
+            }
+
+        }
+        $productInSlide3 = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->skip(9)->take(3)->get();
+        foreach ($productInSlide3 as $productSlide1) {
+
+            $imageRelated = Image_related::where('related_id', $productSlide1->id)
+                ->where('entity', 'product')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $productSlide1->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+
+            }
+
+        }
+        $productInSlide4 = Product::where('price', 0)->orWhere('price_status','Hidden')->orderBy('id','Desc')->skip(12)->take(3)->get();
+        foreach ($productInSlide4 as $productSlide1) {
+
+            $imageRelated = Image_related::where('related_id', $productSlide1->id)
+                ->where('entity', 'product')
+                ->first();
+
+            if ($imageRelated) {
+                $image = Image::find($imageRelated->img_id);
+                $productSlide1->image = $image; // Gắn hình ảnh vào thuộc tính image của sản phẩm
+
+            }
+
+        }
+
+
+        $posts = Post::where('status', 'show')->get(); // Lấy  các bài viết có status là "show"
         foreach ($posts as $post) {
             $imageRelated = Image_related::where('related_id', $post->id)
                 ->where('entity', 'post')
                 ->first();
-    
             if ($imageRelated) {
                 $image = Image::find($imageRelated->img_id);
                 $post->image = $image;
             }
+            // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
         }
-    
+
+        $getNestedProduct = CategoryHelper::getNestedCategories2('category');
         $slides = Banner::where('active', true)->orderBy('order')->get();
-    
-        return view('front.index', ['products' => $products, 'pageTitle' => $pageTitle, 'posts' => $posts, 'slides' => $slides]);
+        // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+        return view('front.index',
+            ['products' => $products,
+                'pageTitle' => $pageTitle,
+                'posts' => $posts,
+                'slides' => $slides,
+                'getNestedProduct' => $getNestedProduct,
+                'productInSlide1' => $productInSlide1,
+                'productInSlide' => $productInSlide,
+                'productInSlide2' => $productInSlide2,
+                'productInSlide3' => $productInSlide3,
+                'productInSlide4' => $productInSlide4,
+            ]);
     }
-    
+
 
     public function productAdd()
     {
@@ -301,7 +364,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'price_status' => $request->price_status,
-                'url_seo' => Str::slug($request->url_seo),
+                'url_seo' => Str::slug($request->url_seo)
             ]);
             Image_related::create([
                 'img_id' => $img->id,

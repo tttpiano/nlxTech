@@ -19,7 +19,7 @@ class PostController extends Controller
     public function ajaxPaginationBlog()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::where('status', 'show')->paginate(4); 
+        $posts = Post::where('status', 'show')->paginate(4);
         $posts->withPath(route('ajax.blogs'));
         $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
 
@@ -55,7 +55,7 @@ class PostController extends Controller
     public function pagin_blog()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::where('status', 'show')->paginate(4); 
+        $posts = Post::where('status', 'show')->paginate(4);
         $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
 
         foreach ($posts as $post) {
@@ -85,13 +85,13 @@ class PostController extends Controller
         }
 
         return view('front.pagination.blog', ['posts' => $posts, 'pageTitle' => $pageTitle, 'latestPost' => $latestPost])->render();
-        
+
     }
 
     public function getAllBlogs()
     {
         $pageTitle = "Tin Tức";
-        $posts = Post::where('status', 'show')->paginate(4); 
+        $posts = Post::where('status', 'show')->paginate(4);
         $latestPost = Post::orderBy('created_at', 'desc')->take(3)->get();
 
         foreach ($posts as $post) {
@@ -235,7 +235,7 @@ class PostController extends Controller
                 'meta_desc' => $request->meta_desc,
                 'meta_keyword' => $request->meta_keyword,
                 'status' => $request->status,
-                'url_seo' => $request->url_Seo
+                'url_seo' => Str::slug($request->url_Seo)
             ]);
             Image_related::create([
                 'img_id' => $img->id,
@@ -260,7 +260,7 @@ class PostController extends Controller
             'meta_desc' => $request->meta_desc1,
             'meta_keyword' => $request->meta_keyword1,
             'status' => $request->status1,
-            'url_seo' => $request->url_Seo1
+            'url_seo' => Str::slug($request->url_Seo1)
         ]);
         $img = Image::find($request->imgID);
         if ($img) {
