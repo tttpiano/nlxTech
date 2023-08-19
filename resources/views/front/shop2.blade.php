@@ -143,8 +143,8 @@
                     <div class="sidebar" style="background: #def4ff69; border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; padding: 20px 0 ;">
                         <div class="sidebar__item">
-                            <h4 style="margin-top: 20px; margin-left: 20px"><a href="{{route('shop')}}" style="color: #000">Danh Mục Sản Phẩm</a></h4>
-
+                            <h4 style="margin-top: 20px; margin-left: 20px"><a href="{{route('shop')}} "style="color: #000">Danh Mục Sản Phẩm</a>
+                            </h4>
                             <ul class="header__menu__dropdown" style="margin-left: 20px;
     padding: 0 20px;
     margin-right: 20px;
@@ -160,7 +160,11 @@
                 </div>
                 <div class="col-lg-9 col-md-7 sp" style="transform: translateX(20px)">
                     <div class="product__discount" style="padding: 0">
-                        <h2 id="fillterShop"></h2>
+                        @if($party !== null)
+                            <h2 id="fillterShop">{{$party}}</h2>
+                        @else
+                            <h2 id="fillterShop">Không tìm thấy.....</h2>
+                        @endif
                     </div>
                     <div class="filter__item">
                         <div class="row">
@@ -219,7 +223,8 @@
                                         @endif
 
 
-                                        <div class="product-name title" id="product-name-container{{$product->id}}">
+                                        <div class="product-name title"
+                                             id="product-name-container{{$product->id}}">
                                 <span>
                                     <a class="disable-hover" href="{{route('detail', $product->url_seo)}} ">
                                         {{$product->name}}
@@ -235,10 +240,10 @@
                                             var shortenedText = {!!json_encode(substr($product->name, 0, 70)) !!} + '...';
 
                                             if (window.innerWidth < 1400) {
-                                                shortenedText = originalText.substring(0, 80) + '...';
+                                                shortenedText = {!!json_encode(substr($product->name, 0, 60)) !!} + '...';
                                             }
                                             if (window.innerWidth < 1104) {
-                                                shortenedText = originalText.substring(0, 70) + '...';
+                                                shortenedText = {!!json_encode(substr($product->name, 0, 50)) !!} + '...';
                                             }
                                             if (window.innerWidth < 767) {
                                                 shortenedText = {!!json_encode(substr($product->name, 0, 70)) !!} + '...';
@@ -246,7 +251,7 @@
                                             productNameLink.innerHTML = shortenedText;
                                         </script>
                                         <div class="prices title">
-                                            @if ( $product->price > 0 && $product -> price_status !== "Hidden" )
+                                            @if ( $product->price > 0 && $product-> price_status !== "Hidden" )
                                                 <span>{{number_format($product->price)}} <i
                                                         class="fa-solid fa-dong-sign"></i>
                                             </span>
@@ -268,4 +273,18 @@
             </div>
         </div>
     </section>
+    <script src="{{asset('storage/js/jquery-3.3.1.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            function scrollToSidebar2() {
+                // Cuộn trang lên tới phần tử có class "sidebar"
+                $('html, body').animate({
+                    scrollTop: $('.cuon').offset().top
+                }, 100); // 1000 là thời gian cuộn (milliseconds)
+            }
+
+            scrollToSidebar2();
+        });
+    </script>
 @endsection
+

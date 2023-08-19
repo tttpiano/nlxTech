@@ -19,11 +19,12 @@
                 </div>
             </div>
             <div class="col-lg-9">
+
                 <nav class="header__menu" style="background: #38A7FF;">
                     <ul>
                         <li class="active"><a href="/">Trang Chủ</a></li>
                         <li><a href="{{route('introduce')}}">Giới Thiệu</a></li>
-                        <li><a href="#">Sản Phẩm</a>
+                        <li><a href="{{route('shop')}}">Sản Phẩm</a>
                         </li>
                         <li><a href="{{ route('blog')}}">Tin Tức</a></li>
                         <li><a href="{{ route('contact')}}">Liên Hệ</a></li>
@@ -34,6 +35,7 @@
         </div>
     </div>
 </div>
+
 <div class="header__menu2">
     <div class="container-fluid" style="margin-top: 10px;">
         <div class="row">
@@ -67,23 +69,18 @@
 <a href="#" class="back-to-top">
     <i class="fa fa-angle-up"></i>
 </a>
+
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
         <a href="\"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
     </div>
-
     <nav class="humberger__menu__nav mobile-menu menu">
-        <ul style=" border: #249bc8 solid 0.5px; padding: 20px;margin-right: 10px;border-radius: 20px;">
+        <ul style=" border: #249bc8 solid 0.5px; padding: 20px;margin-right: 10px;border-radius: 20px; padding-right: 0">
             <li class="active"><a href="/">Trang Chủ</a></li>
-            <li><a href="">Giới Thiệu</a></li>
-            <li><a href="">Sản Phẩm</a>
-                <ul class="header__menu__dropdown" style="margin-left: 20px;">
-                    @foreach ($nestedCategories as $category)
-                        @include('front.layouts.childMobile', ['category' => $category])
-                    @endforeach
-                </ul>
+            <li><a href="{{route('introduce')}}">Giới Thiệu</a></li>
+            <li><a href="{{route('shop')}}">Sản Phẩm</a>
             </li>
             <li><a href="{{ route('blog')}}">Tin Tức</a></li>
             <li><a href="{{ route('contact')}}">Liên Hệ</a></li>
@@ -92,6 +89,8 @@
     <div id="mobile-menu-wrap"></div>
 
 </div>
+
+
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
@@ -212,6 +211,23 @@
         </div>
     </div>
 </section>
+<div class="humberger__menu__overlay2"></div>
+<div class="humberger__menu__wrapper2">
+    <div class="humberger__menu__logo2">
+        <a href="\"><img src="{{asset("storage/img/logonlx.png")}}" alt=""></a>
+    </div>
+    <h3 style="text-align: center;padding: 10px 0;
+    transform: translateY(28px); box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset !important;"> Doanh Mục </h3>
+    <nav class="humberger__menu__nav2 mobile-menu2 menu2" style="margin-top: 50px">
+        <ul class="header__menu__dropdown"
+            style="border: #249bc8 solid 0.5px;border-radius: 20px;padding: 30px 0 30px 10px;">
+            @foreach ($nestedCategories as $category)
+                @include('front.layouts.childMobile', ['category' => $category])
+            @endforeach
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap2"></div>
+</div>
 <script src="{{asset('storage/js/jquery-3.3.1.min.js')}}"></script>
 <script>
     $(".menuindex").hover(

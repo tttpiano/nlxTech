@@ -1,34 +1,4 @@
 
-var swiper = new Swiper(".swiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2,
-        slideShadows: true
-    },
-    spaceBetween: 60,
-    loop: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-    },
-    autoplay: {
-        delay: 2000, // Change the delay to your desired value (in milliseconds)
-        disableOnInteraction: false // Enable/disable autoplay on user interaction
-    }
-});
-// let typed = new Typed('.auto-input', {
-//     strings: ['Tìm kiếm tại đây...', 'Sản phẩm mới nhất của chúng tôi!', 'UI Designer!', 'Pianist!'],
-//     typeSpeed: 50,
-//     backSpeed: 100,
-//     backDelay: 2000,
-//     loop: true,
-// })
 
 var isHidden = true; // Biến để xác định trạng thái của header
 
@@ -105,24 +75,3 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
 
 let lengthItems = items.length - 1;
 let active = 0;
-next.onclick = function () {
-    active = active + 1 <= lengthItems ? active + 1 : 0;
-    reloadSlider();
-}
-prev.onclick = function () {
-    active = active - 1 >= 0 ? active - 1 : lengthItems;
-    reloadSlider();
-}
-let refreshInterval = setInterval(() => { next.click() }, 3000);
-function reloadSlider() {
-    slider.style.left = -items[active].offsetLeft + 'px';
-    //
-    let last_active_dot = document.querySelector('.slider1 .dots li.active');
-    last_active_dot.classList.remove('active');
-    dots[active].classList.add('active');
-
-    clearInterval(refreshInterval);
-    refreshInterval = setInterval(() => { next.click() }, 3000);
-
-
-}

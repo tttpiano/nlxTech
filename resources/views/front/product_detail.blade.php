@@ -46,13 +46,9 @@
 
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <div class="contacts">
-                                <p>Lượt xem: {{ $product->view_count }}</p>
-
+                                <p> <span style="border: 0.5px solid #75d1ee;padding: 5px 10px;border-radius: 10px"><i class="fa-regular fa-eye"> : {{ $product->view_count }}</i></span></p>
                                 <h4 class="price">Giá: <span>Liên hệ</span></h4>
-
                             </div>
-
-
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy tín</strong>!
                             </p>
@@ -78,7 +74,7 @@
                                     Gmail
                                 </a>
 
-                                
+
 
                             </div>
 
@@ -190,11 +186,11 @@
                                 </span>
                             </a>
                             @if($product->wattage !== null)
-                            <div class="info">  
+                            <div class="info">
                                 <span class="wattage me-2">
-                               
+
                                     {{ $product->wattage->description }} | NGỰA
-                                    
+
                                 </span>
                             </div>
                             @else

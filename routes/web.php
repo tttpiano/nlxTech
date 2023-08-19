@@ -23,6 +23,8 @@ use Illuminate\Contracts\Support\Renderable;
 */
 Route::get('gioithieu', [ProductController::class, 'introduce_header'])->name('introduce');
 Route::get('SanPham', [ShopController::class, 'shop'])->name('shop');
+Route::get('/index/filter_sp', [ShopController::class, 'filterProduct1'])->name('filter_SP');
+Route::get('/sanpham/categoryId={categoryId}&categoryChildId={categoryChildId}&brandId={brandId}', [ShopController::class, 'filterProduct'])->name('filter_sp');
 Route::get('/index/filter_brand', [HomeController::class, 'filterProduct'])->name('filter_index');
 Route::get('', [ProductController::class, 'getProductsWithImages'])->name('home');
 
@@ -37,7 +39,7 @@ Route::get('/blog/pagin/{id}', [PostController::class, 'pagin_blog'])->name('pag
 Route::get('/ajax/blogs', [PostController::class, 'ajaxPaginationBlog'])->name('ajax.blogs');
 
 //detail
-Route::get('detail/{url_seo}', [ProductController::class, 'product_detail'])->name('detail');
+Route::get('/{url_seo}', [ProductController::class, 'product_detail'])->name('detail');
 Route::get('details/{id}', [ProductController::class, 'getFullDescription'])->name('details');
 
 //admin
@@ -172,3 +174,4 @@ Route::post('banners/create/add', [BannerController::class, 'store'])->name('adm
 Route::get('banners/edit/{banner}', [BannerController::class, 'edit'])->name('admin.banners.edit');
 Route::put('/banners/update', [BannerController::class, 'update_banner'])->name('admin.banners.update');
 Route::delete('banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');
+

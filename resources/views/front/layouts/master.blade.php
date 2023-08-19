@@ -71,6 +71,21 @@
 <script src="{{asset('storage/js/index.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var isHidden = true; // Biến để xác định trạng thái của header
+
+    var header = document.querySelector('.header__menu1');
+
+    window.addEventListener('scroll', function () {
+        var currentScrollPos = document.documentElement.scrollTop;
+
+        if (currentScrollPos >= 200 && isHidden) {
+            isHidden = false;
+            header.classList.add('hidden');
+        } else if (currentScrollPos < 200 && !isHidden) {
+            isHidden = true;
+            header.classList.remove('hidden');
+        }
+    });
     $(document).ready(function() {
     // Xử lý sự kiện cuộc trượt
     function handleScroll() {

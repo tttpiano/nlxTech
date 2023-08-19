@@ -53,11 +53,27 @@
         $("body").removeClass("over_hid");
     });
 
+    $(".humberger__open2").on('click', function () {
+        $(".humberger__menu__wrapper2").toggleClass("show__humberger__menu__wrapper2");
+        $(".humberger__menu__overlay2").toggleClass("active2");
+        $("body").toggleClass("over_hid2");
+    });
+
+    $(".humberger__menu__overlay2").on('click', function () {
+        $(".humberger__menu__wrapper2").removeClass("show__humberger__menu__wrapper2");
+        $(".humberger__menu__overlay2").removeClass("active2");
+        $("body").removeClass("over_hid2");
+    });
+
     /*------------------
         Navigation
     --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true
+    });
+    $(".mobile-menu2").slicknav({
+        prependTo: '#mobile-menu-wrap2',
         allowParentLinks: true
     });
 

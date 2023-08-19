@@ -8,7 +8,6 @@
                                                     alt=""></a>
                     </div>
                     <ul>
-
                         <li>
                             <i class="fa-solid fa-location-dot"></i>
                             Đ/C: Tầng 17, Opal Bourevard, An Bình, Dĩ An, Bình Dương
@@ -17,7 +16,6 @@
                             <i class="fa-solid fa-location-dot"></i>
                             Đ/C: Số 4, Nguyễn Đình Chiểu, Phường Đa Kao, Quận 1, TP.HCM
                         </li>
-
                         <li>
                             <i class="fa-solid fa-phone"></i>
                             Hỗ trợ: 023.132.123
@@ -33,10 +31,10 @@
                 <div class="footer__widget">
                     <h5>Danh Mục Chính</h5>
                     <ul>
-                        <li><a href="#">Sản Phẩm 1</a></li>
-                        <li><a href="#">Sản Phẩm 2</a></li>
+                        @foreach ($nestedCategories as $category)
+                            <li><a href="#">{{$category->description}}</a></li>
+                        @endforeach
                     </ul>
-
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6  policy">
@@ -75,7 +73,8 @@
                         <li>
                             Bác Sỹ Máy Lạnh <br>
                             <a href="https://bacsimaylanh.com.vn/"><img style="width: 200px; height:45px;"
-                                                                        src="{{asset('storage/img/Bacsimaylanh.png')}}" alt=""></a>
+                                                                        src="{{asset('storage/img/Bacsimaylanh.png')}}"
+                                                                        alt=""></a>
 
                         </li>
 
@@ -90,7 +89,6 @@
                             <a href="https://www.maylanhgiadaily.com.vn/"><img
                                     style="width: 200px; height:45px;object-fit: fill;"
                                     src="{{asset('storage/img/maylanhgiadaily.jpg')}}" alt=""></a>
-
                         </li>
                     </ul>
 
@@ -112,6 +110,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </footer>
@@ -132,26 +131,20 @@
 </a>
 
 <div class="footer-mobile">
-    <ul class="menu--footer">
-        <li>
-            <div class="humberger__menu__overlay"></div>
-            <div class="humberger__menu__wrapper">
-                <div class="humberger__menu__logo">
-                    <a href="#"><img src="{{asset('storage/img/logonlx.png')}}" alt=""></a>
-                </div>
-                <div id="mobile-menu-wrap"></div>
 
-            </div>
-            <div class="humberger__open"
-                 style="color: #249bc8 !important; top: -20px !important;left: 45px;font-size: 16px;width: 100% !important;line-height: 22px;">
+    <ul class="menu--footer">
+        <li style="width: 100%;">
+
+            <div class="humberger__open2"
+                 style="color: #249bc8 !important; top: -20px !important;left: 10px;font-size: 16px;width: 100% !important;line-height: 22px;">
                 <i class="fa fa-bars"></i>
                 <br>
                 <span style="color: #000;">Danh mục</span>
             </div>
 
         </li>
-        <li>
-            <a class=" d-flex justify-content-center flex-column" style="transform: translateX(50px) !important;"
+        <li style="width: 100%;">
+            <a class="d-flex justify-content-center flex-column" style="transform: translateX(5px) !important;"
                href="https://zalo.me/0905211689">
                 <img class="lazyload entered loaded"
                      data-src="https://tivatech.b-cdn.net/icons/widget_icon_zalo.svg" alt="zalo" style="height: 25px"
@@ -160,7 +153,7 @@
             </a>
         </li>
 
-        <li>
+        <li style="width: 100%;">
             <a class="" style="color:red" href="tel:0905.211.689">
                 <i class="fa-solid fa-phone"></i><br>
                 <span>0905.211.689</span>
@@ -168,3 +161,6 @@
         </li>
     </ul>
 </div>
+
+</div>
+
