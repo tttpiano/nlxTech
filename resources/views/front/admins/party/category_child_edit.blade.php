@@ -25,8 +25,7 @@
 
                             </div>
                             <div class="mt-2" style="text-align: right">
-                                <button type="reset" class="btn btn-outline-secondary">Reset
-                                </button>
+                                
                                 <a href="{{route('category_child')}}">
                                     <button type="button" class="btn btn-outline-danger"
                                             data-bs-dismiss="modal">Close
@@ -70,15 +69,15 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            swal("Sửa Thành công", "You clicked the button!", "success");
+                            swal("Sửa Thành Công", "You clicked the button!", "success");
                             ;
 
                         } else {
-                            swal("Sửa không thành công", "You clicked the button!", "warning");
+                            swal("Sửa Không Thành Công", "You clicked the button!", "warning");
                         }
                     },
                     error: function () {
-                        swal("Sửa không thành công.", "You clicked the button!", "warning");
+                        swal("Sửa Không Thành Công.", "You clicked the button!", "warning");
                     }
                 });
             });

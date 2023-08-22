@@ -132,11 +132,14 @@
             </div>
 
             <div class="col-lg-6" style="padding-top: 20px;">
-                <div class="box">
-                    <form action="" method="get" class="container-4">
-                        <input class="input__search" type="search" id="search1" placeholder="Tìm kiếm tại đây..."/>
+                <div class="box" style="position: relative;">
+                    <form action="{{ route('products.search')}}" method="get" class="container-4">
+                        <input value="{{ request('search') }}" name="keyword" class="input__search" type="search" id="search1" placeholder="Tìm kiếm tại đây..."/>
                         <button type="submit" class="icon"><i class="fa fa-search"></i></button>
                     </form>
+                    <div class="searchdata" id="Content" style="display:none;border: 1px solid #ccc;border-radius: 5px;padding: 15px;position: absolute; z-index: 9999;background: #fff;width: 100%;">
+
+                    </div>
                 </div>
             </div>
 
@@ -229,6 +232,8 @@
     <div id="mobile-menu-wrap2"></div>
 </div>
 <script src="{{asset('storage/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/libs/jquery/jquery.js')}}"></script>
+
 <script>
     $(".menuindex").hover(
         function () {
@@ -241,3 +246,61 @@
         }
     );
 </script>
+<script>
+    function debounce(func, delayTime) {
+        let timer;
+
+        return function() {
+            clearTimeout(timer);
+            timer = setTimeout(func, delayTime);
+        };
+    }
+
+    $(document).ready(function() {
+        const delayTime = 500;
+        const delayedSearch = debounce(function() {
+            const inputValue = $('#search1').val();
+            if (inputValue) {
+                $('.searchdata').css('display', 'block');
+            } else {
+                $('.searchdata').css('display', 'none');
+            }
+
+            console.log(inputValue);
+            $.ajax({
+                type: 'get',
+                url: '{{route("searchlq")}}',
+                data: {
+                    'search': inputValue
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+            });
+        }, delayTime);
+        $('#search1').on('input', function() {
+            delayedSearch();
+        });
+
+    });
+
+
+
+
+
+</script>
+<script>
+        $(document).ready(function() {
+            // Lấy query string từ URL
+            var url = window.location.href;
+            var queryString = url.split('=')[1];
+            
+            // Gán query string vào input
+            if (queryString) {
+                var decodedValue = decodeURIComponent(queryString);
+                $('#search1').val(decodedValue);
+            }
+        });
+    </script>
+

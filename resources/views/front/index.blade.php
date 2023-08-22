@@ -150,141 +150,8 @@
         </div>
     </section>
     <!-- LOGO Section End -->
-    <div class="logo_brand">
-        <div class="container">
-            <div class="row row-brand">
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 19])}}" title="Daikin" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/daikin.png') }}" alt="Daikin"
-                             title="Daikin" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Panasonic" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/panasonic-logo-scaled.jpeg') }}"
-                             alt="Panasonic" title="Panasonic" width="150" height="50" data-id="140"
-                             data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 25])}}" title="GREE" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/gree.png') }}" alt="GREE" title="GREE"
-                             width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Samsung" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0"
-                             src="{{ asset('storage/img/logo_brand/logo-samsung-inkythuatso-01-29-08-50-42.jpeg') }}"
-                             alt="Samsung" title="Samsung" width="150" height="50" data-id="140"
-                             data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 20])}}" title="Reetech" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/logo-reetech.jpeg') }}" alt="Reetech"
-                             title="Reetech" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="YUKI" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/yuiki.jpeg') }}" alt="YUKI" title="YUKI"
-                             width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Midea" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/media.jpeg') }}" alt="Midea" title="Midea"
-                             width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Funiki" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/funiki.jpeg') }}" alt="Funiki"
-                             title="Funiki" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-            </div>
-
-            <div class="row row-brand">
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 24])}}" title="Sumikura" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/sumikura.jpeg') }}" alt="Sumikura"
-                             title="Sumikura" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Toshiba" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/toshiba.jpeg') }}" alt="Toshiba"
-                             title="Toshiba" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Mitsubishi Electric" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi-electric.jpeg') }}"
-                             alt="Mitsubishi Electric" title="Mitsubishi Electric" width="150" height="50" data-id="140"
-                             data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 23])}}" title="Mitsubishi Heavy" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/mitsubishi_heavy.png') }}"
-                             alt="Mitsubishi Heavy" title="Mitsubishi Heavy" width="150" height="50" data-id="140"
-                             data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 21])}}" title="LG" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/partner5-1.jpeg') }}" alt="LG" title="LG"
-                             width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Hitachi" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/hitachi-1.jpeg') }}" alt="Hitachi"
-                             title="Hitachi" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="" title="Sharp" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/sharp.jpeg') }}" alt="Sharp" title="Sharp"
-                             width="150" height="50" data-id="140" data-pos="product_brand" class="img-brand">
-                    </a>
-                </div>
-                <div class="col-3 col-md-3 col-lg col-brand">
-                    <a href="{{route("filter_sp",['categoryId' => -1,'categoryChildId'=> -1,'brandId' => 22])}}" title="Nagakawa" target="_self"
-                       class="advertise-item advertise-140 advertise-item-product_brand advertise">
-                        <img thumb="0" src="{{ asset('storage/img/logo_brand/nagakawa.jpeg') }}" alt="Nagakawa"
-                             title="Nagakawa" width="150" height="50" data-id="140" data-pos="product_brand"
-                             class="img-brand">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    @include('front.list_brand')
+    @include('front.filter')
 
 
 
@@ -295,7 +162,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2><span class="tax"
+                            <h2 style="margin-top: 40px;"><span class="tax taxs{{$nestedCategorie -> id}}" data-cate="{{$nestedCategorie -> id}}"
                                     style="background: #2bbeff;padding: 15px 100px;border-radius: 20px;box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">{{$nestedCategorie -> description}}</span>
                             </h2>
                         </div>
@@ -303,11 +170,13 @@
                     <div class="featured__controls">
                         <ul id="filter_brand{{$nestedCategorie -> id}}">
                             <li class="active" data-filter="">Sản Phẩm</li>
+
                             @foreach ($nestedCategorie -> children as $category_child)
                                 @foreach($category_child -> children as $brand)
                                     <li data-filter="{{$brand->id}}">{{$brand-> description}}</li>
                                 @endforeach
                             @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -344,7 +213,7 @@
                                     @if($product->wattage !== null)
                                         <div class="info">
                         <span class="wattage me-2">
-                            {{ $product->wattage->description }} | NGỰA
+                            {{ $product->wattage->description }}
                         </span>
                                         </div>
                                     @else
@@ -421,10 +290,11 @@
                         $("#filter_brand{{$nestedCategorie -> id}} li").click(function () {
                             // Lấy nội dung của phần tử li được nhấp vào
                             var brandDescription = $(this).data("filter");
-                            var brandDescription1 = $(this).text();
+                            var dataCateValue = $('.taxs{{$nestedCategorie -> id}}').data('cate');
+
                             // Hiển thị nội dung
-                            console.log(brandDescription);
-                            console.log(brandDescription1);
+                            console.log(dataCateValue);
+
                             if (brandDescription) {
                                 $('.alldata{{$nestedCategorie -> id}}').hide();
                                 $('.searchdata{{$nestedCategorie -> id}}').show();
@@ -437,10 +307,9 @@
                                 url: '{{route("filter_index")}}',
                                 data: {
                                     'brand': brandDescription,
-                                    'brand2': brandDescription1,
+                                    'brand2': dataCateValue,
                                 },
                                 success: function (data) {
-                                    console.log(data);
                                     $('#Content{{$nestedCategorie -> id}}').html(data);
                                 }
                             });
@@ -502,8 +371,8 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
     <!-- <script src="./script.js"></script> -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script>
 
+<script>
     var swiper = new Swiper(".swiper", {
         effect: "coverflow",
         grabCursor: true,
@@ -633,5 +502,6 @@
     }
 
 </script>
+
 @endsection
 

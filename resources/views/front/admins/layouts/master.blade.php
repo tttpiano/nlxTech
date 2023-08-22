@@ -173,15 +173,15 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        swal("Sửa thành công", "You clicked the button!", "success");
+                        swal("Sửa Thành Công", "You clicked the button!", "success");
                         ;
 
                     } else {
-                        swal("Sửa không thành công", "You clicked the button!", "warning");
+                        swal("Sửa Không Thành Công", "You clicked the button!", "warning");
                     }
                 },
                 error: function () {
-                    swal("Sửa không thành công.", "You clicked the button!", "warning");
+                    swal("Sửa Không Thành Công.", "You clicked the button!", "warning");
                 }
             });
 
@@ -246,15 +246,15 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        swal("Thêm Thành công", "You clicked the button!", "success");
+                        swal("Thêm Thành Công", "You clicked the button!", "success");
                         ;
 
                     } else {
-                        swal("Thêm không thành công", "You clicked the button!", "warning");
+                        swal("Thêm Không Thành Công", "You clicked the button!", "warning");
                     }
                 },
                 error: function () {
-                    swal("Thêm không thành công.", "You clicked the button!", "warning");
+                    swal("Thêm Không Thành Công.", "You clicked the button!", "warning");
                 }
             });
 

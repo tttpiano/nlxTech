@@ -39,9 +39,12 @@
                                     </div>
                                 </div>
                                 <div class="mt-2" style="text-align: right">
-                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close
+                                    
+                                    <<a href="{{route('admin_party_relationship')}}">
+                                    <button type="button" class="btn btn-outline-danger"
+                                            data-bs-dismiss="modal">Close
                                     </button>
+                                </a>
                                     <button type="submit" class="btn btn-outline-success me-2 edit_category">Save
                                     </button>
                                 </div>
@@ -79,7 +82,7 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                            swal("Sửa Thành công", "You clicked the button!", "success");
+                            swal("Sửa Thành Công", "You clicked the button!", "success");
 
 
                         } else {

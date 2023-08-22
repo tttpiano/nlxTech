@@ -34,8 +34,14 @@
                                     <button type="submit" class="btn btn-outline-success accougnt-image-reset mb-4 upload submitOk" data-img="{{ Session::get('images') }}">
                                         <i class="bx bx-reset d-block d-sm-none "></i>
                                         <span class="d-none d-sm-block">OK</span>
+                                        
                                     </button>
-
+                                    
+                                    <span style="color: #ca0202;margin-left: 20px;border: 1px solid;padding: 5px 10px;font-size: 13px;border-radius: 5px;">
+                                        Lưu ý Upload ảnh trước! 
+                                        <strong>' nhấn OK '</strong>
+                                        ,  sau đó rồi mới nhập dữ liệu ở dưới
+                                    </span>
 
                                 </div>
                             </div>
@@ -50,7 +56,7 @@
                                     <input class="form-control" type="text" id="name" name="name" placeholder="Name" autofocus />
                                 </div>
                                 <div class="mb-3 col-md-12">
-                                    <label class="form-label">Descrips</label>
+                                    <label class="form-label">Short Description</label>
                                     <input class="form-control" type="text" name="descrips" id="descrips" placeholder="Descrips" />
                                 </div>
                                 <div class="mb-3 col-md-12">
@@ -125,8 +131,11 @@
                             </div>
                             <div class="mt-2" style="text-align: right">
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close
-                                </button>
+                                <a href="{{route('admin_product')}}">
+                                    <button type="button" class="btn btn-outline-danger"
+                                            data-bs-dismiss="modal">Close
+                                    </button>
+                                </a>
                                 <button type="submit" class="btn btn-outline-success me-2 add_product">Save</button>
                             </div>
                         </form>
@@ -237,7 +246,7 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        swal("Thêm Thành công", "You clicked the button!", "success");
+                        swal("Thêm Thành Công", "You clicked the button!", "success");
 
 
                     } else {
@@ -245,7 +254,7 @@
                     }
                 },
                 error: function() {
-                    swal("Thêm không thành công.", "You clicked the button!", "warning");
+                    swal("Thêm Không Thành Công.", "You clicked the button!", "warning");
                 }
             });
 

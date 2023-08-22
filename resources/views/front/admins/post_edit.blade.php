@@ -47,6 +47,11 @@
                                         <i class="bx bx-reset d-block d-sm-none"></i>
                                         <span class="d-none d-sm-block">OK</span>
                                     </button>
+                                    <span style="color: #ca0202;margin-left: 20px;border: 1px solid;padding: 5px 10px;font-size: 13px;border-radius: 5px;">
+                                        Lưu ý Upload ảnh trước! 
+                                        <strong>' nhấn OK '</strong>
+                                        ,  sau đó rồi mới nhập dữ liệu ở dưới
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -121,10 +126,10 @@
                                 <div class="mb-3 col-md-12">
                                     <label class="form-label">Status</label>
                                     <select id="status1" class="select1 form-select">
-                                        <option value="Show" @if($post->status === 'show') selected @endif>
+                                        <option value="show" @if($post->status === 'show') selected @endif>
                                             Show
                                         </option>
-                                        <option value="Hidden"
+                                        <option value="hidden"
                                                 @if($post->status === 'hidden') selected @endif>Hidden
                                         </option>
                                     </select>

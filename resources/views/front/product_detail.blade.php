@@ -47,7 +47,18 @@
                             <h3 class="product-title">{{ $product->name }}</h3>
                             <div class="contacts">
                                 <p> <span style="border: 0.5px solid #75d1ee;padding: 5px 10px;border-radius: 10px"><i class="fa-regular fa-eye"> : {{ $product->view_count }}</i></span></p>
-                                <h4 class="price">Giá: <span>Liên hệ</span></h4>
+                                <h4 class="price">Giá: 
+                                    
+                                @if ($product->price !== null)
+                                    <span>{{number_format($product->price)}} <i
+                                            class="fa-solid fa-dong-sign"></i>
+                                    </span>
+
+                                @else
+                                    <span>Liên Hệ</span>
+                                @endif
+                            
+                                </h4>
                             </div>
                             <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
                                 <strong>Uy tín</strong>!

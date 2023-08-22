@@ -29,15 +29,16 @@ class WebsiteController extends Controller
             $data[] = [$visit->year.'-'.$visit->month, (int) $visit->total]; // Chuyển đổi số lượng truy cập thành kiểu số (int)
         }
 
+        // Tính tổng tất cả người truy cập
+        $totalVisitors = $visits->sum('total');
+
         // Lấy danh sách các năm có trong dữ liệu
         $years = WebsiteVisit::selectRaw('DATE_FORMAT(visit_date, "%Y") as year')
             ->groupBy('year')
             ->pluck('year')
             ->toArray();
 
-        // Trả về view biểu đồ và danh sách các năm
-        return view('front.admins.index', compact('data', 'years', 'selectedYear','pageTitle'));
+        // Trả về view biểu đồ và danh sách các năm cùng với tổng tất cả người truy cập
+        return view('front.admins.index', compact('data', 'years', 'selectedYear', 'pageTitle', 'totalVisitors'));
     }
-
-
 }

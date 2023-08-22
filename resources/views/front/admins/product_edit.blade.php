@@ -37,6 +37,11 @@
                                         <i class="bx bx-reset d-block d-sm-none"></i>
                                         <span class="d-none d-sm-block">OK</span>
                                     </button>
+                                    <span style="color: #ca0202;margin-left: 20px;border: 1px solid;padding: 5px 10px;font-size: 13px;border-radius: 5px;">
+                                        Lưu ý Upload ảnh trước! 
+                                        <strong>' nhấn OK '</strong>
+                                        ,  sau đó rồi mới nhập dữ liệu ở dưới
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +57,7 @@
                                     <input class="form-control" type="text" id="name" name="name" placeholder="Name" autofocus value="{{ $product->name }}">
                                 </div>
                                 <div class="mb-3 col-md-12">
-                                    <label class="form-label">Descrips</label>
+                                    <label class="form-label">Short Description</label>
                                     <textarea style="resize: none" rows="8" class="form-control" id="descrips" name="descrips">{{$product->descrips}}</textarea>
                                 </div>
                                 <div class="mb-3 col-md-12">
@@ -143,9 +148,12 @@
                                 </div>
                             </div>
                             <div class="mt-2" style="text-align: right">
-                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close
-                                </button>
+                                
+                                <a href="{{route('admin_product')}}">
+                                    <button type="button" class="btn btn-outline-danger"
+                                            data-bs-dismiss="modal">Close
+                                    </button>
+                                </a>
                                 <button type="submit" class="btn btn-outline-success me-2 edit_product">Save
                                 </button>
                             </div>
@@ -267,7 +275,7 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        swal("sửa Thành công", "You clicked the button!", "success");
+                        swal("Sửa Thành Công", "You clicked the button!", "success");
 
 
                     } else {
@@ -275,7 +283,7 @@
                     }
                 },
                 error: function() {
-                    swal("sửa không thành công.", "You clicked the button!", "warning");
+                    swal("Sửa Không Thành Công.", "You clicked the button!", "warning");
                 }
             });
         });

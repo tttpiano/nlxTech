@@ -5049,5 +5049,9 @@ ul.category1.show {
 .dropdown-menu2 {
     z-index: 10;
 }
-
-
+.nice-select:after {
+    display: none;
+}
+.disable-hover{
+    text-transform: uppercase;
+}

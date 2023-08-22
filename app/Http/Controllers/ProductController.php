@@ -30,6 +30,7 @@ class ProductController extends Controller
             ->where('entity', 'product')
             ->first();
         if ($product) {
+            
             $product->increment('view_count'); // Tăng giá trị cột view_count lên 1
         }
         if ($imageRelated) {
@@ -89,7 +90,9 @@ class ProductController extends Controller
                 }
             }
         }
-
+        if ($product->price_status !== 'Show' || $product->price == 0) {
+            $product->price = null;
+        }
 
         if (!$product) {
             return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
@@ -277,6 +280,9 @@ class ProductController extends Controller
         $getNestedProduct = CategoryHelper::getNestedCategories2('category');
         $slides = Banner::where('active', true)->orderBy('order')->get();
         // Định dạng lại created_at thành chuỗi ngày tháng năm (vd: '17/07/2023')
+        $types = ['category', 'category_child', 'brand', 'wattage'];
+        $partyData = Party::whereIn('type', $types)->get()->groupBy('type');
+
         return view('front.index',
             ['products' => $products,
                 'pageTitle' => $pageTitle,
@@ -288,6 +294,7 @@ class ProductController extends Controller
                 'productInSlide2' => $productInSlide2,
                 'productInSlide3' => $productInSlide3,
                 'productInSlide4' => $productInSlide4,
+                'partyData' => $partyData,
             ]);
     }
 

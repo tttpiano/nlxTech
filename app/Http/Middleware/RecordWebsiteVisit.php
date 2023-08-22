@@ -19,7 +19,7 @@ class RecordWebsiteVisit
         $currentUrl = $request->url();
 
         // Kiểm tra nếu URL là trang chủ hoặc là /blog hoặc là /contact
-        if ($currentUrl == 'http://127.0.0.1:8000/') {
+        if ($currentUrl == 'http://127.0.0.1:8000') {
             // Lấy ngày hôm nay
             $today = now()->format('Y-m-d');
             // Kiểm tra xem đã có bản ghi cho ngày hôm nay chưa

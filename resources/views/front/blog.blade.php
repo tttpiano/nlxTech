@@ -53,7 +53,7 @@
                                 </ul>
                                 <h5><a href="{{route('posts.show', $post->url_seo)}}">
                                         {{$post->title}} </a></h5>
-                                <p>{{$post->description}}</p>
+                                <p>{{ \Illuminate\Support\Str::limit($post->title, 10) }}</p>
                                 <a href="{{route('posts.show', $post->url_seo)}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                             </div>
                         </div>

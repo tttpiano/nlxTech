@@ -49,20 +49,6 @@ let dots = document.querySelectorAll('.slider1 .dots li');
 
 
 
-dots.forEach((li, key) => {
-    li.addEventListener('click', () => {
-        active = key;
-        reloadSlider();
-    })
-})
-window.onresize = function (event) {
-    reloadSlider();
-};
-$(document).ready(function () {
-    $('.hero__categories1').hover(function () {
-        $('ul.category1').slideToggle(400);
-    });
-});
 
 
 

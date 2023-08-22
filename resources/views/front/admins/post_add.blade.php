@@ -61,7 +61,11 @@
                                             <i class="bx bx-reset d-block d-sm-none "></i>
                                             <span class="d-none d-sm-block">OK</span>
                                         </button>
-
+                                        <span style="color: #ca0202;margin-left: 20px;border: 1px solid;padding: 5px 10px;font-size: 13px;border-radius: 5px;">
+                                            Lưu ý Upload ảnh trước! 
+                                            <strong>' nhấn OK '</strong>
+                                            ,  sau đó rồi mới nhập dữ liệu ở dưới
+                                        </span>
 
                                     </div>
                                 </div>

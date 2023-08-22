@@ -41,11 +41,11 @@
                 <div class="footer__widget">
                     <h5>Chính Sách Bán Hàng</h5>
                     <ul>
-                        <li><a href="#">Chính Sách Vận Chuyển</a></li>
-                        <li><a href="#">Chính Sách Bán Hàng</a></li>
-                        <li><a href="#">Chính Sách Bảo Hành</a></li>
-                        <li><a href="#">Chính Sách Đổi Trả</a></li>
-                        <li><a href="#">Chính Sách Bảo Mật Thông Tin</a></li>
+                        <li><a href="{{route('shipping.policy')}}">Chính Sách Vận Chuyển</a></li>
+                        <li><a href="{{route('sale.policy')}}">Chính Sách Bán Hàng</a></li>
+                        <li><a href="{{route('guarantee.policy')}}">Chính Sách Bảo Hành</a></li>
+                        <li><a href="{{route('change.policy')}}">Chính Sách Đổi Trả</a></li>
+                        <li><a href="{{route('security.policy')}}">Chính Sách Bảo Mật Thông Tin</a></li>
                     </ul>
                     <!-- <ul>
 

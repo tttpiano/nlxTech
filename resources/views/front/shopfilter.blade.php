@@ -3,7 +3,7 @@
     <div class="introduce cuon">
         <h1>Sản Phẩm</h1>
     </div>
-
+    
     @include('front.list_brand')
     @include('front.filter')
     
@@ -33,7 +33,6 @@
                 </div>
                 <div class="col-lg-9 col-md-7 sp" style="transform: translateX(20px)">
                     <div class="product__discount" style="padding: 0">
-                        <h2 id="fillterShop"></h2>
                     </div>
                     <div class="filter__item">
                         <div class="row">

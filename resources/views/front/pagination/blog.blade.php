@@ -15,9 +15,13 @@
                 <ul>
                     <li><i class="fa fa-calendar-o"></i>{{$post->formattedCreatedAt}}</li>
                 </ul>
-                <h5><a href="{{route('posts.show', $post->url_seo)}}">
+                <h5 style="white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;"><a href="{{route('posts.show', $post->url_seo)}}">
                         {{$post->title}} </a></h5>
-                <p>{{$post->description}}</p>
+                <p style="white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;">{{ \Illuminate\Support\Str::limit($post->description, 50) }}</p>
                 <a href="{{route('posts.show', $post->url_seo)}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
             </div>
         </div>
